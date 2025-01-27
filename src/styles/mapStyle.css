@@ -1,0 +1,26 @@
+.esri-popup {
+    position: absolute !important;
+    z-index: 1000 !important;
+    max-width: 300px;
+    background-color: rgba(237, 239, 244, 0.8) !important;
+}
+
+.esri-popup__feature-menu {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+}
+
+.esri-popup__main-container {
+    font-size: 12px;
+    border: 1px solid rgba(102, 129, 174, 0.9);
+    border-radius: 12px;
+    padding: 12px;
+    background-color: rgba(237, 239, 244, 0.8) !important;
+    box-shadow: 0 4px 8px rgba(102, 129, 174, 0.1);
+}
+
+.esri-popup__pointer {
+    display: block !important;
+    /* Ensure the pointer aligns correctly */
+}

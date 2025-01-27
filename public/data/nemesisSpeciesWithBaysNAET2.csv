@@ -1,0 +1,60 @@
+SpeciesID,RegionID,specificRegionName,Date,Source(s)
+6897,n010,"Wilbur Neck, Eastport/ME/Cobscook Bay",1995, Matheison et al. 2009
+6897,n010,"Saint Patricks Parish/New Brunswick/Sam Orr's Pond, Passamaquoddy Bay",2009, Saunders et al. 2013
+6897,n036,Bar Harbor/ME/Frenchman's Bay,late 70s, early 1980s
+6897,n060,"Rachel Carson Salt Pond Preserve, Bristol/ME/Muscongus Bay,",1995, Mathieson et al. 2001
+6897,n080,"Reid State Park, Georgetown/ME/Sheepscot River",1994, Mathieson et al. 2001
+6897,n080,Boothbay Harbor/ME/Boothbay Harbor,on transplanted oysters, 1964
+6897,n100,"Cape Elizabeth/ME/Dyers Cove, Casco Bay",2010, Massachusetts Office of Coastal Zone Management 2013
+6897,n125,Cape Neddick/York/ME/Gulf of Maine,1989,Mathieson et al. 2003
+6897,n125,Kittery/ME/Brave Boat Harbor Marsh,1999, Mathieson et al. 2001
+6897,n135,Rye Ledge/NH/Gulf of Maine,1985, Mathieson et al. 2003
+6897,n135,Isles of Shoals/NH-ME/Gulf of Maine,1983, Carlton and Scanlon 1985
+6897,n170,"Hawthorne Marina, Salem/MA/Salem Harbor",2000, MIT Sea Grant 2003; 2010
+6897,n180,Provincetown/MA/Cape Cod Bay,1980, Carlton and Scanlon 1985
+6897,n180,Wellfleet/MA/Cape Cod Bay,1974, Carlton and Scanlon 1985
+6897,n180,Brewster/Cape Cod Bay,1974, Carlton and Scanlon 1985
+6897,n180,Barnstable/MA/Cape Cod Bay,1972, Carlton and Scanlon 1984
+6897,n180,Sandwich/MA/Cape Cod Canal,1968, Carlton and Scanlon 1985
+6897,n180,Plymouth/MA/Cape Cod Bay,1974, Carlton and Scanlon 1985
+6897,n180,"Brewers Plymouth Marina/Plymouth Harbor, Cape Cod Bay",2010, Massachusetts Office of Coastal Zone Management 2013
+6897,n185,"Chatham/MA/Oyster Pond River, Nantucket Sound, on oysters",1961, Carlton and Scanlon 1985
+13421,n100,"1st Records: Fort Williams State Park, Cape Elizabeth/ME/Casco Bay",2012, Newton et al. 2013
+13421,n106,"1st Record: Two Lights State Park, Cape Elizabeth/ME/Gulf of Maine",2012, Newton et al. 2013
+13421,n130,"1st Record: University of New Hampshire Coastal Research Laboratory, Newcastle/NH/Great Bay",2013, Wells et al. 2014
+13421,n135,1st Record: Appledore Island/ME/Gulf of Maine,2011, Science Daily 9/13/2012
+13421,n165,"Back Beach, Rockport/MA/Gulf of Maine",2012, Newton et al. 2013
+13421,n165,north to Cape Ann/MA/Gulf of Maine,2011, James T. Carlton
+13421,n165,"Folly Cove, Gloucester/MA/Gulf of Maine",2012, Savoie and Saunders 2013
+13421,n170,north to Cape Ann/MA/Gulf of Maine,2011, James T. Carlton
+13421,n170,"Niles Beach, Gloucester/MA/Massachusetts Bay",2012, Savoie and Sunders 2013
+13421,n170,"Good Harbor Beach, Gloucester/MA/Massachusetts Bay",2012, Newton et al. 2013
+13421,n170,"Singing Beach, Manchester/MA/Massachusetts Bay",2012, Newton et al. 2013
+13421,n170,"West Beach, Beverly/MA/Massachusetts Bay",2012, Newton et al. 2013
+13421,n170,"Pea Island, Nahant/MA/Massachusetts Bay",2012, Newton et al. 2013
+13421,n170,"Canoe Beach, Nahant/MA/Massachusetts Bay",2010, Ramsay-Newton et al. 2016
+13421,n180,"White Horse Beach, Plymouth/MA/Cape Cod Bay",2010, Savoie and Sauders 2013
+13421,n180,Dennis/MA/Cape Cod Bay,2011, Savoie and Saunders 2013
+12572,n070,Walpole/ME/Damariscotta River,2014, Capistrant-Foss and Brawley 2019
+12572,n130,ewington/NH/Great Bay,2014, Capistrant-Foss and Brawley 2019
+12572,n170,1st Record: Rowes Wharf/Boston/Boston Harbor,2007, Mathieson et al. 2007
+12572,n180,Sandwich/MA/Cape Cod Canal,2007, Mathieson et al. 2007; 2010
+52757,n010,Eastport/ME/Cobscook Bay,Unknown Date,Trott 2004
+52757,n010,"Saint Patricks Parish/New Brunswick/Sam Orr's Pond, Passamaquoddy Bay",2009, Saunders et al. 2013
+52757,n040,Blue Hill/ME/Blue Hill Bay,1949, Schick and Lamb 1977
+52757,n100,South Freeport/ME/Casco Bay,2003, MIT Sea Grant 2003
+52757,n100,"Spring Point Marina, South Portland/ME/Casco Bay",2010, Massachusetts Office of Coastal Zone Management 2013
+52757,n130,Newington/NH/Great Bay,1993, Blezard 1999
+52757,n130,"Coastal Marine Lab, Portsmouth/NH/Great Bay",2006, Harris and Dijkstra 2008
+52757,n130,"Great Bay Marina, Newington/NH/Great Bay",2006, Harris and Dijkstra 2008
+52757,n170,"Cape Ann Marina, Gloucester/MA/Massachusetts Bay",2000, MIT Sea Grant 2003
+52757,n170,"Hawthorne Cove Maina, Salem/MA/Massachusetts Bay",2000, MIT Sea Grant 2003
+52757,n170,Nahant/MA/Massachusetts Bay,1899, Parker 1902
+52757,n170,"Constitution Marina, Boston/MA/Boston Harbor",2000, MIT Sea Grant 2003
+52757,n170,"Black Falcon Terminal, Boston/MA/Boston Harbor",2000, MIT Sea Grant 2003
+52757,n170,Boston Harbor Islands/MA/Boston Harbor,Unknown Date,Bell et al. 2005
+52757,n170,"Bay Pointe Marina, Quincy/MA/Boston Harbor",2000, MIT Sea Grant 2003
+52757,n180,"Green Harbor Marina, Marshfield/MA/Cape Cod Bay",2013, Wells et al. 2014
+52757,n180,"Brewers Plymouth Marina/Plymouth Harbor, Cape Cod Bay",2010, Massachusetts Office of Coastal Zone Management 2013
+52757,n180,"Sandwich Marina/MA/Sandwich Harbor, Cape Cod Bay",2000, MIT Sea Grant 2003
+52757,n180,"Barnstable/MA/Barnstable Harbor, Cape Cod Bay",2000, MIT Sea Grant 2003
