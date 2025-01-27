@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import OneSpeciesSelection from "./oneSpeciesSelection";
+import OneSpeciesSelection from "./OneSpeciesSelection";
 import MultipleSpeciesSelection from "./MultipleSpeciesSelection";
 
 function Sidebar({ onSpeciesSelect, showingSpeciesDetail }) {
