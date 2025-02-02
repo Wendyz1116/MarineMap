@@ -115,3 +115,5 @@
   //     )
   //     .join(",")}
   // };
+
+  // Split(details[region], ',')

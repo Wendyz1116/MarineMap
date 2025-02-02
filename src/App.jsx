@@ -19,6 +19,12 @@ import SpeciesSection from "./pages/SpeciesSection";
 // black:
 // rgb(6,9,14)
 
+
+// Soft Coral: rgb(243,163,158)
+// Golden Yellow: rgb(245,200,92)
+
+
+
 const App = () => {
   return (
     <div className="w-screen h-screen flex flex-col bg-base-100">

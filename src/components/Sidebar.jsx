@@ -1,12 +1,19 @@
 import React from "react";
 import { useState } from "react";
-import OneSpeciesSelection from "./oneSpeciesSelection";
+import "../index.css";
+import OneSpeciesSelection from "./OneSpeciesSelection";
 import MultipleSpeciesSelection from "./MultipleSpeciesSelection";
 
-function Sidebar({ onSpeciesSelect, showingSpeciesDetail }) {
+function Sidebar({
+  selectedSpeciesInfo,
+  onSpeciesSelect,
+  showingSpeciesDetail,
+  nemesisRegionNames,
+}) {
   const [selectedTab, setSelectedTab] = useState("oneSpecies");
   const [expandSide, setExpandSide] = useState(true);
 
+  console.log("selectedSpeciesInfo", selectedSpeciesInfo);
   return (
     <div className="z-50 w-fit h-full border-r-2 shadow-md border-primary flex flex-row">
       {/* Collapse sidebar with icons only */}
@@ -37,7 +44,7 @@ function Sidebar({ onSpeciesSelect, showingSpeciesDetail }) {
 
       {/* Expanded sidebar */}
       {expandSide && (
-        <div className="flex flex-col w-52">
+        <div className="flex flex-col w-52 overflow-y-scroll custom-scrollbar">
           <div
             className="cursor-pointer w-full p-2 flex justify-end align-bottom items-end"
             onClick={() => {
@@ -50,7 +57,12 @@ function Sidebar({ onSpeciesSelect, showingSpeciesDetail }) {
             {selectedTab === "oneSpecies" ? (
               <div>
                 <p className="font-bold text-center">Review One Species</p>
-                <OneSpeciesSelection onSpeciesSelect={onSpeciesSelect} showingSpeciesDetail={showingSpeciesDetail} />
+                <OneSpeciesSelection
+                  selectedSpeciesRegionalInfo={selectedSpeciesInfo}
+                  onSpeciesSelect={onSpeciesSelect}
+                  showingSpeciesDetail={showingSpeciesDetail}
+                  nemesisRegionNames={nemesisRegionNames}
+                />
               </div>
             ) : (
               <div>

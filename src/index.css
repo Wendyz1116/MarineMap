@@ -16,3 +16,18 @@ body,
 .esri-popup {
   z-index: 1000;
 }
+
+.custom-scrollbar {
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: lightgray transparent; /* Firefox */
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px; /* Make the scrollbar thinner */
+  background-color: transparent; /* Optional: make the track transparent */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: lightgray; /* Set thumb color */
+  border-radius: 4px; /* Rounded corners for the thumb */
+}

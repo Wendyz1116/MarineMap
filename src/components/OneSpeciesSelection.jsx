@@ -2,19 +2,68 @@ import React, { useEffect, useState } from "react";
 import Papa from "papaparse";
 import { IoIosArrowDown } from "react-icons/io";
 import CollapsibleSection from "./CollapsibleSection";
+import { use } from "react";
 
-function OneSpeciesSelection({ onSpeciesSelect, showingSpeciesDetail }) {
+function OneSpeciesSelection({
+  selectedSpeciesRegionalInfo,
+  onSpeciesSelect,
+  showingSpeciesDetail,
+  nemesisRegionNames,
+}) {
   const [speciesData, setSpeciesData] = useState([]);
   const [selectedSpecies, setSelectedSpecies] = useState(null);
   const [showSpeciesDetail, setShowSpeciesDetail] = useState(false); // Track sidebar visibility
+  const [speciesFormatedRegionalInfo, setSpeciesFormatedRegionalInfo] =
+    useState("");
 
+  const [nemesisLink, setNemesisLink] = useState("");
   const handleSpeciesChange = (event) => {
     setSelectedSpecies(event.target.value);
   };
 
+  useEffect(() => {
+    console.log("nemesisRegionNames");
+    console.log(nemesisRegionNames);
+    if (selectedSpeciesRegionalInfo) {
+      let body = Object.entries(selectedSpeciesRegionalInfo).map(
+        ([region, details]) => {
+          const { Year, Vectors, ...rest } = details;
+          return (
+            <div key={region} className="py-1">
+              <span className="font-bold">
+                {nemesisRegionNames[region]} ({Year}):
+              </span>
+              <br />
+              <span className="font-semibold"> Invasion Status: </span>{" "}
+              {rest["Invasion Status"]}
+              <br />
+              <span className="font-semibold"> Population Status: </span>{" "}
+              {rest["Population Status"]}
+              <br />
+              <span className="font-semibold"> Vectors: </span> {Vectors}
+            </div>
+          );
+        }
+      );
+      setSpeciesFormatedRegionalInfo(body);
+    }
+  }, [selectedSpeciesRegionalInfo]);
+
   const handleButtonClick = () => {
     if (selectedSpeciesInfo) {
       // onSpeciesSelect(selectedSpecies); set to species name
+      setNemesisLink(
+        <a
+          href={
+            "https://invasions.si.edu/nemesis/species_summary/" +
+            selectedSpeciesInfo["Species Nemesis ID"]
+          }
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Nemesis page
+        </a>
+      );
       onSpeciesSelect(selectedSpeciesInfo); //set to species id
       setShowSpeciesDetail(true); // Populate sidebar with species' detail when a species is selected
       showingSpeciesDetail(true); // For communicating with timeline that species is selected
@@ -42,7 +91,6 @@ function OneSpeciesSelection({ onSpeciesSelect, showingSpeciesDetail }) {
           header: true,
           skipEmptyLines: true,
           complete: (results) => {
-            // console.log("in results");
             setSpeciesData(results.data);
             // console.log(results);
           },
@@ -97,9 +145,16 @@ function OneSpeciesSelection({ onSpeciesSelect, showingSpeciesDetail }) {
             className="w-full h-auto"
           />
 
-          <CollapsibleSection title="First record:" body="First record" />
-          <CollapsibleSection title="Classification:" body="Classification" />
-          <CollapsibleSection title="More details:" body="More details" />
+          <CollapsibleSection
+            title="First records:"
+            body={speciesFormatedRegionalInfo}
+          />
+          {/* <CollapsibleSection title="Classification:" body="Classification" /> */}
+          <CollapsibleSection
+            title="More details:"
+            body={nemesisLink}
+            bodyStyle="text-primary"
+          />
 
           <button
             className="mt-4 btn btn-sm btn-secondary"

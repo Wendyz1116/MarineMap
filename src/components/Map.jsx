@@ -1,75 +1,114 @@
 import React, { useEffect, useRef, useState } from "react";
 import { loadModules } from "esri-loader";
-import '../styles/mapStyle.css';
+import "../styles/mapStyle.css";
 
 function Map({
+  allYears = false,
   currRegions = [],
   pastRegions = [],
   regionsDetail,
+  nemesisRegionNames,
   currSites = [],
 }) {
+  //TODO4 fix the popup for the first year region
+
+  // make sure currRegions in a flat array
+  currRegions = Array.isArray(currRegions[0]) ? currRegions[0] : currRegions;
   const MapElem = useRef(null);
   const viewRef = useRef(null);
   const geoJsonLayerRef = useRef(null);
   const graphicsLayerRef = useRef(null);
-
-  console.log("map", regionsDetail);
-
   const [renderer, setRenderer] = useState(null);
 
   // Create the popup template base on unique region details
   const createPopupTemplate = (PopupTemplate, regionsDetail) => {
     return new PopupTemplate({
-      title: "{REG_NEWREG}",
+      // title: "",
       content: [
         {
           type: "text",
           text: `
             <div class="custom-popup">
-              <p><strong>Region:</strong> {REG_NEWREG}</p>
-              <p><strong>Status:</strong> {expression/regionStatus}</p>
-              <p><strong>Details:</strong></p>
-              <p>{expression/regionDetails}</p>
+              <p><strong>{expression/regionName}</strong> ({REG_NEWREG})</p>
+              <p><strong>{expression/descriptiveText}</strong></p>{expression/popupContent}
+              
             </div>
           `,
         },
       ],
       expressionInfos: [
         {
-          name: "regionStatus",
-          title: "Status",
+          name: "regionName",
+          title: "name",
           expression: `
-            IIF($feature.REG_NEWREG IN ['${currRegions.join("','")}'], 
-                'Current Region', 
-                'Past Region')
+            var region = $feature.REG_NEWREG;
+            var names = {
+              ${Object.entries(nemesisRegionNames)
+                .map(([key, value]) => `'${key}': '${value}'`)
+                .join(",")}
+            };
+            return names[region]
           `,
         },
         {
-          name: "regionDetails",
-          title: "Details",
+          name: "descriptiveText",
+          title: "description",
           expression: `
+            var region = $feature.REG_NEWREG;
+            var currentRegions = ['${currRegions.join("','")}'];
+            var allYears = ${allYears ? "true" : "false"};
+
+            When(
+              allYears, 'Years with Records:',
+              Includes(currentRegions, region), 'Sources:',
+              'Past Region:'
+            )
+          `,
+        },
+        {
+          name: "popupContent",
+          title: "Content",
+          expression: `
+            var region = $feature.REG_NEWREG;
+            var currentRegions = ['${currRegions.join("','")}'];
+            var allYears = ${allYears ? "true" : "false"};
+            
             var details = {
-              ${Object.entries(regionsDetail)
-                .map(
-                  ([key, value]) =>
-                    `'${key}': '${value
-                      .map(
-                        ({ specificRegionName, ...rest }) =>
-                          `${specificRegionName} (${rest["Source(s)"]})`
-                      )
-                      .join(", ")}'`
-                )
-                .join(",")}
+                ${Object.entries(regionsDetail)
+                  .map(
+                    ([key, value]) =>
+                      `'${key}': '${
+                        allYears
+                          ? value
+                          : value
+                              .map(
+                                ({ specificRegionName, ...rest }) =>
+                                  `${specificRegionName} (${rest[
+                                    "Source(s)"
+                                  ].substring(1)})`
+                              )
+                              .join(", ")
+                      }'`
+                  )
+                  .join(", ")}
             };
             
-            return IIF(hasKey(details, $feature.REG_NEWREG), 
-                      details[$feature.REG_NEWREG], 
-                      'No details available for this region');
-          `,
+            if (allYears) {
+              var detailsInfo = Split(details[region], ","); // Split into an array
+
+              return detailsInfo
+            }
+            return IIF(
+                Includes(currentRegions, region),
+                IIF(hasKey(details, region), details[region], 'Source undefined'),
+                'Species have been spotted here in the past'
+            );
+            `,
         },
       ],
     });
   };
+
 
   useEffect(() => {
     loadModules(
@@ -99,7 +138,7 @@ function Map({
           // Adding styles for the popup
           // const style = document.createElement("style");
           // style.textContent = `
-            
+
           // `;
           // document.head.appendChild(style);
 
@@ -132,7 +171,7 @@ function Map({
 
           view.popup.dockOptions = {
             buttonEnabled: false, // Hides the dock button
-            breakpoint: false,    // Disables responsive behavior
+            breakpoint: false, // Disables responsive behavior
             position: "top-right", // Positions the popup where you want
           };
 
@@ -144,7 +183,7 @@ function Map({
           //       console.log("Feature clicked:", feature.attributes);
 
           //       console.log("view", view.popup.actions);
-                
+
           //     }
           //   });
           // });
@@ -190,6 +229,7 @@ function Map({
         position: absolute !important;
         z-index: 1000 !important;
         max-width: 300px;
+        con
       }
   
       .esri-popup__feature-menu {
@@ -197,9 +237,19 @@ function Map({
         visibility: hidden !important;
         height: 0 !important;
       }
+
+      .esri-popup__content {
+        white-space: normal;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+      }
+
+      .esri-popup__content-container {
+        max-height: none;
+      }
     `;
     document.head.appendChild(style);
-  
+
     return () => {
       document.head.removeChild(style);
     };
@@ -207,12 +257,8 @@ function Map({
 
   // Update map with currRegions and pastRegions
   useEffect(() => {
-    console.log("in map");
-    console.log("currSites", currSites);
-    console.log("currRegions", currRegions, "pastRegions", pastRegions);
     if (currRegions.length === 0 && pastRegions.length === 0) return;
 
-    currRegions = currRegions[0];
     if (geoJsonLayerRef.current) {
       loadModules(["esri/renderers/UniqueValueRenderer"]).then(
         ([UniqueValueRenderer]) => {
@@ -250,10 +296,9 @@ function Map({
   }, [renderer, geoJsonLayerRef.current]);
 
   useEffect(() => {
+    console.log("CREATING POPUP!! with, ", regionsDetail)
     loadModules(["esri/PopupTemplate"], { url: "https://js.arcgis.com/4.25/" })
       .then(([PopupTemplate]) => {
-        console.log("making new popup!");
-        console.log(regionsDetail);
         if (geoJsonLayerRef.current) {
           geoJsonLayerRef.current.popupTemplate = createPopupTemplate(
             PopupTemplate,
@@ -262,11 +307,10 @@ function Map({
         }
       })
       .catch((err) => console.error("Error updating popup:", err));
-  }, [regionsDetail, geoJsonLayerRef.current]);
+  }, [regionsDetail, geoJsonLayerRef.current, allYears, currRegions]);
 
   // Update the map by ploting the currSites' locations
   useEffect(() => {
-    console.log("plot curr sites", graphicsLayerRef.current, currSites);
     if (graphicsLayerRef.current) {
       if (currSites.length > 0) {
         loadModules(["esri/Graphic"]).then(([Graphic]) => {
@@ -302,7 +346,6 @@ function Map({
           graphicsLayerRef.current.addMany(siteGraphics); // Add new graphics
         });
       } else {
-        console.log("clearing graphics");
         graphicsLayerRef.current.removeAll(); // Clear all graphics if no sites
       }
     }
