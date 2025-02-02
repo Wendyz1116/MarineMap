@@ -1,6 +1,9 @@
 import React from "react";
 import { useState } from "react";
+<<<<<<< HEAD
 import "../index.css";
+=======
+>>>>>>> 9bebf73e082dd2498da64cc0731db332a4430476
 import OneSpeciesSelection from "./OneSpeciesSelection";
 import MultipleSpeciesSelection from "./MultipleSpeciesSelection";
 
