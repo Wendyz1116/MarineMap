@@ -81,18 +81,16 @@ function OneSpeciesSelection({
   //   onSpeciesSelect(selectedSpecies);
   // }, [selectedSpeciesInfo]);
 
+  // reat the nemesis species info csv
   useEffect(() => {
-    // Fetch the CSV file
     fetch("/descriptions/nemesisSpeciesInfo.csv")
       .then((response) => response.text())
       .then((csvData) => {
-        // Parse the CSV data
         Papa.parse(csvData, {
           header: true,
           skipEmptyLines: true,
           complete: (results) => {
             setSpeciesData(results.data);
-            // console.log(results);
           },
         });
       })

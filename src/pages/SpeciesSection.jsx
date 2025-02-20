@@ -8,7 +8,7 @@ import MapSection from "../components/MapSection";
 export default function SpeciesSection() {
   // States for sidebar
   const [selectedSpecies, setSelectedSpecies] = useState(null);
-  const [selectedSpeciesInfo, setSelectedSpeciesInfo] = useState(null); 
+  const [selectedSpeciesInfo, setSelectedSpeciesInfo] = useState(null);
   const [speciesRegions, setSpeciesRegions] = useState([]);
   const [pastSpeciesRegions, setPastSpeciesRegions] = useState(new Set());
 
@@ -16,7 +16,7 @@ export default function SpeciesSection() {
   const [NAET1Data, setNAET1Data] = useState(null);
   const [NAET2Data, setNAET2Data] = useState(null);
   const [NAET3Data, setNAET3Data] = useState(null);
-  
+
   const [NAET1SpeciesInfo, setNAET1SpeciesInfo] = useState(null);
   const [NAET2SpeciesInfo, setNAET2SpeciesInfo] = useState(null);
   const [NAET3SpeciesInfo, setNAET3SpeciesInfo] = useState(null);
@@ -66,23 +66,15 @@ export default function SpeciesSection() {
     extractFromRegionsCSV("/data/nemesisNAET1.csv", setNAET1SpeciesInfo);
     extractFromRegionsCSV("/data/nemesisNAET2.csv", setNAET2SpeciesInfo);
     extractFromRegionsCSV("/data/nemesisNAET3.csv", setNAET3SpeciesInfo);
-    
   }, []);
 
   // extract data from the csv file for regions NA-ET1, Na-ET2, and Na-ET3
+
+  // CHANGE extract from NAET1SourcesWithLatLong instead of nemesisSpeciesWithBaysNAET1.csv
   useEffect(() => {
-    extractFromRegionsCSV(
-      "/data/nemesisSpeciesWithBaysNAET1.csv",
-      setNAET1Data
-    );
-    extractFromRegionsCSV(
-      "/data/nemesisSpeciesWithBaysNAET2.csv",
-      setNAET2Data
-    );
-    extractFromRegionsCSV(
-      "/data/nemesisSpeciesWithBaysNAET3.csv",
-      setNAET3Data
-    );
+    extractFromRegionsCSV("/data/NAET1SourcesWithLatLong.csv", setNAET1Data);
+    extractFromRegionsCSV("/data/NAET2SourcesWithLatLong.csv", setNAET2Data);
+    extractFromRegionsCSV("/data/NAET3SourcesWithLatLong.csv", setNAET3Data);
 
     extractFromRegionsCSV("/RAS data/ras2019Sites.csv", setRasSiteLocData);
     extractFromRegionsCSV("/RAS data/ras2019Survey.csv", setras2019SurveyData);
@@ -102,9 +94,12 @@ export default function SpeciesSection() {
   }, [nemesisRegionNames]);
 
   // Use the species name, filter from the smaller region files
+  // TODO2: split up general region data cleaning and ras/specific site data cleaning
   useEffect(() => {
     if (selectedSpecies) {
-      console.log(selectedSpecies);
+      // ----------------------------------------------------------------//
+      // Functions to filter data based on species name or RAS Site Code //
+      // ----------------------------------------------------------------//
       // Filter the data from NAET1Data, NAET2Data, NAET3Data based on selectedSpecies
       const filterBySpeciesID = (data) => {
         return data
@@ -113,49 +108,79 @@ export default function SpeciesSection() {
             )
           : [];
       };
-
       const filterBySpeciesName = (data) => {
         return data
-          ? data.filter(
-              (item) => item.Name === selectedSpecies["Species Name"]
-            )
+          ? data.filter((item) => item.Name === selectedSpecies["Species Name"])
           : [];
       };
-
+      // Filter the RAS data based on selectedSpecies name
       const filterRASBySpecies = (data, selectedGenus, selectedSpecies) => {
         return data.filter(
           (item) =>
-            item.Species === selectedSpecies && item.Genus === selectedGenus
+            item.Species.trim() === selectedSpecies &&
+            item.Genus.trim() === selectedGenus
         );
       };
-
       const filterRASBySite = (data, siteCodes) => {
         return data.filter((item) => siteCodes.includes(item["Site Code"]));
       };
 
-      const filteredNAET1 = filterBySpeciesID(NAET1Data);
-      const filteredNAET2 = filterBySpeciesID(NAET2Data);
-      const filteredNAET3 = filterBySpeciesID(NAET3Data);
+      // --------------------------------------------//
+      // Working with RAS species specific site data //
+      // --------------------------------------------//
+      // Update species' sites base on RAS data
+      const filteredRAS = filterRASBySpecies(
+        ras2019SurveyData,
+        selectedSpecies["RAS Genus Name"],
+        selectedSpecies["RAS Species Name"]
+      )[0];
 
+      // TODO3 dk if i need a temp?
+      let tempSpeciesRASData = [];
+
+      Object.keys(filteredRAS).forEach((key) => {
+        filteredRAS[key] === "x" ? tempSpeciesRASData.push(key) : null;
+      });
+
+      // console.log("rasSiteLocData", rasSiteLocData);
+      // console.log("tempSpeciesRASData", tempSpeciesRASData);
+
+      const filteredRASSite = filterRASBySite(
+        rasSiteLocData,
+        tempSpeciesRASData
+      );
+
+      let tempAllYearRasData = {};
+
+      tempAllYearRasData["2019"] = filteredRASSite;
+      tempAllYearRasData["all years"] = filteredRASSite;
+
+      // --------------------------------------------------------//
+      // Working with Nemesis species specific first record info //
+      // --------------------------------------------------------//
       // Set first record info abt species in each region
       const filteredNAET1Species = filterBySpeciesName(NAET1SpeciesInfo);
       const filteredNAET2Species = filterBySpeciesName(NAET2SpeciesInfo);
       const filteredNAET3Species = filterBySpeciesName(NAET3SpeciesInfo);
-
-      const regionSpeciesData = {}
+      const regionSpeciesData = {};
 
       if (filteredNAET1Species[0]) {
-        regionSpeciesData["NA-ET1"] =filteredNAET1Species[0];
+        regionSpeciesData["NA-ET1"] = filteredNAET1Species[0];
       }
       if (filteredNAET2Species[0]) {
-        regionSpeciesData["NA-ET2"] =filteredNAET2Species[0];
-      } 
-      if (filteredNAET3Species[0]) {
-        regionSpeciesData["NA-ET3"] =filteredNAET3Species[0];
+        regionSpeciesData["NA-ET2"] = filteredNAET2Species[0];
       }
-     
+      if (filteredNAET3Species[0]) {
+        regionSpeciesData["NA-ET3"] = filteredNAET3Species[0];
+      }
       setSelectedSpeciesInfo(regionSpeciesData);
-      console.log(regionSpeciesData)
+
+      // ----------------------------------------------------//
+      // Working with Nemesis species specific location data //
+      // ----------------------------------------------------//
+      const filteredNAET1 = filterBySpeciesID(NAET1Data);
+      const filteredNAET2 = filterBySpeciesID(NAET2Data);
+      const filteredNAET3 = filterBySpeciesID(NAET3Data);
 
       const yearRegionMap = {};
       yearRegionMap["all years"] = new Set();
@@ -167,11 +192,15 @@ export default function SpeciesSection() {
         "NA-ET3": [],
       };
 
-      // loop through the regions info and add year: region pairs
+      // Loops through the regions info and add year: region pairs
       const addYearRegion = (region, data) => {
         data.forEach((record) => {
           const currYear =
-            record.Date.length == 4 ? record.Date : "Unknown Date";
+            !Number.isNaN(record.Date) &&
+            Number(record.Date) >= 1800 &&
+            Number(record.Date <= 2030)
+              ? record.Date
+              : "Unknown Date";
           if (currYear in yearRegionMap) {
             yearRegionMap[currYear].add(region);
             if (region in yearRegionDetails[currYear])
@@ -186,6 +215,8 @@ export default function SpeciesSection() {
         });
       };
 
+      // If there exists data for the species in a region, add info
+      // from the region to the yearRegionMap
       if (filteredNAET1[0]) {
         addYearRegion("NA-ET1", filteredNAET1);
       }
@@ -196,7 +227,7 @@ export default function SpeciesSection() {
         addYearRegion("NA-ET3", filteredNAET3);
       }
 
-      // Create map from region: years
+      // Create map in the form region: years
       Object.entries(yearRegionMap).forEach(([year, regions]) => {
         regions.forEach((region) => {
           if (year != "all years") {
@@ -221,35 +252,30 @@ export default function SpeciesSection() {
       setAllYearRegionMap(yearRegionMap);
       setSpeciesRegions(yearRegionMap[years[0]]);
 
-      // Update species' sites base on RAS data
-      const filteredRAS = filterRASBySpecies(
-        ras2019SurveyData,
-        selectedSpecies["RAS Genus Name"],
-        selectedSpecies["RAS Species Name"]
-      )[0];
+      // Adding lat and long from source sites
+      const extractYearsWithGeoloc = (yearRegionDetails) => {
+        Object.entries(yearRegionDetails).forEach(([year, regions]) => {
+          Object.entries(regions).forEach(([region, records]) => {
+            if (region == "NA-ET1" || region == "NA-ET2") {
+              // console.log(records);
+              records.forEach((record) => {
+                if (record["Latitude"]) {
+                  tempAllYearRasData[year]
+                    ? tempAllYearRasData[year].push(record)
+                    : (tempAllYearRasData[year] = [record]);
+                }
+              });
+            }
+          });
+        });
+      };
 
-      // TODO3 dk if i need a temp?
-      let tempSpeciesRASData = [];
-
-      Object.keys(filteredRAS).forEach((key) => {
-        filteredRAS[key] === "x" ? tempSpeciesRASData.push(key) : null;
-      });
-
-      const filteredRASSite = filterRASBySite(
-        rasSiteLocData,
-        tempSpeciesRASData
-      );
-
-      let tempAllYearRasData = {};
-
-      tempAllYearRasData["2019"] = filteredRASSite;
-      tempAllYearRasData["all years"] = filteredRASSite;
-
-      // setSpeciesRasData(filteredRASSite);
+      extractYearsWithGeoloc(yearRegionDetails);
       setAllYearRasData(tempAllYearRasData);
     }
   }, [selectedSpecies]);
 
+  
   // Depending on the selected year, update the pastSpeciesRegions and current speciesRegions
   useEffect(() => {
     const pastSpeciesRegionsList = [];
@@ -263,23 +289,21 @@ export default function SpeciesSection() {
       setCurrYearDetail(allYearRegionDetail[newYear]);
     }
 
-    if (newYear == "2019" || newYear == "all years")
-      setSpeciesRasData(allYearRasData[newYear]);
+    if (newYear in allYearRasData) setSpeciesRasData(allYearRasData[newYear]);
     else setSpeciesRasData([]);
 
-    if (newYear == "all years"){
+    if (newYear == "all years") {
       setAllYears(true);
-      setCurrYearDetail(regionYearMap)
-    }
-    else setAllYears(false);
+      setCurrYearDetail(regionYearMap);
+    } else setAllYears(false);
   }, [newYear]);
 
   return (
     <div className="flex flex-row flex-grow overflow-hidden h-full w-full">
       <Sidebar
-        selectedSpeciesInfo = {selectedSpeciesInfo}
+        selectedSpeciesInfo={selectedSpeciesInfo}
         onSpeciesSelect={setSelectedSpecies}
-        showingSpeciesDetail={setShowingSpeciesDetail}        
+        showingSpeciesDetail={setShowingSpeciesDetail}
         nemesisRegionNames={nemesisRegionMap}
       />
       <MapSection

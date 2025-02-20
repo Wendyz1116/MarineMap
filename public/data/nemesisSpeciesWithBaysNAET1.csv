@@ -1,9 +1,15 @@
-SpeciesID,RegionID,specificRegionName,Date,Source(s)
-6897,na-et1,Nova Scotia/St. Margarets Bay,1991, Begin and Scheibling 2003; 1999
-6897,na-et1,Halifax County/Nova Scotia/Cranberry Cove,1999, Begin and Scheibling 2003
-6897,na-et1,Spanish Room/Newfoundland/Mortier Bay,2012, Matheson et al. 2014
-6897,na-et1,Woody Island/Newfoundland/Placentia Bay,2012, Matheson et al. 2014
-6897,na-et1,Arnold’s Cove/Newfoundland/Placentia Bay,2013, Matheson et al. 2014
-13421,na-et1,"1st Record: Covey Head, Upper Blandford/Nova Scotia/Mahone Bay",2012, Savoie and Saunders 2013
-52757,na-et1,Halifax/Nova Scotia/Halifax Harbour,2013, Moore et al. 2014
-52757,na-et1,"Halifax to Lunenburg, in harbors/Nova Scotia/Atlantic Ocean",Unknown Date,Ma et al. 2020
+SpeciesID,Date,RegionID,RegionName,Source(s)
+6897,1991,na-et1,Nova Scotia/St. Margarets Bay, Begin and Scheibling 2003; 1999
+6897,1999,na-et1,Halifax County/Nova Scotia/Cranberry Cove, Begin and Scheibling 2003
+6897,2012,na-et1,Spanish Room/Newfoundland/Mortier Bay, Matheson et al. 2014
+6897,2012,na-et1,Woody Island/Newfoundland/Placentia Bay, Matheson et al. 2014
+6897,2013,na-et1,Arnold’s Cove/Newfoundland/Placentia Bay, Matheson et al. 2014
+13421,2012,na-et1,"1st Record: Covey Head, Upper Blandford/Nova Scotia/Mahone Bay", Savoie and Saunders 2013
+52757,2013,na-et1,Halifax/Nova Scotia/Halifax Harbour, Moore et al. 2014
+52757,Unknown Date,na-et1,"Halifax to Lunenburg, in harbors/Nova Scotia/Atlantic Ocean",Ma et al. 2020
+-77,2010,na-et1,Bay L'Argent/Newfoundland/Fortune Bay, Fisheries and Oceans Canada 2011
+-77,2010,na-et1,Great Paradise/Newfoundland/Placentia Bay, Fisheries and Oceans Canada 2011
+-77,2010,na-et1,Clattice Harbour/Newfoundland/Placentia Bay, Fisheries and Oceans Canada 2011
+-77,2010,na-et1,Barren Island/Newfoundland/Placentia Bay, Fisheries and Oceans Canada 2011
+-77,2008,na-et1,Halifax/Nova Scotia/Atlantic Ocean, Lacoursiere-Roussel et al. 2016
+-77,2008,na-et1,Liverpool/Nova Scotia/Mersey River, Lacoursiere-Roussel et al. 2016

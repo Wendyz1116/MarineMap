@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { loadModules } from "esri-loader";
 import "../styles/mapStyle.css";
+import MapSettings from "./MapSettings";
 
 function Map({
   allYears = false,
@@ -19,6 +20,44 @@ function Map({
   const geoJsonLayerRef = useRef(null);
   const graphicsLayerRef = useRef(null);
   const [renderer, setRenderer] = useState(null);
+  const lastUpdated = "02/19/2025";
+
+  //------------------------------//
+  // Createing popups for the map //
+  //------------------------------//
+  // Add styles for the popup
+  useEffect(() => {
+    const style = document.createElement("style");
+    style.textContent = `
+      .esri-popup {
+        position: absolute !important;
+        z-index: 1000 !important;
+        max-width: 300px;
+        con
+      }
+  
+      .esri-popup__feature-menu {
+        display: none !important;
+        visibility: hidden !important;
+        height: 0 !important;
+      }
+
+      .esri-popup__content {
+        white-space: normal;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+      }
+
+      .esri-popup__content-container {
+        max-height: none;
+      }
+    `;
+    document.head.appendChild(style);
+
+    return () => {
+      document.head.removeChild(style);
+    };
+  }, []);
 
   // Create the popup template base on unique region details
   const createPopupTemplate = (PopupTemplate, regionsDetail) => {
@@ -109,7 +148,21 @@ function Map({
     });
   };
 
+  // Add the popups for each year
+  useEffect(() => {
+    loadModules(["esri/PopupTemplate"], { url: "https://js.arcgis.com/4.25/" })
+      .then(([PopupTemplate]) => {
+        if (geoJsonLayerRef.current) {
+          geoJsonLayerRef.current.popupTemplate = createPopupTemplate(
+            PopupTemplate,
+            regionsDetail
+          );
+        }
+      })
+      .catch((err) => console.error("Error updating popup:", err));
+  }, [regionsDetail, geoJsonLayerRef.current, allYears, currRegions]);
 
+  // Main section to create the whole map
   useEffect(() => {
     loadModules(
       [
@@ -222,39 +275,6 @@ function Map({
     };
   }, []);
 
-  useEffect(() => {
-    const style = document.createElement("style");
-    style.textContent = `
-      .esri-popup {
-        position: absolute !important;
-        z-index: 1000 !important;
-        max-width: 300px;
-        con
-      }
-  
-      .esri-popup__feature-menu {
-        display: none !important;
-        visibility: hidden !important;
-        height: 0 !important;
-      }
-
-      .esri-popup__content {
-        white-space: normal;
-        word-wrap: break-word;
-        overflow-wrap: break-word;
-      }
-
-      .esri-popup__content-container {
-        max-height: none;
-      }
-    `;
-    document.head.appendChild(style);
-
-    return () => {
-      document.head.removeChild(style);
-    };
-  }, []);
-
   // Update map with currRegions and pastRegions
   useEffect(() => {
     if (currRegions.length === 0 && pastRegions.length === 0) return;
@@ -269,7 +289,7 @@ function Map({
                 value: region,
                 symbol: {
                   type: "simple-fill",
-                  color: [147, 192, 209, 0.5], // lighter accent color
+                  color: [147, 192, 209, 0.3], // lighter accent color
                   outline: { color: [147, 192, 209], width: 1 },
                 },
               })),
@@ -277,7 +297,7 @@ function Map({
                 value: region,
                 symbol: {
                   type: "simple-fill",
-                  color: [102, 129, 174, 0.7], // primary for current regions
+                  color: [102, 129, 174, 0.5], // primary for current regions
                   outline: { color: [102, 129, 174], width: 1 },
                 },
               })),
@@ -295,20 +315,6 @@ function Map({
     }
   }, [renderer, geoJsonLayerRef.current]);
 
-  useEffect(() => {
-    console.log("CREATING POPUP!! with, ", regionsDetail)
-    loadModules(["esri/PopupTemplate"], { url: "https://js.arcgis.com/4.25/" })
-      .then(([PopupTemplate]) => {
-        if (geoJsonLayerRef.current) {
-          geoJsonLayerRef.current.popupTemplate = createPopupTemplate(
-            PopupTemplate,
-            regionsDetail
-          );
-        }
-      })
-      .catch((err) => console.error("Error updating popup:", err));
-  }, [regionsDetail, geoJsonLayerRef.current, allYears, currRegions]);
-
   // Update the map by ploting the currSites' locations
   useEffect(() => {
     if (graphicsLayerRef.current) {
@@ -316,27 +322,27 @@ function Map({
         loadModules(["esri/Graphic"]).then(([Graphic]) => {
           const siteGraphics = currSites.map(
             ({
-              "Site Code": id,
-              Location: name,
+              // "Site Code": id,
+              "Site Location": name,
               Longitude: lon,
               Latitude: lat,
             }) => {
               return new Graphic({
                 geometry: {
                   type: "point",
-                  longitude: parseFloat(lon), // Ensure lon is a number
-                  latitude: parseFloat(lat), // Ensure lat is a number
+                  longitude: parseFloat(lon),
+                  latitude: parseFloat(lat),
                 },
                 symbol: {
                   type: "simple-marker",
-                  color: "rgba(245,200,92,1)",
+                  color: "rgba(243,163,158, 1)",
                   size: "8px",
                   outline: { color: "rgba(6,9,14,0.8)", width: 0.5 },
                 },
-                attributes: { id, name },
+                attributes: { name },
                 popupTemplate: {
-                  title: "{name}",
-                  content: `<p><strong>Site ID:</strong> {id}</p>`,
+                  title: "<p><strong>{name}<p><strong>",
+                  // content: `<p><strong>Site ID:</strong> {id}</p>`,
                 },
               });
             }
@@ -353,6 +359,13 @@ function Map({
 
   return (
     <div className="h-full w-full bg-base-100 relative">
+      <div className="absolute top-0 left-0 z-10 bg-none p-2">
+        <MapSettings />
+      </div>
+      <div className="absolute text-xs text-primary-content bottom-0 left-0 z-10 bg-none p-2">
+        Data last modified: {lastUpdated}
+      </div>
+
       {/* TODO5: can see the white bkg if zoom out small enough,
   lock the map if so that we can't zoom out too far */}
       <div ref={MapElem} className="h-full"></div>
@@ -362,14 +375,14 @@ function Map({
         <div className="flex items-center">
           <span
             className="inline-block w-4 h-4 mr-2 border-2 border-primary"
-            style={{ backgroundColor: "rgba(102,129,174, 0.7)" }}
+            style={{ backgroundColor: "rgba(102,129,174, 0.5)" }}
           ></span>
           <span>Current Year</span>
         </div>
         <div className="flex items-center">
           <span
             className="inline-block w-4 h-4 mr-2 border-2 border-accent"
-            style={{ backgroundColor: "rgba(147,192,209, 0.5)" }}
+            style={{ backgroundColor: "rgba(147,192,209, 0.3)" }}
           ></span>
           <span>Past Years</span>
         </div>

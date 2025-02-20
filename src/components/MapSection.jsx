@@ -12,9 +12,9 @@ function MapSection({
   allYearRegionMap,
   setNewYear,
   showTimeline,
-  nemesisRegionNames
+  nemesisRegionNames,
 }) {
-  
+  console.log(regionsDetail);
   // turn set into list
   pastSpeciesRegions = Array.from(pastSpeciesRegions);
 
