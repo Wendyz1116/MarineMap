@@ -9,7 +9,7 @@ function Map({
   pastRegions = [],
   regionsDetail,
   nemesisRegionNames,
-  currSites = [],
+  currSites = {},
 }) {
   //TODO4 fix the popup for the first year region
 
@@ -21,6 +21,12 @@ function Map({
   const graphicsLayerRef = useRef(null);
   const [renderer, setRenderer] = useState(null);
   const lastUpdated = "02/19/2025";
+
+  const [datasetsToShow, setDatasetToShow] = useState({
+    nemesisBioregions: true,
+    nemesisSpecificSites: true,
+    rasSites: true,
+  });
 
   //------------------------------//
   // Createing popups for the map //
@@ -162,6 +168,9 @@ function Map({
       .catch((err) => console.error("Error updating popup:", err));
   }, [regionsDetail, geoJsonLayerRef.current, allYears, currRegions]);
 
+  //---------------------------------------------------//
+  // Creating the main section of the map with regions //
+  //---------------------------------------------------//
   // Main section to create the whole map
   useEffect(() => {
     loadModules(
@@ -279,6 +288,16 @@ function Map({
   useEffect(() => {
     if (currRegions.length === 0 && pastRegions.length === 0) return;
 
+    if (datasetsToShow["nemesisBioregions"] === false) {
+      if (geoJsonLayerRef.current) {
+        geoJsonLayerRef.current.visible = false;
+      }
+      return;
+    } else {
+      if (geoJsonLayerRef.current) {
+        geoJsonLayerRef.current.visible = true;
+      }
+    }
     if (geoJsonLayerRef.current) {
       loadModules(["esri/renderers/UniqueValueRenderer"]).then(
         ([UniqueValueRenderer]) => {
@@ -307,7 +326,7 @@ function Map({
         }
       );
     }
-  }, [currRegions, pastRegions]);
+  }, [currRegions, pastRegions, datasetsToShow]);
 
   useEffect(() => {
     if (geoJsonLayerRef.current && renderer) {
@@ -315,18 +334,55 @@ function Map({
     }
   }, [renderer, geoJsonLayerRef.current]);
 
+  //---------------------------------//
+  // Adding specific sites to the map //
+  //----------------------------------//
+
   // Update the map by ploting the currSites' locations
   useEffect(() => {
+    let currSitesToShow = [];
+    if (graphicsLayerRef.current) graphicsLayerRef.current.removeAll();
+
+    // if (datasetsToShow["nemesisSpecificSites"] === false && currSites["rasSites"] === false) || (!currSites["nemesisSpecificSites"] && !currSites["nemesisSpecificSites"])) {
+    if (
+      datasetsToShow["nemesisSpecificSites"] === true &&
+      currSites["nemesisSpecificSites"]
+    ) {
+      currSitesToShow = currSites["nemesisSpecificSites"];
+      plotSites(
+        { fill: "rgba(147,192,209,1)", outline: "rgba(6,9,14,0.8)" },
+        currSitesToShow
+      );
+    }
+
+    if (datasetsToShow["rasSites"] === true && currSites["rasSites"]) {
+      console.log("in ras", currSites["rasSites"]);
+      currSitesToShow = currSites["rasSites"];
+      plotSites(
+        { fill: "rgba(245,200,92, 1)", outline: "rgba(6,9,14,0.8)" },
+        currSitesToShow
+      );
+    }
+  }, [graphicsLayerRef.current, currSites]);
+
+  /** Plot currSitesToShow sites onto the map in the colors color
+   *
+   * @param {fill: string, outline: string} colors
+   * @param {Array<Object>} currSitesToShow: Array of region objects
+   */
+  const plotSites = (colors, currSitesToShow) => {
     if (graphicsLayerRef.current) {
-      if (currSites.length > 0) {
+      if (currSitesToShow.length > 0) {
         loadModules(["esri/Graphic"]).then(([Graphic]) => {
-          const siteGraphics = currSites.map(
+          const siteGraphics = currSitesToShow.map(
             ({
               // "Site Code": id,
               "Site Location": name,
               Longitude: lon,
               Latitude: lat,
             }) => {
+              console.log("Plotting site:", { name, lon, lat }); // Add this
+
               return new Graphic({
                 geometry: {
                   type: "point",
@@ -335,9 +391,9 @@ function Map({
                 },
                 symbol: {
                   type: "simple-marker",
-                  color: "rgba(243,163,158, 1)",
-                  size: "8px",
-                  outline: { color: "rgba(6,9,14,0.8)", width: 0.5 },
+                  color: colors["fill"],
+                  size: "7px",
+                  outline: { color: colors["outline"], width: 0.6 },
                 },
                 attributes: { name },
                 popupTemplate: {
@@ -355,12 +411,62 @@ function Map({
         graphicsLayerRef.current.removeAll(); // Clear all graphics if no sites
       }
     }
-  }, [graphicsLayerRef.current, currSites]);
+  };
+
+  // Create a legend showing only datasetsToShow
+  const Legend = ({ datasetsToShow }) => {
+    const legendItems = [
+      {
+        key: "nemesisBioregions",
+        color: "rgba(102,129,174, 0.5)",
+        border: "primary",
+        label: "Current Year",
+      },
+      {
+        key: "nemesisBioregions",
+        color: "rgba(147,192,209, 0.3)",
+        border: "accent",
+        label: "Past Years",
+      },
+      {
+        key: "nemesisSpecificSites",
+        color: "rgba(147,192,209,0.5)",
+        border: "primary-content",
+        label: "Nemesis Sites",
+      },
+      {
+        key: "rasSites",
+        color: "rgba(245,200,92, 0.5)",
+        border: "primary-content",
+        label: "RAS Sites",
+      },
+    ];
+
+    return (
+      <div className="absolute top-4 right-4 bg-base-100 p-2 rounded shadow outline outline-primary">
+        <h4 className="text-sm font-bold mb-2">Legend</h4>
+        {legendItems
+          .filter(({ key }) => datasetsToShow[key]) // Only render items with true value in datasetsToShow
+          .map(({ color, border, label }, index) => (
+            <div className="flex items-center" key={index}>
+              <span
+                className={`inline-block w-4 h-4 mr-2 border-2 border-${border}`}
+                style={{ backgroundColor: color }}
+              ></span>
+              <span>{label}</span>
+            </div>
+          ))}
+      </div>
+    );
+  };
 
   return (
     <div className="h-full w-full bg-base-100 relative">
       <div className="absolute top-0 left-0 z-10 bg-none p-2">
-        <MapSettings />
+        <MapSettings
+          setDatasetToShow={setDatasetToShow}
+          datasetsToShow={datasetsToShow}
+        />
       </div>
       <div className="absolute text-xs text-primary-content bottom-0 left-0 z-10 bg-none p-2">
         Data last modified: {lastUpdated}
@@ -370,30 +476,7 @@ function Map({
   lock the map if so that we can't zoom out too far */}
       <div ref={MapElem} className="h-full"></div>
       {/* Legend */}
-      <div className="absolute top-4 right-4 bg-base-100 p-2 rounded shadow outline outline-primary">
-        <h4 className="text-sm font-bold mb-2">Legend</h4>
-        <div className="flex items-center">
-          <span
-            className="inline-block w-4 h-4 mr-2 border-2 border-primary"
-            style={{ backgroundColor: "rgba(102,129,174, 0.5)" }}
-          ></span>
-          <span>Current Year</span>
-        </div>
-        <div className="flex items-center">
-          <span
-            className="inline-block w-4 h-4 mr-2 border-2 border-accent"
-            style={{ backgroundColor: "rgba(147,192,209, 0.3)" }}
-          ></span>
-          <span>Past Years</span>
-        </div>
-        <div className="flex items-center">
-          <span
-            className="inline-block w-4 h-4 mr-2 border-2 border-primary-content"
-            style={{ backgroundColor: "rgba(245,200,92, 0.5)" }}
-          ></span>
-          <span>RAS Sites</span>
-        </div>
-      </div>
+      <Legend datasetsToShow={datasetsToShow} />
     </div>
   );
 }

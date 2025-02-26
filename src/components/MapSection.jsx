@@ -7,14 +7,13 @@ function MapSection({
   currSpeciesRegions,
   pastSpeciesRegions,
   regionsDetail,
-  currRasSites,
+  currSites,
   speciesYears,
   allYearRegionMap,
   setNewYear,
   showTimeline,
   nemesisRegionNames,
 }) {
-  console.log(regionsDetail);
   // turn set into list
   pastSpeciesRegions = Array.from(pastSpeciesRegions);
 
@@ -26,7 +25,7 @@ function MapSection({
         pastRegions={pastSpeciesRegions}
         regionsDetail={regionsDetail}
         nemesisRegionNames={nemesisRegionNames}
-        currSites={currRasSites}
+        currSites={currSites}
       />
       {showTimeline && (
         <Timeline allowedYears={speciesYears} setNewYear={setNewYear} />

@@ -26,9 +26,12 @@ export default function SpeciesSection() {
   // RAS Data
   // TODO3, change ras to all sentence case
   const [rasSiteLocData, setRasSiteLocData] = useState(null);
-  const [ras2019SurveyData, setras2019SurveyData] = useState(null);
-  const [allYearRasData, setAllYearRasData] = useState([]);
+  const [ras2019SurveyData, setRas2019SurveyData] = useState(null);
+  const [allYearRasData, setAllYearRasData] = useState([]); // {year: [record1, record2]}
   const [speciesRasData, setSpeciesRasData] = useState([]);
+
+  // Store info abt speciifc sites
+  const [currYearSiteData, setCurrYearSiteData] = useState([]) // {"RAS": [record1, record2], "Nemesis": [record3]}
 
   // States for map/timeline
   const [allYears, setAllYears] = useState(false);
@@ -41,6 +44,8 @@ export default function SpeciesSection() {
     "NA-ET2": [],
     "NA-ET3": [],
   });
+  const [allYearNemesisSiteData, setAllYearNemesisSiteData] = useState([]); // {year: [record1, record2]}
+
   const [speciesYears, setSpeciesYears] = useState([]);
   const [newYear, setNewYear] = useState(null);
 
@@ -77,7 +82,7 @@ export default function SpeciesSection() {
     extractFromRegionsCSV("/data/NAET3SourcesWithLatLong.csv", setNAET3Data);
 
     extractFromRegionsCSV("/RAS data/ras2019Sites.csv", setRasSiteLocData);
-    extractFromRegionsCSV("/RAS data/ras2019Survey.csv", setras2019SurveyData);
+    extractFromRegionsCSV("/RAS data/ras2019Survey.csv", setRas2019SurveyData);
     extractFromRegionsCSV(
       "/descriptions/nemesisRegionName.csv",
       setNemesisRegionNames
@@ -154,6 +159,7 @@ export default function SpeciesSection() {
 
       tempAllYearRasData["2019"] = filteredRASSite;
       tempAllYearRasData["all years"] = filteredRASSite;
+      setAllYearRasData(tempAllYearRasData);
 
       // --------------------------------------------------------//
       // Working with Nemesis species specific first record info //
@@ -253,16 +259,17 @@ export default function SpeciesSection() {
       setSpeciesRegions(yearRegionMap[years[0]]);
 
       // Adding lat and long from source sites
+      const tempAllYearNemesisSiteData = {};
       const extractYearsWithGeoloc = (yearRegionDetails) => {
         Object.entries(yearRegionDetails).forEach(([year, regions]) => {
           Object.entries(regions).forEach(([region, records]) => {
             if (region == "NA-ET1" || region == "NA-ET2") {
-              // console.log(records);
+              console.log(records);
               records.forEach((record) => {
                 if (record["Latitude"]) {
-                  tempAllYearRasData[year]
-                    ? tempAllYearRasData[year].push(record)
-                    : (tempAllYearRasData[year] = [record]);
+                  tempAllYearNemesisSiteData[year]
+                    ? tempAllYearNemesisSiteData[year].push(record)
+                    : (tempAllYearNemesisSiteData[year] = [record]);
                 }
               });
             }
@@ -271,7 +278,7 @@ export default function SpeciesSection() {
       };
 
       extractYearsWithGeoloc(yearRegionDetails);
-      setAllYearRasData(tempAllYearRasData);
+      setAllYearNemesisSiteData(tempAllYearNemesisSiteData);
     }
   }, [selectedSpecies]);
 
@@ -289,9 +296,23 @@ export default function SpeciesSection() {
       setCurrYearDetail(allYearRegionDetail[newYear]);
     }
 
-    if (newYear in allYearRasData) setSpeciesRasData(allYearRasData[newYear]);
-    else setSpeciesRasData([]);
 
+
+    // if (newYear in allYearRasData) setSpeciesRasData(allYearRasData[newYear]);
+    // else setSpeciesRasData([]);
+
+    const tempCurrYearSiteData = {};
+
+    if (newYear in allYearRasData) {
+      tempCurrYearSiteData["rasSites"] = (allYearRasData[newYear]);
+    }
+
+    if (newYear in allYearNemesisSiteData) {
+      tempCurrYearSiteData["nemesisSpecificSites"] = (allYearNemesisSiteData[newYear]);
+    }
+
+    setCurrYearSiteData(tempCurrYearSiteData);
+    console.log("currYearSiteData", currYearSiteData);
     if (newYear == "all years") {
       setAllYears(true);
       setCurrYearDetail(regionYearMap);
@@ -315,7 +336,7 @@ export default function SpeciesSection() {
         allYearRegionMap={allYearRegionMap}
         setNewYear={setNewYear}
         showTimeline={showingSpeciesDetail}
-        currRasSites={speciesRasData}
+        currSites={currYearSiteData}
         nemesisRegionNames={nemesisRegionMap}
       />
     </div>
