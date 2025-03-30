@@ -1,8 +1,8 @@
-import React from "react";
 import { useState } from "react";
 import "../index.css";
 import OneSpeciesSelection from "./OneSpeciesSelection";
 import MultipleSpeciesSelection from "./MultipleSpeciesSelection";
+// import ObisApi from "./fetchObisData";
 
 function Sidebar({
   selectedSpeciesInfo,
@@ -63,6 +63,7 @@ function Sidebar({
                   showingSpeciesDetail={showingSpeciesDetail}
                   nemesisRegionNames={nemesisRegionNames}
                 />
+                {/* <ObisApi /> */}
               </div>
             ) : (
               <div>

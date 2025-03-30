@@ -24,6 +24,8 @@ function Map({
 
   const [datasetsToShow, setDatasetToShow] = useState({
     nemesisBioregions: true,
+    currentRegions: true,
+    pastRegions: true,
     nemesisSpecificSites: true,
     rasSites: true,
   });
@@ -127,10 +129,10 @@ function Map({
                           ? value
                           : value
                               .map(
-                                ({ specificRegionName, ...rest }) =>
-                                  `${specificRegionName} (${rest[
-                                    "Source(s)"
-                                  ].substring(1)})`
+                                ({ RegionName, ...rest }) =>
+                                  `${RegionName} (${rest["Source(s)"].substring(
+                                    1
+                                  )})`
                               )
                               .join(", ")
                       }'`
@@ -171,6 +173,8 @@ function Map({
   //---------------------------------------------------//
   // Creating the main section of the map with regions //
   //---------------------------------------------------//
+  const [basemap, setBasemap] = useState("satellite");
+
   // Main section to create the whole map
   useEffect(() => {
     loadModules(
@@ -183,6 +187,7 @@ function Map({
         "esri/widgets/Popup",
         "esri/Graphic",
         "esri/layers/GraphicsLayer",
+        "esri/geometry/SpatialReference",
       ],
       { url: "https://js.arcgis.com/4.25/" }
     )
@@ -196,6 +201,7 @@ function Map({
           Popup,
           Graphic,
           GraphicsLayer,
+          SpatialReference,          
         ]) => {
           // Adding styles for the popup
           // const style = document.createElement("style");
@@ -204,13 +210,22 @@ function Map({
           // `;
           // document.head.appendChild(style);
 
-          const webmap = new WebMap({ basemap: "topo-vector" });
+          const webmap = new WebMap({ basemap });
+          
+          // TODO5: Tried defining the Lambert Conformal Conic projection
+          // const lambertConformalConic = new SpatialReference({
+          //   wkid: 102004, // WKID for North America Lambert Conformal Conic
+          // });
 
           const view = new MapView({
             map: webmap,
             zoom: 3,
             center: [-65, 45],
             container: MapElem.current,
+            // spatialReference: lambertConformalConic,
+            constraints: {
+              minZoom: 2,
+            },
             popup: {
               dockEnabled: false,
               collapseEnabled: false,
@@ -282,29 +297,40 @@ function Map({
         viewRef.current = null;
       }
     };
-  }, []);
+  }, [basemap]);
 
   // Update map with currRegions and pastRegions
   useEffect(() => {
     if (currRegions.length === 0 && pastRegions.length === 0) return;
 
-    if (datasetsToShow["nemesisBioregions"] === false) {
-      if (geoJsonLayerRef.current) {
-        geoJsonLayerRef.current.visible = false;
-      }
-      return;
-    } else {
-      if (geoJsonLayerRef.current) {
-        geoJsonLayerRef.current.visible = true;
-      }
+    // if (datasetsToShow["nemesisBioregions"] === false) {
+    //   if (geoJsonLayerRef.current) {
+    //     geoJsonLayerRef.current.visible = false;
+    //   }
+    //   return;
+    // } else {
+    //   if (geoJsonLayerRef.current) {
+    //     geoJsonLayerRef.current.visible = true;
+    //   }
+    // }
+
+    let currRegionsToShow = [];
+    if (datasetsToShow["currentRegions"] === true) {
+      currRegionsToShow = currRegions;
     }
+
+    let pastRegionsToShow = [];
+    if (datasetsToShow["pastRegions"] === true) {
+      pastRegionsToShow = pastRegions;
+    }
+
     if (geoJsonLayerRef.current) {
       loadModules(["esri/renderers/UniqueValueRenderer"]).then(
         ([UniqueValueRenderer]) => {
           const newRenderer = new UniqueValueRenderer({
             field: "REG_NEWREG",
             uniqueValueInfos: [
-              ...pastRegions.map((region) => ({
+              ...pastRegionsToShow.map((region) => ({
                 value: region,
                 symbol: {
                   type: "simple-fill",
@@ -312,7 +338,7 @@ function Map({
                   outline: { color: [147, 192, 209], width: 1 },
                 },
               })),
-              ...currRegions.map((region) => ({
+              ...currRegionsToShow.map((region) => ({
                 value: region,
                 symbol: {
                   type: "simple-fill",
@@ -340,30 +366,36 @@ function Map({
 
   // Update the map by ploting the currSites' locations
   useEffect(() => {
-    let currSitesToShow = [];
-    if (graphicsLayerRef.current) graphicsLayerRef.current.removeAll();
+    if (graphicsLayerRef.current) {
+      graphicsLayerRef.current.removeAll(); // Clear once at the beginning
 
-    // if (datasetsToShow["nemesisSpecificSites"] === false && currSites["rasSites"] === false) || (!currSites["nemesisSpecificSites"] && !currSites["nemesisSpecificSites"])) {
-    if (
-      datasetsToShow["nemesisSpecificSites"] === true &&
-      currSites["nemesisSpecificSites"]
-    ) {
-      currSitesToShow = currSites["nemesisSpecificSites"];
-      plotSites(
-        { fill: "rgba(147,192,209,1)", outline: "rgba(6,9,14,0.8)" },
-        currSitesToShow
-      );
-    }
+      // Plot nemesisSpecificSites if enabled
+      if (
+        datasetsToShow["nemesisSpecificSites"] === true &&
+        currSites["nemesisSpecificSites"]
+      ) {
+        plotSites(
+          { fill: "rgba(147,192,209,1)", outline: "rgba(6,9,14,0.8)" },
+          currSites["nemesisSpecificSites"]
+        );
+      }
 
-    if (datasetsToShow["rasSites"] === true && currSites["rasSites"]) {
-      console.log("in ras", currSites["rasSites"]);
-      currSitesToShow = currSites["rasSites"];
-      plotSites(
-        { fill: "rgba(245,200,92, 1)", outline: "rgba(6,9,14,0.8)" },
-        currSitesToShow
-      );
+      // Plot rasSites if enabled
+      if (datasetsToShow["rasSites"] === true && currSites["rasSites"]) {
+        plotSites(
+          { fill: "rgba(245,200,92, 1)", outline: "rgba(6,9,14,0.8)" },
+          currSites["rasSites"]
+        );
+      }
+
+      if (currSites["obisSites"]) {
+        plotSites(
+          { fill: "rgba(25,200,92, 1)", outline: "rgba(6,9,14,0.8)" },
+          currSites["obisSites"]
+        );
+      }
     }
-  }, [graphicsLayerRef.current, currSites]);
+  }, [graphicsLayerRef.current, currSites, datasetsToShow]);
 
   /** Plot currSitesToShow sites onto the map in the colors color
    *
@@ -372,17 +404,17 @@ function Map({
    */
   const plotSites = (colors, currSitesToShow) => {
     if (graphicsLayerRef.current) {
+      console.log("currSitesToShow:", currSitesToShow);
       if (currSitesToShow.length > 0) {
         loadModules(["esri/Graphic"]).then(([Graphic]) => {
           const siteGraphics = currSitesToShow.map(
             ({
               // "Site Code": id,
-              "Site Location": name,
+              // *TODO1* add location back in?
+              // "Site Location": name,
               Longitude: lon,
               Latitude: lat,
             }) => {
-              console.log("Plotting site:", { name, lon, lat }); // Add this
-
               return new Graphic({
                 geometry: {
                   type: "point",
@@ -403,8 +435,6 @@ function Map({
               });
             }
           );
-
-          graphicsLayerRef.current.removeAll(); // Clear previous graphics
           graphicsLayerRef.current.addMany(siteGraphics); // Add new graphics
         });
       } else {
@@ -417,13 +447,13 @@ function Map({
   const Legend = ({ datasetsToShow }) => {
     const legendItems = [
       {
-        key: "nemesisBioregions",
+        key: "currentRegions",
         color: "rgba(102,129,174, 0.5)",
         border: "primary",
         label: "Current Year",
       },
       {
-        key: "nemesisBioregions",
+        key: "pastRegions",
         color: "rgba(147,192,209, 0.3)",
         border: "accent",
         label: "Past Years",
@@ -442,11 +472,22 @@ function Map({
       },
     ];
 
+    const itemsToShow = legendItems.filter(({ key }) => datasetsToShow[key]);
+
+    if (itemsToShow.length === 0) {
+      return (
+        <div className="absolute top-4 right-4 bg-base-100 p-2 rounded shadow outline outline-primary">
+          <h4 className="text-sm font-semibold">
+            Select a database to show in settings
+          </h4>
+        </div>
+      );
+    }
+
     return (
       <div className="absolute top-4 right-4 bg-base-100 p-2 rounded shadow outline outline-primary">
-        <h4 className="text-sm font-bold mb-2">Legend</h4>
-        {legendItems
-          .filter(({ key }) => datasetsToShow[key]) // Only render items with true value in datasetsToShow
+        <h4 className="text-sm font-bold mb-2">Legend:</h4>
+        {itemsToShow // Only render items with true value in datasetsToShow
           .map(({ color, border, label }, index) => (
             <div className="flex items-center" key={index}>
               <span
@@ -466,6 +507,8 @@ function Map({
         <MapSettings
           setDatasetToShow={setDatasetToShow}
           datasetsToShow={datasetsToShow}
+          setBasemap={setBasemap}
+          basemap={basemap}
         />
       </div>
       <div className="absolute text-xs text-primary-content bottom-0 left-0 z-10 bg-none p-2">

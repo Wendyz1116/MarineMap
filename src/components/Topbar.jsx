@@ -50,12 +50,40 @@ function Topbar() {
                 </p>
 
                 <p className="font-semibold">How to Use:</p>
-                <p className=""></p>
+                <ol>
+                  <li>
+                    <span className="font-semibold">Select a Species:</span>{" "}
+                    Choose a marine invasive species from the dropdown menu and
+                    click the "Generate Map" button to visualize the species'
+                    distribution.
+                  </li>
+                  <li>
+                    <span className="font-semibold">Explore Data by Year:</span>{" "}
+                    Use the navigation buttons to view data on a specific year
+                    or all years at once.
+                  </li>
+                  <li>
+                    <span className="font-semibold">Customize the Map:</span>{" "}
+                    Use the Settings menu to choose which datasets to display or
+                    change the basemap,
+                  </li>
+                  <li>
+                    <span className="font-semibold">
+                      Interact with the Map:
+                    </span>{" "}
+                    Click on regions or points for more detailed information.
+                  </li>
+                </ol>
 
-                <p className="font-semibold">Credit:</p>
+                <p className="font-semibold">Data:</p>
                 <p className="">
                   This platform is made possible by the valuable datasets
                   provided by: Nemesis, RAS Datasets, and GBIF.
+                </p>
+                <p>
+                  {" "}
+                  The geolocation of some sites is approximated based on Google
+                  Maps and may not be entirely accurate.
                 </p>
               </div>
             </div>

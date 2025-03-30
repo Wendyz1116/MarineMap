@@ -184,7 +184,13 @@ function Timeline({ allowedYears, setNewYear }) {
     >
       <div className="flex flex-row w-full h-4 mb-2 items-center justify-center">
         <div className="justify-center items-center text-center font-semibold text-sm">
-          {allYears ? "all years" : "current year: " + rangeValue}
+          {allYears
+            ? "all years (" +
+              Math.min(...allowedYears) +
+              "-" +
+              Math.max(...allowedYears) +
+              ")"
+            : "current year: " + rangeValue}
         </div>
         <div
           // onClick={handlePlayAllYears}
@@ -217,7 +223,7 @@ function Timeline({ allowedYears, setNewYear }) {
         type="range"
         min={0}
         max="100"
-        value={yearToValue(rangeValue)}
+        value={allYears ? timelineEnd : yearToValue(rangeValue)}
         onChange={handleRangeChange}
         className={`range range-xs px-1 range-primary py-2 ${
           allYears ? "opacity-50" : ""
@@ -246,7 +252,7 @@ function Timeline({ allowedYears, setNewYear }) {
                 <div className="flex flex-col items-center justify-center h-4 w-px -mt-3 bg-black"></div>
               )} */}
               <div className="h-4 w-px mt-1 bg-black"></div>
-                  <span className="mt-1">{year}</span>
+              <span className="mt-1">{year}</span>
             </div>
           );
         })}
