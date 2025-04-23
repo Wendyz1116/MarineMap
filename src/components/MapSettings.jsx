@@ -14,6 +14,7 @@ function MapSettings({
     pastRegions: false,
     nemesisSpecificSites: false,
     rasSites: false,
+    obisSites: false,
   });
 
   // Set the initial state based on the incoming datasetsToShow array
@@ -24,6 +25,7 @@ function MapSettings({
       pastRegions: datasetsToShow["pastRegions"],
       nemesisSpecificSites: datasetsToShow["nemesisSpecificSites"],
       rasSites: datasetsToShow["rasSites"],
+      obisSites: datasetsToShow["obisSites"],
     };
     setDatasets(initialDatasets);
   }, [datasetsToShow]);
@@ -54,6 +56,7 @@ function MapSettings({
   // Save and Cancel logic
   const handleSave = () => {
     setDatasetToShow(datasets);
+    // Update the datasets state with the new values
     document.getElementById("settings_modal").close();
   };
 
@@ -139,6 +142,15 @@ function MapSettings({
                   className="checkbox checkbox-xs mr-2"
                 />
                 <span className="label-text">RAS Sites</span>
+              </label>
+              <label className="label cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={datasets.obisSites}
+                  onChange={() => handleCheckboxChange("obisSites")}
+                  className="checkbox checkbox-xs mr-2"
+                />
+                <span className="label-text">OBIS Sites</span>
               </label>
             </div>
           </div>

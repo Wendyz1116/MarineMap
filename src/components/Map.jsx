@@ -28,6 +28,7 @@ function Map({
     pastRegions: true,
     nemesisSpecificSites: true,
     rasSites: true,
+    obisSites: true,
   });
 
   //------------------------------//
@@ -388,7 +389,7 @@ function Map({
         );
       }
 
-      if (currSites["obisSites"]) {
+      if (datasetsToShow["obisSites"] === true && currSites["obisSites"]) {
         plotSites(
           { fill: "rgba(25,200,92, 1)", outline: "rgba(6,9,14,0.8)" },
           currSites["obisSites"]
@@ -469,6 +470,12 @@ function Map({
         color: "rgba(245,200,92, 0.5)",
         border: "primary-content",
         label: "RAS Sites",
+      },
+      {
+        key: "obisSites",
+        color: "rgba(245,200,92, 0.5)",
+        border: "primary-content",
+        label: "OBIS Sites",
       },
     ];
 

@@ -1,10 +1,12 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Map from "../components/Map";
 import Sidebar from "../components/Sidebar";
 import Timeline from "../components/Timeline";
 import Papa from "papaparse";
 import MapSection from "../components/MapSection";
 import fetchObisData from "../components/fetchObisData";
+import useFetchObisData from "../dataProcessing/useFetchObisData";
+import { use } from "react";
 
 export default function SpeciesSection() {
   // States for sidebar
@@ -53,6 +55,12 @@ export default function SpeciesSection() {
   const [speciesYears, setSpeciesYears] = useState([]);
   const [newYear, setNewYear] = useState(null);
 
+  // fetch OBIS data
+  // const speciesName = selectedSpecies ? selectedSpecies["Species Name"] : null;
+  // console.log("tyring ot fetch", speciesName);
+  const { OBISNAET3Data, loading, error } = useFetchObisData(selectedSpecies);
+  console.log("OBISNAET3Data", OBISNAET3Data)
+
   // extract data from the csv file for regions NA-ET1, Na-ET2, and Na-ET3
   function extractFromRegionsCSV(csvPath, setRegionsData) {
     fetch(csvPath)
@@ -93,6 +101,12 @@ export default function SpeciesSection() {
     );
   }, []);
 
+  // update Obis data
+  useEffect(() => {
+    console.log("setting setAllYearObisSiteData to  OBISNAET3Data in useefx ", OBISNAET3Data)
+    setAllYearObisSiteData(OBISNAET3Data)
+  }, [OBISNAET3Data])
+
   // Set nemesis region:name map
   useEffect(() => {
     let regionNameMap = {};
@@ -107,14 +121,19 @@ export default function SpeciesSection() {
   useEffect(() => {
     if (selectedSpecies) {
       console.log("selected", selectedSpecies, selectedSpecies["Species Name"]);
-      fetchObisData(selectedSpecies["Species Name"])
-        .then(({ formattedData }) => {
-          console.log("obis data", formattedData);
-          setAllYearObisSiteData(formattedData);
-        })
-        .catch((error) => {
-          console.error("Error fetching OBIS data:", error);
-        });
+      // TODO remove api fetch call
+
+     
+      // fetchObisData(selectedSpecies["Species Name"])
+      //   .then(({ formattedData }) => {
+      //     console.log("obis data", formattedData);
+      //     setAllYearObisSiteData(formattedData);
+      //   })
+      //   .catch((error) => {
+      //     console.error("Error fetching OBIS data:", error);
+      //   });
+
+        
 
       // ----------------------------------------------------------------//
       // Functions to filter data based on species name or RAS Site Code //
@@ -327,7 +346,10 @@ export default function SpeciesSection() {
         allYearNemesisSiteData[newYear];
     }
 
+
     if (newYear in allYearObisSiteData) {
+      console.log("allYearObisSiteData", allYearObisSiteData, "year info", allYearObisSiteData[newYear]);
+
       tempCurrYearSiteData["obisSites"] = allYearObisSiteData[newYear];
     }
 
