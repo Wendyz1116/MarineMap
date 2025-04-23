@@ -4,7 +4,6 @@ import Sidebar from "../components/Sidebar";
 import Timeline from "../components/Timeline";
 import Papa from "papaparse";
 import MapSection from "../components/MapSection";
-import fetchObisData from "../components/fetchObisData";
 import useFetchObisData from "../dataProcessing/useFetchObisData";
 import { use } from "react";
 
@@ -58,8 +57,9 @@ export default function SpeciesSection() {
   // fetch OBIS data
   // const speciesName = selectedSpecies ? selectedSpecies["Species Name"] : null;
   // console.log("tyring ot fetch", speciesName);
-  const { OBISNAET3Data, loading, error } = useFetchObisData(selectedSpecies);
-  console.log("OBISNAET3Data", OBISNAET3Data)
+  const { combinedOBISData, loading, error } = useFetchObisData(selectedSpecies);
+  
+  console.log("combinedOBISData", combinedOBISData, loading, error )
 
   // extract data from the csv file for regions NA-ET1, Na-ET2, and Na-ET3
   function extractFromRegionsCSV(csvPath, setRegionsData) {
@@ -103,9 +103,9 @@ export default function SpeciesSection() {
 
   // update Obis data
   useEffect(() => {
-    console.log("setting setAllYearObisSiteData to  OBISNAET3Data in useefx ", OBISNAET3Data)
-    setAllYearObisSiteData(OBISNAET3Data)
-  }, [OBISNAET3Data])
+    console.log("setting setAllYearObisSiteData to  combinedOBISData in useefx ", combinedOBISData)
+    setAllYearObisSiteData(combinedOBISData)
+  }, [combinedOBISData])
 
   // Set nemesis region:name map
   useEffect(() => {
@@ -337,6 +337,7 @@ export default function SpeciesSection() {
 
     console.log("newYear", newYear);
     console.log("allYearNemesisSiteData", allYearNemesisSiteData);
+    console.log("OBIS!! allYearObisSiteData", allYearObisSiteData);
     if (newYear in allYearRasData) {
       tempCurrYearSiteData["rasSites"] = allYearRasData[newYear];
     }
@@ -347,7 +348,7 @@ export default function SpeciesSection() {
     }
 
 
-    if (newYear in allYearObisSiteData) {
+    if (allYearObisSiteData && newYear in allYearObisSiteData) {
       console.log("allYearObisSiteData", allYearObisSiteData, "year info", allYearObisSiteData[newYear]);
 
       tempCurrYearSiteData["obisSites"] = allYearObisSiteData[newYear];
@@ -362,6 +363,7 @@ export default function SpeciesSection() {
   }, [newYear]);
 
   useEffect(() => {
+    if (!allYearObisSiteData) return;
     const obisYears = Object.keys(allYearObisSiteData).filter(
       (key) => key !== "all years"
     );

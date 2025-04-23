@@ -202,7 +202,7 @@ function Map({
           Popup,
           Graphic,
           GraphicsLayer,
-          SpatialReference,          
+          SpatialReference,
         ]) => {
           // Adding styles for the popup
           // const style = document.createElement("style");
@@ -212,7 +212,7 @@ function Map({
           // document.head.appendChild(style);
 
           const webmap = new WebMap({ basemap });
-          
+
           // TODO5: Tried defining the Lambert Conformal Conic projection
           // const lambertConformalConic = new SpatialReference({
           //   wkid: 102004, // WKID for North America Lambert Conformal Conic
@@ -304,17 +304,6 @@ function Map({
   useEffect(() => {
     if (currRegions.length === 0 && pastRegions.length === 0) return;
 
-    // if (datasetsToShow["nemesisBioregions"] === false) {
-    //   if (geoJsonLayerRef.current) {
-    //     geoJsonLayerRef.current.visible = false;
-    //   }
-    //   return;
-    // } else {
-    //   if (geoJsonLayerRef.current) {
-    //     geoJsonLayerRef.current.visible = true;
-    //   }
-    // }
-
     let currRegionsToShow = [];
     if (datasetsToShow["currentRegions"] === true) {
       currRegionsToShow = currRegions;
@@ -398,6 +387,143 @@ function Map({
     }
   }, [graphicsLayerRef.current, currSites, datasetsToShow]);
 
+  const createSitePopupTemplate = (siteInfo) => {
+    // const id =
+    //             site["Site Code"] != null ? site["Site Code"] : "Unknown ID";
+    //           const name =
+    //             site["Site Location"] != null
+    //               ? site["Site Location"]
+    //               : "Unnamed Location";
+    console.log("siteInfo:", siteInfo);
+    let content = "";
+
+    if (siteInfo["Site Code"]) {
+      content = `
+      <p><strong>Site Name:</strong> ${siteInfo["Site Location"]}</p>
+      <p><strong>City, State:</strong> ${siteInfo["City"]}, ${
+        siteInfo["State"]
+      }</p>
+      <p><strong>(Lat, Long)</strong>: (${parseFloat(
+        siteInfo["Latitude"]
+      ).toFixed(2)},
+      ${parseFloat(siteInfo["Longitude"]).toFixed(2)})</p>
+      `;
+    } else if (siteInfo["DatasetID"]) {
+      content = `
+      <p><strong>(Lat, Long)</strong>: (${parseFloat(
+        siteInfo["Latitude"]
+      ).toFixed(2)},
+      ${parseFloat(siteInfo["Longitude"]).toFixed(2)})</p>
+
+      <p><a href="https://obis.org/dataset/${siteInfo["DatasetID"]}"
+        target="_blank"
+        rel="noopener noreferrer"
+        style="color: rgb(102,129,174);">
+        Link to Dataset
+      </a></p>`;
+    } else {
+      content = `
+      <p><strong>Site Name:</strong> ${siteInfo["Site Location"]}</p>
+      <p><strong>(Lat, Long)</strong>: (${parseFloat(
+        siteInfo["Latitude"]
+      ).toFixed(2)},
+      ${parseFloat(siteInfo["Longitude"]).toFixed(2)})</p>
+      <p><strong>Source:</strong> ${siteInfo["Source(s)"]}</p>
+      `;
+    }
+    return {
+      // title: `<p><strong>${name}</strong></p>`,
+      content: content,
+
+      // content: `<p><strong>Site ID:</strong> {id}</p>`,
+    };
+    // return new PopupTemplate({
+    //   // title: "",
+    //   content: [
+    //     {
+    //       type: "text",
+    //       text: `
+    //         <div class="custom-popup">
+    //           <p><strong>{expression/regionName}</strong> ({REG_NEWREG})</p>
+    //           <p><strong>{expression/descriptiveText}</strong></p>{expression/popupContent}
+
+    //         </div>
+    //       `,
+    //     },
+    //   ],
+    //   expressionInfos: [
+    //     {
+    //       name: "regionName",
+    //       title: "name",
+    //       expression: `
+    //         var region = $feature.REG_NEWREG;
+    //         var names = {
+    //           ${Object.entries(nemesisRegionNames)
+    //             .map(([key, value]) => `'${key}': '${value}'`)
+    //             .join(",")}
+    //         };
+    //         return names[region]
+    //       `,
+    //     },
+    //     {
+    //       name: "descriptiveText",
+    //       title: "description",
+    //       expression: `
+    //         var region = $feature.REG_NEWREG;
+    //         var currentRegions = ['${currRegions.join("','")}'];
+    //         var allYears = ${allYears ? "true" : "false"};
+
+    //         When(
+    //           allYears, 'Years with Records:',
+    //           Includes(currentRegions, region), 'Sources:',
+    //           'Past Region:'
+    //         )
+    //       `,
+    //     },
+    //     {
+    //       name: "popupContent",
+    //       title: "Content",
+    //       expression: `
+    //         var region = $feature.REG_NEWREG;
+    //         var currentRegions = ['${currRegions.join("','")}'];
+    //         var allYears = ${allYears ? "true" : "false"};
+
+    //         var details = {
+    //             ${Object.entries(regionsDetail)
+    //               .map(
+    //                 ([key, value]) =>
+    //                   `'${key}': '${
+    //                     allYears
+    //                       ? value
+    //                       : value
+    //                           .map(
+    //                             ({ RegionName, ...rest }) =>
+    //                               `${RegionName} (${rest["Source(s)"].substring(
+    //                                 1
+    //                               )})`
+    //                           )
+    //                           .join(", ")
+    //                   }'`
+    //               )
+    //               .join(", ")}
+    //         };
+
+    //         if (allYears) {
+    //           var detailsInfo = Split(details[region], ","); // Split into an array
+
+    //           return detailsInfo
+    //         }
+    //         return IIF(
+    //             Includes(currentRegions, region),
+    //             IIF(hasKey(details, region), details[region], 'Source undefined'),
+    //             'Species have been spotted here in the past'
+    //         );
+    //         `,
+    //     },
+    //   ],
+    // });
+  };
+
   /** Plot currSitesToShow sites onto the map in the colors color
    *
    * @param {fill: string, outline: string} colors
@@ -408,34 +534,36 @@ function Map({
       console.log("currSitesToShow:", currSitesToShow);
       if (currSitesToShow.length > 0) {
         loadModules(["esri/Graphic"]).then(([Graphic]) => {
-          const siteGraphics = currSitesToShow.map(
-            ({
-              // "Site Code": id,
-              // *TODO1* add location back in?
-              // "Site Location": name,
-              Longitude: lon,
-              Latitude: lat,
-            }) => {
-              return new Graphic({
-                geometry: {
-                  type: "point",
-                  longitude: parseFloat(lon),
-                  latitude: parseFloat(lat),
-                },
-                symbol: {
-                  type: "simple-marker",
-                  color: colors["fill"],
-                  size: "7px",
-                  outline: { color: colors["outline"], width: 0.6 },
-                },
-                attributes: { name },
-                popupTemplate: {
-                  title: "<p><strong>{name}<p><strong>",
-                  // content: `<p><strong>Site ID:</strong> {id}</p>`,
-                },
-              });
-            }
-          );
+          const siteGraphics = currSitesToShow
+            .map((site) => {
+              // Extract properties with fallbacks for missing values
+
+              const lon =
+                site.Longitude != null ? parseFloat(site.Longitude) : null;
+              const lat =
+                site.Latitude != null ? parseFloat(site.Latitude) : null;
+
+              // Only create a Graphic if both longitude and latitude are valid
+              if (lon != null && lat != null) {
+                return new Graphic({
+                  geometry: {
+                    type: "point",
+                    longitude: lon,
+                    latitude: lat,
+                  },
+                  symbol: {
+                    type: "simple-marker",
+                    color: colors["fill"],
+                    size: "7px",
+                    outline: { color: colors["outline"], width: 0.6 },
+                  },
+                  // attributes: { id, name },
+                  popupTemplate: createSitePopupTemplate(site),
+                });
+              }
+              return null; // Skip invalid data points
+            })
+            .filter((graphic) => graphic != null);
           graphicsLayerRef.current.addMany(siteGraphics); // Add new graphics
         });
       } else {

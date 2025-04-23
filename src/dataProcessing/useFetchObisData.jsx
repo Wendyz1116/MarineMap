@@ -54,11 +54,10 @@ export default function useFetchObisData(speciesDetail) {
     : null;
 
   console.log("in useFetchObisData", scientificName);
-  const [NAET3Data, setNAET3Data] = useState([]);
+ 
+  const [combinedOBISData, setcombinedOBISData] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
-  const [OBISNAET3Data, setOBISNAET3Data] = useState({});
 
   useEffect(() => {
     // Don't do anything if no scientificName is provided
@@ -69,18 +68,30 @@ export default function useFetchObisData(speciesDetail) {
 
     const abortController = new AbortController();
 
-    const fetchData = async () => {
+    const fetchAllData = async () => {
       setLoading(true);
       setError(null);
 
       try {
-        const fetchedData = await extractFromRegionsCSV(
-          "../public/OBIS data/NAET3Data.csv"
-        );
-        console.log("fetched data", fetchedData);
-        const filteredData = filterBySpeciesName(fetchedData, scientificName);
-        setNAET3Data(filteredData);
-        console.log("filtered data", filteredData);
+        // Fetch all datasets in parallel
+        const [NAET1Data, NAET2Data, NAET3Data] = await Promise.all([
+          extractFromRegionsCSV("../OBIS data/NAET1OBISData.csv")
+            .then(data => filterBySpeciesName(data, scientificName)),
+          extractFromRegionsCSV("../OBIS data/NAET2OBISData.csv")
+            .then(data => filterBySpeciesName(data, scientificName)),
+          extractFromRegionsCSV("../OBIS data/NAET3OBISData.csv")
+            .then(data => filterBySpeciesName(data, scientificName))
+        ]);
+
+        console.log("FIN extraction", NAET1Data, NAET2Data, NAET3Data);
+        // Process each dataset
+        const yearRegionMap = processDatasets({
+          NAET1: NAET1Data,
+          NAET2: NAET2Data,
+          NAET3: NAET3Data
+        });
+        
+        setcombinedOBISData(yearRegionMap);
       } catch (err) {
         if (!abortController.signal.aborted) {
           setError(err);
@@ -92,56 +103,69 @@ export default function useFetchObisData(speciesDetail) {
       }
     };
 
-    fetchData();
+    fetchAllData();
 
     return () => abortController.abort(); // Cleanup on unmount
   }, [scientificName]);
 
-  useEffect(() => {
-    if (NAET3Data.length > 0) {
-      const yearRegionMap = {};
-
-      NAET3Data.forEach((record) => {
-        const { date, decimalLatitude, decimalLongitude } = record;
+  // Process datasets and create a combined map
+  const processDatasets = (datasets) => {
+    const combinedYearRegionMap = {};
+    
+    // Process each dataset
+    Object.entries(datasets).forEach(([datasetName, records]) => {
+      records.forEach((record) => {
+        const { date, decimalLatitude, decimalLongitude, dataset_id } = record;
         const currYear = date || "Unknown Date";
 
-        if (!yearRegionMap[currYear]) {
-          yearRegionMap[currYear] = [];
+        // Add source information to distinguish between datasets
+        const dataPoint = {
+          Latitude: "" + decimalLatitude,
+          Longitude: "" + decimalLongitude,
+          DatasetID: dataset_id,
+          Source: datasetName // Track which dataset this came from
+        };
+
+        // Add to year-specific collection
+        if (!combinedYearRegionMap[currYear]) {
+          combinedYearRegionMap[currYear] = [];
         }
-        let alreadyExists = (yearRegionMap[currYear]).some(
-          (entry) =>
-            entry.Latitude === "" + decimalLatitude &&
-            entry.Longitude === "" + decimalLongitude
+        
+        let alreadyExists = combinedYearRegionMap[currYear].some(
+          entry => 
+            entry.Latitude === dataPoint.Latitude &&
+            entry.Longitude === dataPoint.Longitude &&
+            entry.DatasetID === dataPoint.DatasetID
         );
-
+        
         if (!alreadyExists) {
-          yearRegionMap[currYear].push({
-            Latitude: "" + decimalLatitude,
-            Longitude: "" + decimalLongitude,
-          });
+          combinedYearRegionMap[currYear].push(dataPoint);
         }
 
-        // Add record to "all years"
-        if (!yearRegionMap["all years"]) {
-          yearRegionMap["all years"] = [];
+        // Add to "all years" collection
+        if (!combinedYearRegionMap["all years"]) {
+          combinedYearRegionMap["all years"] = [];
         }
-        alreadyExists = (yearRegionMap["all years"]).some(
-          (entry) =>
-            entry.Latitude === "" + decimalLatitude &&
-            entry.Longitude === "" + decimalLongitude
+        
+        alreadyExists = combinedYearRegionMap["all years"].some(
+          entry => 
+            entry.Latitude === dataPoint.Latitude &&
+            entry.Longitude === dataPoint.Longitude &&
+            entry.DatasetID === dataPoint.DatasetID
         );
-
+        
         if (!alreadyExists) {
-          yearRegionMap["all years"].push({
-            Latitude: "" + decimalLatitude,
-            Longitude: "" + decimalLongitude,
-          });
+          combinedYearRegionMap["all years"].push(dataPoint);
         }
       });
+    });
 
-      setOBISNAET3Data(yearRegionMap);
-      console.log(yearRegionMap);
-    }
-  }, [NAET3Data]);
-  return { OBISNAET3Data, loading, error };
+    console.log("RETURNINGcombinedYearRegionMap", combinedYearRegionMap);
+    return combinedYearRegionMap;
+  };
+
+  console.log("DONE! combinedOBISData", combinedOBISData);
+  // const combinedOBISData = combinedOBISData;
+  console.log("FINAL return", { combinedOBISData, loading, error });
+  return { combinedOBISData, loading, error };
 }
