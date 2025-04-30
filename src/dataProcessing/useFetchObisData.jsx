@@ -21,7 +21,6 @@ async function extractFromRegionsCSV(csvPath) {
 }
 
 const filterBySpeciesName = (data, speciesName) => {
-  console.log("in filterBySpeciesName", speciesName, data);
   return data
     ? data.filter((record) => record.scientificName === speciesName)
     : [];
@@ -53,7 +52,6 @@ export default function useFetchObisData(speciesDetail) {
     ? `${speciesDetail["RAS Genus Name"]} ${speciesDetail["RAS Species Name"]}`
     : null;
 
-  console.log("in useFetchObisData", scientificName);
  
   const [combinedOBISData, setcombinedOBISData] = useState({});
   const [loading, setLoading] = useState(true);
@@ -83,12 +81,11 @@ export default function useFetchObisData(speciesDetail) {
             .then(data => filterBySpeciesName(data, scientificName))
         ]);
 
-        console.log("FIN extraction", NAET1Data, NAET2Data, NAET3Data);
         // Process each dataset
         const yearRegionMap = processDatasets({
-          NAET1: NAET1Data,
-          NAET2: NAET2Data,
-          NAET3: NAET3Data
+          'NA-ET1': NAET1Data,
+          'NA-ET2': NAET2Data,
+          'NA-ET3': NAET3Data
         });
         
         setcombinedOBISData(yearRegionMap);
@@ -110,6 +107,7 @@ export default function useFetchObisData(speciesDetail) {
 
   // Process datasets and create a combined map
   const processDatasets = (datasets) => {
+    const combinedYearSiteMap = {};
     const combinedYearRegionMap = {};
     
     // Process each dataset
@@ -120,6 +118,7 @@ export default function useFetchObisData(speciesDetail) {
 
         // Add source information to distinguish between datasets
         const dataPoint = {
+          Date: currYear,
           Latitude: "" + decimalLatitude,
           Longitude: "" + decimalLongitude,
           DatasetID: dataset_id,
@@ -127,11 +126,12 @@ export default function useFetchObisData(speciesDetail) {
         };
 
         // Add to year-specific collection
-        if (!combinedYearRegionMap[currYear]) {
-          combinedYearRegionMap[currYear] = [];
+        if (!combinedYearSiteMap[currYear]) {
+          combinedYearSiteMap[currYear] = [];
+          combinedYearRegionMap[currYear] = new Set();
         }
         
-        let alreadyExists = combinedYearRegionMap[currYear].some(
+        let alreadyExists = combinedYearSiteMap[currYear].some(
           entry => 
             entry.Latitude === dataPoint.Latitude &&
             entry.Longitude === dataPoint.Longitude &&
@@ -139,15 +139,17 @@ export default function useFetchObisData(speciesDetail) {
         );
         
         if (!alreadyExists) {
-          combinedYearRegionMap[currYear].push(dataPoint);
+          combinedYearSiteMap[currYear].push(dataPoint);
+          combinedYearRegionMap[currYear].add(datasetName);
         }
 
         // Add to "all years" collection
-        if (!combinedYearRegionMap["all years"]) {
-          combinedYearRegionMap["all years"] = [];
+        if (!combinedYearSiteMap["all years"]) {
+          combinedYearSiteMap["all years"] = [];
+          combinedYearRegionMap["all years"] = new Set();
         }
         
-        alreadyExists = combinedYearRegionMap["all years"].some(
+        alreadyExists = combinedYearSiteMap["all years"].some(
           entry => 
             entry.Latitude === dataPoint.Latitude &&
             entry.Longitude === dataPoint.Longitude &&
@@ -155,17 +157,20 @@ export default function useFetchObisData(speciesDetail) {
         );
         
         if (!alreadyExists) {
-          combinedYearRegionMap["all years"].push(dataPoint);
+          combinedYearSiteMap["all years"].push(dataPoint);
+          combinedYearRegionMap["all years"].add(datasetName);
         }
       });
     });
 
-    console.log("RETURNINGcombinedYearRegionMap", combinedYearRegionMap);
-    return combinedYearRegionMap;
+    for (const year in combinedYearRegionMap) {
+      combinedYearRegionMap[year] = Array.from(combinedYearRegionMap[year]);
+    }
+
+    return { combinedYearRegionMap, combinedYearSiteMap };
   };
 
   console.log("DONE! combinedOBISData", combinedOBISData);
   // const combinedOBISData = combinedOBISData;
-  console.log("FINAL return", { combinedOBISData, loading, error });
   return { combinedOBISData, loading, error };
 }

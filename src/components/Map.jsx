@@ -20,7 +20,7 @@ function Map({
   const geoJsonLayerRef = useRef(null);
   const graphicsLayerRef = useRef(null);
   const [renderer, setRenderer] = useState(null);
-  const lastUpdated = "02/19/2025";
+  const lastUpdated = "03/31/2025";
 
   const [datasetsToShow, setDatasetToShow] = useState({
     nemesisBioregions: true,
@@ -162,6 +162,7 @@ function Map({
     loadModules(["esri/PopupTemplate"], { url: "https://js.arcgis.com/4.25/" })
       .then(([PopupTemplate]) => {
         if (geoJsonLayerRef.current) {
+          console.log("*** Creating popup with", regionsDetail)
           geoJsonLayerRef.current.popupTemplate = createPopupTemplate(
             PopupTemplate,
             regionsDetail
@@ -304,6 +305,7 @@ function Map({
   useEffect(() => {
     if (currRegions.length === 0 && pastRegions.length === 0) return;
 
+    console.log("*** currRegions:", currRegions);
     let currRegionsToShow = [];
     if (datasetsToShow["currentRegions"] === true) {
       currRegionsToShow = currRegions;
@@ -380,7 +382,7 @@ function Map({
 
       if (datasetsToShow["obisSites"] === true && currSites["obisSites"]) {
         plotSites(
-          { fill: "rgba(25,200,92, 1)", outline: "rgba(6,9,14,0.8)" },
+          { fill: "rgba(121, 209, 168, 1)", outline: "rgba(6,9,14,0.8)" },
           currSites["obisSites"]
         );
       }
@@ -388,17 +390,12 @@ function Map({
   }, [graphicsLayerRef.current, currSites, datasetsToShow]);
 
   const createSitePopupTemplate = (siteInfo) => {
-    // const id =
-    //             site["Site Code"] != null ? site["Site Code"] : "Unknown ID";
-    //           const name =
-    //             site["Site Location"] != null
-    //               ? site["Site Location"]
-    //               : "Unnamed Location";
-    console.log("siteInfo:", siteInfo);
-    let content = "";
+    console.log(siteInfo)
+    let content = `<p><strong>Record Date:</strong> ${siteInfo["Date"]}</p>`;
 
+    // console.log("siteInfo:", siteInfo);
     if (siteInfo["Site Code"]) {
-      content = `
+      content += `     
       <p><strong>Site Name:</strong> ${siteInfo["Site Location"]}</p>
       <p><strong>City, State:</strong> ${siteInfo["City"]}, ${
         siteInfo["State"]
@@ -409,7 +406,7 @@ function Map({
       ${parseFloat(siteInfo["Longitude"]).toFixed(2)})</p>
       `;
     } else if (siteInfo["DatasetID"]) {
-      content = `
+      content += `
       <p><strong>(Lat, Long)</strong>: (${parseFloat(
         siteInfo["Latitude"]
       ).toFixed(2)},
@@ -422,7 +419,7 @@ function Map({
         Link to Dataset
       </a></p>`;
     } else {
-      content = `
+      content += `
       <p><strong>Site Name:</strong> ${siteInfo["Site Location"]}</p>
       <p><strong>(Lat, Long)</strong>: (${parseFloat(
         siteInfo["Latitude"]
@@ -437,92 +434,8 @@ function Map({
 
       // content: `<p><strong>Site ID:</strong> {id}</p>`,
     };
-    // return new PopupTemplate({
-    //   // title: "",
-    //   content: [
-    //     {
-    //       type: "text",
-    //       text: `
-    //         <div class="custom-popup">
-    //           <p><strong>{expression/regionName}</strong> ({REG_NEWREG})</p>
-    //           <p><strong>{expression/descriptiveText}</strong></p>{expression/popupContent}
-
-    //         </div>
-    //       `,
-    //     },
-    //   ],
-    //   expressionInfos: [
-    //     {
-    //       name: "regionName",
-    //       title: "name",
-    //       expression: `
-    //         var region = $feature.REG_NEWREG;
-    //         var names = {
-    //           ${Object.entries(nemesisRegionNames)
-    //             .map(([key, value]) => `'${key}': '${value}'`)
-    //             .join(",")}
-    //         };
-    //         return names[region]
-    //       `,
-    //     },
-    //     {
-    //       name: "descriptiveText",
-    //       title: "description",
-    //       expression: `
-    //         var region = $feature.REG_NEWREG;
-    //         var currentRegions = ['${currRegions.join("','")}'];
-    //         var allYears = ${allYears ? "true" : "false"};
-
-    //         When(
-    //           allYears, 'Years with Records:',
-    //           Includes(currentRegions, region), 'Sources:',
-    //           'Past Region:'
-    //         )
-    //       `,
-    //     },
-    //     {
-    //       name: "popupContent",
-    //       title: "Content",
-    //       expression: `
-    //         var region = $feature.REG_NEWREG;
-    //         var currentRegions = ['${currRegions.join("','")}'];
-    //         var allYears = ${allYears ? "true" : "false"};
-
-    //         var details = {
-    //             ${Object.entries(regionsDetail)
-    //               .map(
-    //                 ([key, value]) =>
-    //                   `'${key}': '${
-    //                     allYears
-    //                       ? value
-    //                       : value
-    //                           .map(
-    //                             ({ RegionName, ...rest }) =>
-    //                               `${RegionName} (${rest["Source(s)"].substring(
-    //                                 1
-    //                               )})`
-    //                           )
-    //                           .join(", ")
-    //                   }'`
-    //               )
-    //               .join(", ")}
-    //         };
-
-    //         if (allYears) {
-    //           var detailsInfo = Split(details[region], ","); // Split into an array
-
-    //           return detailsInfo
-    //         }
-    //         return IIF(
-    //             Includes(currentRegions, region),
-    //             IIF(hasKey(details, region), details[region], 'Source undefined'),
-    //             'Species have been spotted here in the past'
-    //         );
-    //         `,
-    //     },
-    //   ],
-    // });
-  };
+   
+   };
 
   /** Plot currSitesToShow sites onto the map in the colors color
    *
@@ -584,25 +497,25 @@ function Map({
       {
         key: "pastRegions",
         color: "rgba(147,192,209, 0.3)",
-        border: "accent",
+        border: "primary",
         label: "Past Years",
       },
       {
         key: "nemesisSpecificSites",
         color: "rgba(147,192,209,0.5)",
-        border: "primary-content",
+        border: "primary",
         label: "Nemesis Sites",
       },
       {
         key: "rasSites",
         color: "rgba(245,200,92, 0.5)",
-        border: "primary-content",
+        border: "primary",
         label: "RAS Sites",
       },
       {
         key: "obisSites",
-        color: "rgba(245,200,92, 0.5)",
-        border: "primary-content",
+        color: "rgba(121, 209, 168, 1)",
+        border: "primary",
         label: "OBIS Sites",
       },
     ];
