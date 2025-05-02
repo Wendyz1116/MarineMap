@@ -7,9 +7,9 @@ SpeciesID,Date,RegionID,RegionName,Source(s),Site Location,Latitude,Longitude
 13421,8/13/2012,na-et1,"1st Record: Covey Head, Upper Blandford/Nova Scotia/Mahone Bay", Savoie and Saunders 2013,Mahone Bay,44.44714,-64.4252784
 52757,11/2013,na-et1,Halifax/Nova Scotia/Halifax Harbour, Moore et al. 2014,Halifax Harbour,44.6544765,-63.7302687
 52757,Unknown Date,na-et1,"Halifax to Lunenburg, in harbors/Nova Scotia/Atlantic Ocean",Ma et al. 2020,Nova Scotia,45.193928,-68.3034446
--77,2010,na-et1,Bay L'Argent/Newfoundland/Fortune Bay, Fisheries and Oceans Canada 2011
--77,2010,na-et1,Great Paradise/Newfoundland/Placentia Bay, Fisheries and Oceans Canada 2011
--77,2010,na-et1,Clattice Harbour/Newfoundland/Placentia Bay, Fisheries and Oceans Canada 2011
--77,2010,na-et1,Barren Island/Newfoundland/Placentia Bay, Fisheries and Oceans Canada 2011
--77,2008,na-et1,Halifax/Nova Scotia/Atlantic Ocean, Lacoursiere-Roussel et al. 2016
+-77,2010,na-et1,Bay L'Argent/Newfoundland/Fortune Bay, Fisheries and Oceans Canada 2011,great paradise,47.3514197,-54.6127507
+-77,2010,na-et1,Great Paradise/Newfoundland/Placentia Bay, Fisheries and Oceans Canada 2011,clattice harbour,47.4833596,-54.4872237
+-77,2010,na-et1,Clattice Harbour/Newfoundland/Placentia Bay, Fisheries and Oceans Canada 2011,barren island,40.5929128,-73.9137485
+-77,2010,na-et1,Barren Island/Newfoundland/Placentia Bay, Fisheries and Oceans Canada 2011,halifax,42.3624704,-71.0967296
+-77,2008,na-et1,Halifax/Nova Scotia/Atlantic Ocean, Lacoursiere-Roussel et al. 2016,mersey river,44.0801873,-64.9651509
 -77,2008,na-et1,Liverpool/Nova Scotia/Mersey River, Lacoursiere-Roussel et al. 2016

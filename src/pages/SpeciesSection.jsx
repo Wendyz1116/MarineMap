@@ -57,9 +57,10 @@ export default function SpeciesSection() {
   // fetch OBIS data
   // const speciesName = selectedSpecies ? selectedSpecies["Species Name"] : null;
   // console.log("tyring ot fetch", speciesName);
-  const { combinedOBISData, loading, error } = useFetchObisData(selectedSpecies);
-  
-  console.log("combinedOBISData", combinedOBISData, loading, error )
+  const { combinedOBISData, loading, error } =
+    useFetchObisData(selectedSpecies);
+
+  console.log("combinedOBISData", combinedOBISData, loading, error);
 
   // extract data from the csv file for regions NA-ET1, Na-ET2, and Na-ET3
   function extractFromRegionsCSV(csvPath, setRegionsData) {
@@ -103,20 +104,19 @@ export default function SpeciesSection() {
 
   // update Obis data
   useEffect(() => {
-    console.log("setting setAllYearObisSiteData to  combinedOBISData in useefx ", combinedOBISData["combinedYearSiteMap"])
-    setAllYearObisSiteData(combinedOBISData["combinedYearSiteMap"])
-
-    console.log(combinedOBISData["combinedYearRegionMap"])
-    console.log("allYearRegion in cwaiting for combined OBIS Data", allYearRegionMap)
+    setAllYearObisSiteData(combinedOBISData["combinedYearSiteMap"]);
 
     // Combine combinedOBISData["combinedYearRegionMap"] with allYearRegion
 
-    const allYearRegionWithOBIS = {...allYearRegionMap, ...combinedOBISData["combinedYearRegionMap"]}
+    const allYearRegionWithOBIS = {
+      ...allYearRegionMap,
+      ...combinedOBISData["combinedYearRegionMap"],
+    };
     setAllYearRegionMap(allYearRegionWithOBIS);
 
     // Updating all the variables with bioregions to now include OBIS data
-    const allYearRegionDetailWithObis = {...allYearRegionDetail}
-    const regionYearMapWithObis = {...regionYearMap}
+    const allYearRegionDetailWithObis = { ...allYearRegionDetail };
+    const regionYearMapWithObis = { ...regionYearMap };
     for (let year in combinedOBISData["combinedYearRegionMap"]) {
       for (let region of combinedOBISData["combinedYearRegionMap"][year]) {
         if (!allYearRegionDetailWithObis[year]) {
@@ -128,19 +128,17 @@ export default function SpeciesSection() {
             regionYearMapWithObis[region] = [];
           }
           regionYearMapWithObis[region].push(year);
-
         }
-        allYearRegionDetailWithObis[year][region].push({"RegionName": "Region undefined", "Source(s)": " OBIS Dataset"});
+        allYearRegionDetailWithObis[year][region].push({
+          RegionName: "Region undefined",
+          "Source(s)": " OBIS Dataset",
+        });
       }
     }
 
-    console.log("allYearRegionDetailWithObis", allYearRegionDetailWithObis) 
-    console.log("regionYearMapWithObis", regionYearMapWithObis)
-
     setRegionYearMap(regionYearMapWithObis);
     setAllYearRegionDetail(allYearRegionDetailWithObis);
-
-  }, [combinedOBISData])
+  }, [combinedOBISData]);
 
   // Set nemesis region:name map
   useEffect(() => {
@@ -156,7 +154,6 @@ export default function SpeciesSection() {
   useEffect(() => {
     if (selectedSpecies) {
       // console.log("selected", selectedSpecies, selectedSpecies["Species Name"]);
-        
 
       // ----------------------------------------------------------------//
       // Functions to filter data based on species name or RAS Site Code //
@@ -177,7 +174,6 @@ export default function SpeciesSection() {
 
       // Filter the RAS data based on selectedSpecies name
       const filterRASBySpecies = (data, selectedGenus, selectedSpecies) => {
-        console.log("In filterRASBySpecies", selectedGenus, selectedSpecies, data);
         return data.filter(
           (item) =>
             item.Species.trim() === selectedSpecies &&
@@ -202,7 +198,6 @@ export default function SpeciesSection() {
       let tempSpeciesRASData = [];
 
       Object.keys(filteredRAS).forEach((key) => {
-        console.log(key, filteredRAS[key]);
         filteredRAS[key] === "x" ? tempSpeciesRASData.push(key) : null;
       });
 
@@ -216,9 +211,9 @@ export default function SpeciesSection() {
         filteredRASSite[key] = {
           ...filteredRASSite[key],
           "Source(s)": "RAS Dataset",
-          "Date": "2019", 
+          Date: "2019",
         };
-      })
+      });
       let tempAllYearRasData = {};
       console.log("filteredRASSite", filteredRASSite);
 
@@ -274,7 +269,7 @@ export default function SpeciesSection() {
               ? record.Date
               : "Unknown Date";
 
-          console.log("currYear", currYear);
+          // console.log("currYear", currYear);
           if (currYear in yearRegionMap) {
             yearRegionMap[currYear].add(region);
             if (region in yearRegionDetails[currYear])
@@ -284,17 +279,21 @@ export default function SpeciesSection() {
             yearRegionMap[currYear] = new Set([region]);
             yearRegionDetails[currYear] = { [region]: [record] };
           }
-          
+
           yearRegionMap["all years"].add(region);
           yearRegionDetails["all years"][region].push[record];
-          console.log("for year", currYear, "all year", yearRegionDetails["all years"]);
+          // console.log("for year", currYear, "all year", yearRegionDetails["all years"]);
         });
-
-        console.log("*** in addYearRegion, yearRegionMap", yearRegionMap);
-        console.log(
-          "*** in addYearRegion, yearRegionDetails", yearRegionDetails)
       };
 
+      console.log(
+        "AHHH filteredNAET1",
+        filteredNAET1,
+        "filteredNAET2",
+        filteredNAET2,
+        "filteredNAET3",
+        filteredNAET3
+      );
       // If there exists data for the species in a region, add info
       // from the region to the yearRegionMap
       if (filteredNAET1[0]) {
@@ -302,6 +301,11 @@ export default function SpeciesSection() {
         addYearRegion("NA-ET1", filteredNAET1);
       }
       if (filteredNAET2[0]) {
+        console.log(
+          "**** calling addYearRegion for 2 with filteredNAET2",
+          filteredNAET2
+        );
+
         addYearRegion("NA-ET2", filteredNAET2);
       }
       if (filteredNAET3[0]) {
@@ -329,16 +333,38 @@ export default function SpeciesSection() {
       const extractYearsWithGeoloc = (yearRegionDetails) => {
         Object.entries(yearRegionDetails).forEach(([year, regions]) => {
           Object.entries(regions).forEach(([region, records]) => {
-            if (region == "NA-ET1" || region == "NA-ET2") {
-              records.forEach((record) => {
-                if (record["Latitude"]) {
+            records.forEach((record) => {
+              if (record["Latitude"]) {
+                const latitude = record["Latitude"];
+                const longitude = record["Longitude"];
+                console.log("record", record);
+                let site = record["Site Location"];
+                site = site.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join(' ');
+                record["Site Location"] = site;
+                
+                if (
+                  latitude < 48 &&
+                  latitude > 35 &&
+                  longitude < -66 &&
+                  longitude > -78
+                ) {
                   tempAllYearNemesisSiteData[year]
                     ? tempAllYearNemesisSiteData[year].push(record)
                     : (tempAllYearNemesisSiteData[year] = [record]);
                   tempAllYearNemesisSiteData["all years"].push(record);
                 }
-              });
-            }
+                else {
+                  console.log(
+                    "RECORD",
+                    record,
+                    "latitude",
+                    latitude,
+                    "longitude",
+                    longitude
+                  );
+                }
+              }
+            });
           });
         });
       };
@@ -361,13 +387,19 @@ export default function SpeciesSection() {
 
   // Depending on the selected year, update the pastSpeciesRegions and current speciesRegions
   useEffect(() => {
-   
     const pastSpeciesRegionsList = [];
     Object.keys(allYearRegionMap).forEach((key) => {
-      key <= newYear ? pastSpeciesRegionsList.push(allYearRegionMap[key]) : null;
+      key <= newYear
+        ? pastSpeciesRegionsList.push(allYearRegionMap[key])
+        : null;
     });
     setPastSpeciesRegions(new Set(pastSpeciesRegionsList.flat()));
-    console.log("***for newYear", newYear, "allYearRegionMap", allYearRegionMap);
+    console.log(
+      "***for newYear",
+      newYear,
+      "allYearRegionMap",
+      allYearRegionMap
+    );
     setSpeciesRegions([allYearRegionMap[newYear]]);
 
     if (allYearRegionDetail[newYear]) {
@@ -389,7 +421,7 @@ export default function SpeciesSection() {
     }
 
     setCurrYearSiteData(tempCurrYearSiteData);
-    
+
     if (newYear == "all years") {
       setAllYears(true);
       setCurrYearDetail(regionYearMap);

@@ -122,7 +122,7 @@ function MapSettings({
                   onChange={() => handleCheckboxChange("pastRegions")}
                   className="checkbox checkbox-xs mr-2"
                 />
-                <span className="label-text">Past Regions</span>
+                <span className="label-text">Current and Past Regions</span>
               </label>
 
               <label className="label cursor-pointer">

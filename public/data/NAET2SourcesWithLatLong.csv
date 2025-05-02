@@ -58,72 +58,72 @@ SpeciesID,Date,RegionID,RegionName,Source(s),Site Location,Latitude,Longitude
 52757,2010,n180,"Brewers Plymouth Marina/Plymouth Harbor, Cape Cod Bay", Massachusetts Office of Coastal Zone Management 2013,Brewers Plymouth Marina,41.955876,-70.6637869
 52757,2000,n180,"Sandwich Marina/MA/Sandwich Harbor, Cape Cod Bay", MIT Sea Grant 2003,Sandwich Marina,41.7698127,-70.507159
 52757,2000,n180,"Barnstable/MA/Barnstable Harbor, Cape Cod Bay", MIT Sea Grant 2003,Barnstable,41.6633513,-70.5280784
-544802,2007,n050,"Wayfarer Marina, Camden/ME/Penobscot Bay Boothbay Harbor", MIT Sea Grant 2008
-544802,2007,n070,"Maine Department of Marine Resources Docks, Boothbay Harbor", MIT Sea Grant 200
-544802,2007,n100,"Brewer South Freeport Marine, south Freeport/ME/Casco Bay", MIT Sea Grant 2008
-544802,2013,n140,Hampton River Marina/NH/Hampton River, Wells et al. 2013
-544802,2007,n170,"Hawthorne Cove Marina, Salem/MA/Massachusetts Bay", MIT Sea Grant 2008
-544802,2007,n170,"Gloucester Coast Guard Station, Gloucester/MA/Gloucester Harbor", MIT Sea Grant 2008
-544802,2013,n170,"Rowes Wharf Marina, Boston/MA/Boston Harbor", Wells et al. 2014
-544802,2013,n180,"Green Harbor Marina, Marshfield/MA/Cape Cod Bay", Wells et al. 2014
-544802,2013,n180,Sandwich Maina/MA/Cape Cod Bay, Wells et al. 2014
--82,2018,n100,off Portland/ME/Casco Bay, Trott et al. 2019 43.6591°N; 70.2568°W
-93477,2013,n100,Brewer Freeport Marina/ME/Casco Bay, Wells et al. 2013
-93477,2013,n130,University of New Hampshire Coastal Laboratory/NH/Great Bay, Wells et al. 2014
-93477,1976,n130,ittery Point/ME/Great Bay, Larsen and Doggett 1991
-93477,2000,n170,Bay Pointe Marina/Quincy/Boston Harbor, MIT Sea Grant 2003
-93477,Unknown Date,n170,Boston Harbor Islands/MA/Boston Harbor,Bell et al. 2005
-93477,2000,n180,"Barnstable/MA/Barnstable Harbobr, Cape Cod Bay", MIT Sea Grant 2003
-93477,1879,n180,Provincetown/MA/Cape Cod Bay, USNM 3018
--77,2007,n050,"Journey's End Marina, Rockland/ME/Penobscot Bay", MIT Sea Grant 2009
--77,2007,n070,"Darling Maine Center Dock, Walpole/ME/Damariscotta River Estuary", MIT Sea Grant 2009
--77,2007,n080,"Maine Department of Marine Resources Docks, Boothbay Harbor/ME/Boothbay Harbor", MIT Sea Grant 2009
--77,2003,n100,"1st Record: Brewer Freeport Marina, South Freeport/ME/Casco Bay", MIT Sea Grant 2003
--77,2011,n120,Wells/ME/Wells Harbor, MIT Sea Grant 2012
--77,2011,n125,York/ME/York Harbor, MIT Sea Grant 2012
--77,2007,n130,"1st Record: Wentworth by the Sea Marina, Portsmouth/NH/Great Bay", MIT Sea Grant 2008
--77,Unknown Date,n135,"on fish cages, Isles of Shoals/NH/Gulf of Maine",Harris and Dijkstra 2007
--77,2007,n140,Hampton River Marina/State Pier/NH/Hampton Harbor, MIT Sea Grant 2009; 2010
--77,2000,n170,"1st Records: Bay Pointe Marina, Quincy/MA/Massachusetts Bay", MIT Sea Grant 2003
--77,2000,n170,"Black Falcon Terminal, Boston/MA/Boston Harbor", MIT Sea Grant 2003
--77,2000,n170,"MWRA Deer Island, Boston/MA/Boston Harbor", MIT Sea Grant 2003
--77,2000,n170,"Rowes Wharf, Boston/MA/Boston Harbor", MIT Sea Grant 2003
--77,2000,n170,"Hawthorne Cove Marina, Salem/MA/Salem Harbor", MIT Sea Grant 2003
--77,2000,n170,"Tucks Point Marina, Beverly/MA/Massachusetts Bay", MIT Sea Grant 2003
--77,2000,n170,"Cape Ann Marina, Gloucester/MA/Massachusetts Bay", MIT Sea Grant 2003
--77,2000,n170,Gloucester State Pier/MA/Massachusetts Bay, MIT Sea Grant 2003
--77,2000,n180,"1st Records: Barnstable/MA/Barnstable Harbor, Cape Cod Bay", MIT Sea Grant 2003
--77,2000,n180,"Plymouth Town Wharf/MA/Harbor, Cape Cod Bay", MIT Sea Grant 2003
--77,2000,n180,"Duxbury Town Pier/MA/Duxbury Harbor, Cape Cod Bay", MIT Sea Grant 2003
--2,2020,n010,"Gleason Point town park, Perry/ME/Passamaquoddy Bay", USGS Nonindigenous Aquatic Species Program 2021
--2,2005,n036,Schoodic Point/ME/Frenchman Bay, Delaney et al. 2008
--2,2003,n045,"Moores Harbor, Isle au Haut/ME/Gulf of Maine", Delaney et al. 2008
--2,2002,n050,Owls Head/ME/Penobscot Bay, Friedlander 2003; USGS Nonindigenous Aquatic Species Program 2008; 2015
--2,2001,n060,Lincoln County/ME/Muscongus Bay, USGS Nonindigenous Aquatic Species Program 2008
--2,2015,n060,Bristol/ME/Muscongus Bay, Lord and Williams 2016
--2,2015,n060,St. George/ME/Muscongus Bay, Lord and Williams 2016
--2,2015,n100,Cape Elizabeth/ME/Gulf of Maine, Lord and Williams 2016
--2,2001,n100,Portland area/ME/Casco Bay, USGS Nonindigenous Aquatic Species Program 2008
--2,2001,n100,Orrs Island/ME/Casco Bay, USGS Nonindigenous Aquatic Species Program 2008
--2,2001,n100,Scarborough/ME/Gulf of Maine, USGS Nonindigenous Aquatic Species Program 2008
--2,2009,n100,Freeport/ME/Casco Bay, McNaught and Norden 2011
--2,2008,n116,Kennebunk Beach/ME/Gulf of Maine, MIT Sea Grant 2011
--2,2009,n120,Wells/ME/Wells Harbor, MIT Sea Grant 2011
--2,2005,n125,York/ME/Gulf of Maine, MIT Sea Grant Center for Coastal Resources 2005
--2,2015,n125,"Seapoint, Kittery/ME/ Gulf of Maine", Lord and Williams 2016
--2,1998,n130,Dover Point/NH/Great Bay, McDermott 2000
--2,2006,n130,"Wentworth Marina, Portsmouth/HN/Great Bay", Harris and Dijkstra 2008
--2,2006,n130,"Coastal Marine Lab, Portsmouth/NH/Great Bay", Harris and Dijkstra 2008
--2,2006,n130,"Great Bay Marina, Newington/NH/Great Bay", Harris and Dijkstra 2008
--2,1999,n135,Rye/NH/Gulf of Maine, McDermott 2000
--2,1998,n135,"North Hampton, approximately 10 km south of Odiorne State Park/NH/Gulf of Maine", McDermott 2000
--2,2009,n160,"Emerson Rocks, Plum Island/MA/Gulf of Maine", MIT Sea Grant 2011
--2,2003,n165,"Halibut Point State Park, Rockport", MIT Sea Grant 2003
--2,1999,n170,"Gloucester/MA/Gloucester Harbor, Massachusetts Bay", USGS Nonindigenous Aquatic Species Program 2008
--2,2000,n170,"Deer Island, Winthrop/MA/Boston Harbor", MIT Sea Grant 2003
--2,Unknown Date,n170,Boston Harbor Islands/MA/Boston Harbor,Bell et al. 2005
--2,2000,n170,"Black Falcon Terminal, Boston/MA/Boston Harbor", MIT Sea Grant 2008
--2,42 250N,n170,"Nahant/MA/Dorothy Cove, Baillie and Grabowsi 2018", 70 550W)
--2,1998,n180,"Manomet Point, Plymouth/MA/Cape Cod Bay", Whitlatch and Osman 2000
--2,1994,n180,"Sagamore, MA/Cape Cod Bay at the east end of the Cape Cod Canal", McDermott 1998; O'Connor 2013
--2,1996,n180,Welfleet/MA/Cape Cod Bay, McDermott 2000
+544802,2007,n050,"Wayfarer Marina, Camden/ME/Penobscot Bay Boothbay Harbor", MIT Sea Grant 2008,Site Location,Latitude,Longitude,"wayfarer marina, camden",42.3624704,-71.0934528
+544802,2007,n070,"Maine Department of Marine Resources Docks, Boothbay Harbor", MIT Sea Grant 200,"maine department of marine resources docks, boothbay harbor",42.3624704,-71.0934528
+544802,2007,n100,"Brewer South Freeport Marine, south Freeport/ME/Casco Bay", MIT Sea Grant 2008,"brewer south freeport marine, south freeport",42.3624704,-71.0934528
+544802,2013,n140,Hampton River Marina/NH/Hampton River, Wells et al. 2013,hampton river,42.3624704,-71.0934528
+544802,2007,n170,"Hawthorne Cove Marina, Salem/MA/Massachusetts Bay", MIT Sea Grant 2008,"hawthorne cove marina, salem",42.3624704,-71.0934528
+544802,2007,n170,"Gloucester Coast Guard Station, Gloucester/MA/Gloucester Harbor", MIT Sea Grant 2008,gloucester harbor,42.3624704,-71.0934528
+544802,2013,n170,"Rowes Wharf Marina, Boston/MA/Boston Harbor", Wells et al. 2014,boston harbor,42.3624704,-71.0934528
+544802,2013,n180,"Green Harbor Marina, Marshfield/MA/Cape Cod Bay", Wells et al. 2014,"green harbor marina, marshfield",42.0846145,-70.6534797
+544802,2013,n180,Sandwich Maina/MA/Cape Cod Bay, Wells et al. 2014,sandwich maina,41.7698127,-70.507159
+-82,2018,n100,off Portland/ME/Casco Bay, Trott et al. 2019 43.6591Â°N; 70.2568Â°W,off portland,50.8336113,-0.1943744
+93477,2013,n100,Brewer Freeport Marina/ME/Casco Bay, Wells et al. 2013,brewer freeport marina,30.5054106,-86.17924
+93477,2013,n130,University of New Hampshire Coastal Laboratory/NH/Great Bay, Wells et al. 2014,university of new hampshire coastal laboratory,42.3624704,-71.0934528
+93477,1976,n130,ittery Point/ME/Great Bay, Larsen and Doggett 1991,ittery point,43.0875508,-70.7388584
+93477,2000,n170,Bay Pointe Marina/Quincy/Boston Harbor, MIT Sea Grant 2003,bay pointe marina,42.3624704,-71.0934528
+93477,Unknown Date,n170,Boston Harbor Islands/MA/Boston Harbor,Bell et al. 2005,boston harbor,42.3624704,-71.0934528
+93477,2000,n180,"Barnstable/MA/Barnstable Harbobr, Cape Cod Bay", MIT Sea Grant 2003,barnstable,41.6633513,-70.5280784
+93477,1879,n180,Provincetown/MA/Cape Cod Bay, USNM 3018,provincetown,42.0514126,-70.2805965
+-77,2007,n050,"Journey's End Marina, Rockland/ME/Penobscot Bay", MIT Sea Grant 2009,"journey's end marina, rockland",44.1049634,-69.105345
+-77,2007,n070,"Darling Maine Center Dock, Walpole/ME/Damariscotta River Estuary", MIT Sea Grant 2009,damariscotta river estuary,43.9508789,-69.7135372
+-77,2007,n080,"Maine Department of Marine Resources Docks, Boothbay Harbor/ME/Boothbay Harbor", MIT Sea Grant 2009,"maine department of marine resources docks, boothbay harbor",43.8438382,-69.6430205
+-77,2003,n100,"1st Record: Brewer Freeport Marina, South Freeport/ME/Casco Bay", MIT Sea Grant 2003,"1st record: brewer freeport marina, south freeport",43.8214903,-70.1089641
+-77,2011,n120,Wells/ME/Wells Harbor, MIT Sea Grant 2012,wells harbor,42.3664655,-71.0854323
+-77,2011,n125,York/ME/York Harbor, MIT Sea Grant 2012,york harbor,43.1340626,-70.6406097
+-77,2007,n130,"1st Record: Wentworth by the Sea Marina, Portsmouth/NH/Great Bay", MIT Sea Grant 2008,"1st record: wentworth by the sea marina, portsmouth",43.0599089,-70.728803
+-77,Unknown Date,n135,"on fish cages, Isles of Shoals/NH/Gulf of Maine",Harris and Dijkstra 2007,gulf of maine,42.9242898,-71.0174802
+-77,2007,n140,Hampton River Marina/State Pier/NH/Hampton Harbor, MIT Sea Grant 2009; 2010,hampton harbor,42.9004845,-70.8289629
+-77,2000,n170,"1st Records: Bay Pointe Marina, Quincy/MA/Massachusetts Bay", MIT Sea Grant 2003,"1st records: bay pointe marina, quincy",42.2503711,-70.9780034
+-77,2000,n170,"Black Falcon Terminal, Boston/MA/Boston Harbor", MIT Sea Grant 2003,boston harbor,42.3664655,-71.0854323
+-77,2000,n170,"MWRA Deer Island, Boston/MA/Boston Harbor", MIT Sea Grant 2003,boston harbor,42.3664655,-71.0854323
+-77,2000,n170,"Rowes Wharf, Boston/MA/Boston Harbor", MIT Sea Grant 2003,boston harbor,42.3664655,-71.0854323
+-77,2000,n170,"Hawthorne Cove Marina, Salem/MA/Salem Harbor", MIT Sea Grant 2003,salem harbor,42.5237359,-70.886716
+-77,2000,n170,"Tucks Point Marina, Beverly/MA/Massachusetts Bay", MIT Sea Grant 2003,"tucks point marina, beverly",42.5407916,-70.8839202
+-77,2000,n170,"Cape Ann Marina, Gloucester/MA/Massachusetts Bay", MIT Sea Grant 2003,"cape ann marina, gloucester",42.612784,-70.6831911
+-77,2000,n170,Gloucester State Pier/MA/Massachusetts Bay, MIT Sea Grant 2003,gloucester state pier,42.6144191,-70.6545079
+-77,2000,n180,"1st Records: Barnstable/MA/Barnstable Harbor, Cape Cod Bay", MIT Sea Grant 2003,1st records: barnstable,42.3664655,-71.0854323
+-77,2000,n180,"Plymouth Town Wharf/MA/Harbor, Cape Cod Bay", MIT Sea Grant 2003,plymouth town wharf,41.9616051,-70.6697602
+-77,2000,n180,"Duxbury Town Pier/MA/Duxbury Harbor, Cape Cod Bay", MIT Sea Grant 2003,duxbury town pier,42.3664655,-71.0854323
+-2,2020,n010,"Gleason Point town park, Perry/ME/Passamaquoddy Bay", USGS Nonindigenous Aquatic Species Program 2021,"gleason point town park, perry",44.9748287,-67.0738704
+-2,2005,n036,Schoodic Point/ME/Frenchman Bay, Delaney et al. 2008,schoodic point,44.3323776,-68.0815928
+-2,2003,n045,"Moores Harbor, Isle au Haut/ME/Gulf of Maine", Delaney et al. 2008,gulf of maine,42.9242898,-71.0174802
+-2,2002,n050,Owls Head/ME/Penobscot Bay, Friedlander 2003; USGS Nonindigenous Aquatic Species Program 2008; 2015,owls head,44.0594568,-69.1458384
+-2,2001,n060,Lincoln County/ME/Muscongus Bay, USGS Nonindigenous Aquatic Species Program 2008,lincoln county,42.3664655,-71.0854323
+-2,2015,n060,Bristol/ME/Muscongus Bay, Lord and Williams 2016,bristol,42.0759597,-79.3261083
+-2,2015,n060,St. George/ME/Muscongus Bay, Lord and Williams 2016,st. george,37.1045323,-113.7276957
+-2,2015,n100,Cape Elizabeth/ME/Gulf of Maine, Lord and Williams 2016,gulf of maine,42.9242898,-71.0174802
+-2,2001,n100,Portland area/ME/Casco Bay, USGS Nonindigenous Aquatic Species Program 2008,portland area,42.3664655,-71.0854323
+-2,2001,n100,Orrs Island/ME/Casco Bay, USGS Nonindigenous Aquatic Species Program 2008,orrs island,43.7726046,-70.0078884
+-2,2001,n100,Scarborough/ME/Gulf of Maine, USGS Nonindigenous Aquatic Species Program 2008,gulf of maine,42.9242898,-71.0174802
+-2,2009,n100,Freeport/ME/Casco Bay, McNaught and Norden 2011,freeport,43.8515141,-70.2568045
+-2,2008,n116,Kennebunk Beach/ME/Gulf of Maine, MIT Sea Grant 2011,gulf of maine,42.9242898,-71.0174802
+-2,2009,n120,Wells/ME/Wells Harbor, MIT Sea Grant 2011,wells harbor,42.3664655,-71.0854323
+-2,2005,n125,York/ME/Gulf of Maine, MIT Sea Grant Center for Coastal Resources 2005,gulf of maine,42.9242898,-71.0174802
+-2,2015,n125,"Seapoint, Kittery/ME/ Gulf of Maine", Lord and Williams 2016, gulf of maine,42.9242898,-71.0174802
+-2,1998,n130,Dover Point/NH/Great Bay, McDermott 2000,dover point,42.3664655,-71.0854323
+-2,2006,n130,"Wentworth Marina, Portsmouth/HN/Great Bay", Harris and Dijkstra 2008,"wentworth marina, portsmouth",43.0531136,-70.7470036
+-2,2006,n130,"Coastal Marine Lab, Portsmouth/NH/Great Bay", Harris and Dijkstra 2008,"coastal marine lab, portsmouth",29.9161485,-84.5132901
+-2,2006,n130,"Great Bay Marina, Newington/NH/Great Bay", Harris and Dijkstra 2008,"great bay marina, newington",43.1154267,-70.8385084
+-2,1999,n135,Rye/NH/Gulf of Maine, McDermott 2000,gulf of maine,42.9242898,-71.0174802
+-2,1998,n135,"North Hampton, approximately 10 km south of Odiorne State Park/NH/Gulf of Maine", McDermott 2000,gulf of maine,42.9242898,-71.0174802
+-2,2009,n160,"Emerson Rocks, Plum Island/MA/Gulf of Maine", MIT Sea Grant 2011,gulf of maine,42.9242898,-71.0174802
+-2,2003,n165,"Halibut Point State Park, Rockport", MIT Sea Grant 2003,"halibut point state park, rockport",42.6896214,-70.6362041
+-2,1999,n170,"Gloucester/MA/Gloucester Harbor, Massachusetts Bay", USGS Nonindigenous Aquatic Species Program 2008,gloucester,42.3664655,-71.0854323
+-2,2000,n170,"Deer Island, Winthrop/MA/Boston Harbor", MIT Sea Grant 2003,boston harbor,42.3664655,-71.0854323
+-2,Unknown Date,n170,Boston Harbor Islands/MA/Boston Harbor,Bell et al. 2005,boston harbor,42.3664655,-71.0854323
+-2,2000,n170,"Black Falcon Terminal, Boston/MA/Boston Harbor", MIT Sea Grant 2008,boston harbor,42.3664655,-71.0854323
+-2,42 250N,n170,"Nahant/MA/Dorothy Cove, Baillie and Grabowsi 2018", 70 550W),"dorothy cove, baillie and grabowsi 2018",42.3664655,-71.0854323
+-2,1998,n180,"Manomet Point, Plymouth/MA/Cape Cod Bay", Whitlatch and Osman 2000,"manomet point, plymouth",41.9268006,-70.5594765
+-2,1994,n180,"Sagamore, MA/Cape Cod Bay at the east end of the Cape Cod Canal", McDermott 1998; O'Connor 2013,"sagamore, ma",41.7844597,-70.5745995
+-2,1996,n180,Welfleet/MA/Cape Cod Bay, McDermott 2000,welfleet,41.9186934,-70.1010011

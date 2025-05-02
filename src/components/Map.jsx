@@ -492,13 +492,13 @@ function Map({
         key: "currentRegions",
         color: "rgba(102,129,174, 0.5)",
         border: "primary",
-        label: "Current Year",
+        label: "Current Regions",
       },
       {
         key: "pastRegions",
         color: "rgba(147,192,209, 0.3)",
         border: "primary",
-        label: "Past Years",
+        label: "Current + Past Regions",
       },
       {
         key: "nemesisSpecificSites",
