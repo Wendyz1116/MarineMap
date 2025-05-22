@@ -5,6 +5,7 @@ import Timeline from "../components/Timeline";
 import Papa from "papaparse";
 import MapSection from "../components/MapSection";
 import useFetchObisData from "../dataProcessing/useFetchObisData";
+import useNemesisData from "../dataProcessing/useNemesisData";
 import { use } from "react";
 
 export default function SpeciesSection() {
@@ -57,10 +58,15 @@ export default function SpeciesSection() {
   // fetch OBIS data
   // const speciesName = selectedSpecies ? selectedSpecies["Species Name"] : null;
   // console.log("tyring ot fetch", speciesName);
-  const { combinedOBISData, loading, error } =
+  const { combinedOBISData } =
     useFetchObisData(selectedSpecies);
 
-  console.log("combinedOBISData", combinedOBISData, loading, error);
+  // fetch nemesis data
+  console.log("running useNemesisData with", selectedSpecies);
+  const { nemesisRegionData } =
+    useNemesisData(selectedSpecies);
+
+  console.log("GOT combinedNemesisData", nemesisRegionData);
 
   // extract data from the csv file for regions NA-ET1, Na-ET2, and Na-ET3
   function extractFromRegionsCSV(csvPath, setRegionsData) {
@@ -87,13 +93,7 @@ export default function SpeciesSection() {
   }, []);
 
   // extract data from the csv file for regions NA-ET1, Na-ET2, and Na-ET3
-
-  // CHANGE extract from NAET1SourcesWithLatLong instead of nemesisSpeciesWithBaysNAET1.csv
   useEffect(() => {
-    extractFromRegionsCSV("/data/NAET1SourcesWithLatLong.csv", setNAET1Data);
-    extractFromRegionsCSV("/data/NAET2SourcesWithLatLong.csv", setNAET2Data);
-    extractFromRegionsCSV("/data/NAET3SourcesWithLatLong.csv", setNAET3Data);
-
     extractFromRegionsCSV("/RAS data/ras2019Sites.csv", setRasSiteLocData);
     extractFromRegionsCSV("/RAS data/ras2019Survey.csv", setRas2019SurveyData);
     extractFromRegionsCSV(
@@ -101,6 +101,15 @@ export default function SpeciesSection() {
       setNemesisRegionNames
     );
   }, []);
+
+  useEffect(() => {
+    console.log("IN useEffect for nemesisRegionData", nemesisRegionData);
+    if (nemesisRegionData) {
+      setNAET1Data(nemesisRegionData["NA-ET1"]);
+      setNAET2Data(nemesisRegionData["NA-ET2"]);
+      setNAET3Data(nemesisRegionData["NA-ET3"]);
+    }
+  }, [nemesisRegionData]);
 
   // update Obis data
   useEffect(() => {
@@ -153,6 +162,8 @@ export default function SpeciesSection() {
   // TODO2: split up general region data cleaning and ras/specific site data cleaning
   useEffect(() => {
     if (selectedSpecies) {
+      
+
       // console.log("selected", selectedSpecies, selectedSpecies["Species Name"]);
 
       // ----------------------------------------------------------------//
@@ -215,7 +226,6 @@ export default function SpeciesSection() {
         };
       });
       let tempAllYearRasData = {};
-      console.log("filteredRASSite", filteredRASSite);
 
       tempAllYearRasData["2019"] = filteredRASSite;
       tempAllYearRasData["all years"] = filteredRASSite;
@@ -228,6 +238,7 @@ export default function SpeciesSection() {
       const filteredNAET1Species = filterBySpeciesName(NAET1SpeciesInfo);
       const filteredNAET2Species = filterBySpeciesName(NAET2SpeciesInfo);
       const filteredNAET3Species = filterBySpeciesName(NAET3SpeciesInfo);
+
       const regionSpeciesData = {};
 
       if (filteredNAET1Species[0]) {
@@ -244,9 +255,13 @@ export default function SpeciesSection() {
       // ----------------------------------------------------//
       // Working with Nemesis species specific location data //
       // ----------------------------------------------------//
+      console.log("before filter 2", NAET1Data);
+      console.log("curr nemesisRegionsData", nemesisRegionData);
       const filteredNAET1 = filterBySpeciesID(NAET1Data);
       const filteredNAET2 = filterBySpeciesID(NAET2Data);
       const filteredNAET3 = filterBySpeciesID(NAET3Data);
+
+      console.log("filteredNAET1", filteredNAET1);
 
       const yearRegionMap = {};
       yearRegionMap["all years"] = new Set();
@@ -297,15 +312,9 @@ export default function SpeciesSection() {
       // If there exists data for the species in a region, add info
       // from the region to the yearRegionMap
       if (filteredNAET1[0]) {
-        console.log("**** calling addYearRegion");
         addYearRegion("NA-ET1", filteredNAET1);
       }
       if (filteredNAET2[0]) {
-        console.log(
-          "**** calling addYearRegion for 2 with filteredNAET2",
-          filteredNAET2
-        );
-
         addYearRegion("NA-ET2", filteredNAET2);
       }
       if (filteredNAET3[0]) {
@@ -337,7 +346,6 @@ export default function SpeciesSection() {
               if (record["Latitude"]) {
                 const latitude = record["Latitude"];
                 const longitude = record["Longitude"];
-                console.log("record", record);
                 let site = record["Site Location"];
                 site = site.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join(' ');
                 record["Site Location"] = site;
@@ -383,7 +391,7 @@ export default function SpeciesSection() {
       setAllYearRegionMap(yearRegionMap);
       setSpeciesRegions(yearRegionMap[years[0]]);
     }
-  }, [selectedSpecies]);
+  }, [selectedSpecies, NAET1Data, NAET2Data, NAET3Data]);
 
   // Depending on the selected year, update the pastSpeciesRegions and current speciesRegions
   useEffect(() => {
@@ -394,12 +402,7 @@ export default function SpeciesSection() {
         : null;
     });
     setPastSpeciesRegions(new Set(pastSpeciesRegionsList.flat()));
-    console.log(
-      "***for newYear",
-      newYear,
-      "allYearRegionMap",
-      allYearRegionMap
-    );
+ 
     setSpeciesRegions([allYearRegionMap[newYear]]);
 
     if (allYearRegionDetail[newYear]) {
@@ -425,7 +428,6 @@ export default function SpeciesSection() {
     if (newYear == "all years") {
       setAllYears(true);
       setCurrYearDetail(regionYearMap);
-      console.log("***regionYearMap", regionYearMap);
     } else setAllYears(false);
   }, [newYear]);
 

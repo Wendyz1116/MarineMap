@@ -1,13 +1,10 @@
 import { useState, useEffect } from "react";
 import Papa from "papaparse";
-import fs from "fs";
-import path from "path";
 
 /**
  * Cache for species set data to avoid re-reading the CSV file
  */
 let speciesSetCache = null;
-
 
 /**
  * Load and cache species set data from CSV
@@ -22,7 +19,9 @@ async function loadSpeciesSetData() {
     const csvPath = "/descriptions/speciesSet.csv";
     const response = await fetch(csvPath);
     if (!response.ok) {
-      throw new Error(`Failed to fetch ${csvPath}: ${response.status} ${response.statusText}`);
+      throw new Error(
+        `Failed to fetch ${csvPath}: ${response.status} ${response.statusText}`
+      );
     }
     const csvData = await response.text();
 
@@ -57,9 +56,14 @@ const getOBISSpeciesDesc = async (speciesDetail) => {
     // Find the matching species in the data
     for (const row of speciesSetData) {
       if (
-        toString(row["Species Nemesis ID"]) === toString(speciesDetail["Species Nemesis ID"])
+        toString(row["Species Nemesis ID"]) ===
+        toString(speciesDetail["Species Nemesis ID"])
       ) {
-        return { speciesSet: row["Species Set Number"], genus: row["Genus"], species: row["Species"] };
+        return {
+          speciesSet: row["Species Set Number"],
+          genus: row["Genus"],
+          species: row["Species"],
+        };
       }
     }
 
@@ -75,9 +79,11 @@ const getOBISSpeciesDesc = async (speciesDetail) => {
  * @param {string} csvPath - Path to the CSV file
  * @returns {Promise<Array>} - Promise resolving to parsed data
  */
+// extract data from the csv file for regions NA-ET1, Na-ET2, and Na-ET3
 async function extractFromRegionsCSV(csvPath) {
   const response = await fetch(csvPath);
   const csvData = await response.text();
+
   return new Promise((resolve, reject) => {
     Papa.parse(csvData, {
       header: true,
@@ -94,15 +100,13 @@ const filterBySpeciesName = (data, speciesName) => {
     : [];
 };
 
-
-
 /**
  * Custom hook to fetch OBIS data for a given scientific name
  * @param {string} scientificName - The scientific name to search for
  * @returns {Object} - Contains data, loading, and error states
  */
-export default function useFetchObisData(speciesDetail) {
-  const [combinedOBISData, setCombinedOBISData] = useState({});
+export default function useNemesisData(speciesDetail) {
+  const [nemesisRegionData, setNemesisRegionData] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -119,41 +123,43 @@ export default function useFetchObisData(speciesDetail) {
       setLoading(true);
       setError(null);
 
+      // // Fetch the CSV file for species
+      
       try {
         // Determine which species set this species belongs to
         const speciesData = await getOBISSpeciesDesc(speciesDetail);
 
-
         if (!speciesData) {
-          throw new Error(`Species "${speciesDetail}" not found in species set data`);
+          throw new Error(
+            `Species "${speciesDetail}" not found in species set data`
+          );
         }
 
+        console.log(`Species Nemesis info: ${JSON.stringify(speciesData)}`);
+
         const { speciesSet, genus, species } = speciesData;
-        const scientificName = `${genus} ${species}`;
+        // const scientificName = `${genus} ${species}`;
 
         // Fetch all datasets in parallel
         const [NAET1Data, NAET2Data, NAET3Data] = await Promise.all([
-          extractFromRegionsCSV(`/OBISFilteredData/NAET1/OBISNAET1Set${speciesSet}Data.csv`).then((data) =>
-            filterBySpeciesName(data, scientificName)
+          extractFromRegionsCSV(
+            `NemesisFilteredData/NAET1/NAET1SourcesWithLatLong.csv`
           ),
-          extractFromRegionsCSV(`/OBISFilteredData/NAET2/OBISNAET2Set${speciesSet}Data.csv`).then((data) =>
-            filterBySpeciesName(data, scientificName)
+          extractFromRegionsCSV(
+            `NemesisFilteredData/NAET2/NAET2SourcesWithLatLong.csv`
           ),
-          extractFromRegionsCSV(`/OBISFilteredData/NAET3/OBISNAET3Set${speciesSet}Data.csv`).then((data) =>
-            filterBySpeciesName(data, scientificName)
+          extractFromRegionsCSV(
+            `NemesisFilteredData/NAET2/NAET2SourcesWithLatLong.csv`
           ),
         ]);
-
-        console.log("NAET1Data", NAET1Data, "NAET2Data", NAET2Data, "NAET3Data", NAET3Data);
-
-        // Process each dataset
-        const yearRegionMap = processDatasets({
+        
+        const regionData = {
           "NA-ET1": NAET1Data,
           "NA-ET2": NAET2Data,
           "NA-ET3": NAET3Data,
-        });
+        };
 
-        setCombinedOBISData(yearRegionMap);
+        setNemesisRegionData(regionData);
       } catch (err) {
         if (!abortController.signal.aborted) {
           setError(err);
@@ -170,72 +176,8 @@ export default function useFetchObisData(speciesDetail) {
     return () => abortController.abort(); // Cleanup on unmount
   }, [speciesDetail]);
 
-  // Process datasets and create a combined map
-  const processDatasets = (datasets) => {
-    const combinedYearSiteMap = {};
-    const combinedYearRegionMap = {};
+  
 
-    // Process each dataset
-    Object.entries(datasets).forEach(([datasetName, records]) => {
-      records.forEach((record) => {
-        const { date, decimalLatitude, decimalLongitude, dataset_id } = record;
-        const currYear = date || "Unknown Date";
-
-        // Add source information to distinguish between datasets
-        const dataPoint = {
-          Date: currYear,
-          Latitude: "" + decimalLatitude,
-          Longitude: "" + decimalLongitude,
-          DatasetID: dataset_id,
-          Source: datasetName, // Track which dataset this came from
-        };
-
-        // Add to year-specific collection
-        if (!combinedYearSiteMap[currYear]) {
-          combinedYearSiteMap[currYear] = [];
-          combinedYearRegionMap[currYear] = new Set();
-        }
-
-        let alreadyExists = combinedYearSiteMap[currYear].some(
-          (entry) =>
-            entry.Latitude === dataPoint.Latitude &&
-            entry.Longitude === dataPoint.Longitude &&
-            entry.DatasetID === dataPoint.DatasetID
-        );
-
-        if (!alreadyExists) {
-          combinedYearSiteMap[currYear].push(dataPoint);
-          combinedYearRegionMap[currYear].add(datasetName);
-        }
-
-        // Add to "all years" collection
-        if (!combinedYearSiteMap["all years"]) {
-          combinedYearSiteMap["all years"] = [];
-          combinedYearRegionMap["all years"] = new Set();
-        }
-
-        alreadyExists = combinedYearSiteMap["all years"].some(
-          (entry) =>
-            entry.Latitude === dataPoint.Latitude &&
-            entry.Longitude === dataPoint.Longitude &&
-            entry.DatasetID === dataPoint.DatasetID
-        );
-
-        if (!alreadyExists) {
-          combinedYearSiteMap["all years"].push(dataPoint);
-          combinedYearRegionMap["all years"].add(datasetName);
-        }
-      });
-    });
-
-    for (const year in combinedYearRegionMap) {
-      combinedYearRegionMap[year] = Array.from(combinedYearRegionMap[year]);
-    }
-
-    return { combinedYearRegionMap, combinedYearSiteMap };
-  };
-
-  console.log("DONE! combinedOBISData", combinedOBISData);
-  // const combinedOBISData = combinedOBISData;
-  return { combinedOBISData, loading, error };
+  console.log("returning nemesisRegionData", nemesisRegionData);
+  return { nemesisRegionData, loading, error };
 }

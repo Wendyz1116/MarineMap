@@ -78,7 +78,7 @@ function Topbar() {
                 <p className="font-semibold">Data:</p>
                 <p className="">
                   This platform is made possible by the valuable datasets
-                  provided by: Nemesis, RAS Datasets, and GBIF.
+                  provided by: Nemesis, RAS Datasets, and OBIS.
                 </p>
                 <p>
                   {" "}

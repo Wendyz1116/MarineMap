@@ -31,9 +31,9 @@ function Map({
     obisSites: true,
   });
 
-  //------------------------------//
-  // Createing popups for the map //
-  //------------------------------//
+  //-----------------------------//
+  // Creating popups for the map //
+  //-----------------------------//
   // Add styles for the popup
   useEffect(() => {
     const style = document.createElement("style");
@@ -162,7 +162,6 @@ function Map({
     loadModules(["esri/PopupTemplate"], { url: "https://js.arcgis.com/4.25/" })
       .then(([PopupTemplate]) => {
         if (geoJsonLayerRef.current) {
-          console.log("*** Creating popup with", regionsDetail)
           geoJsonLayerRef.current.popupTemplate = createPopupTemplate(
             PopupTemplate,
             regionsDetail
@@ -254,19 +253,6 @@ function Map({
             position: "top-right", // Positions the popup where you want
           };
 
-          // view.on("click", (event) => {
-          //   console.log("Clicked on map");
-          //   view.hitTest(event).then((response) => {
-          //     const feature = response.results[0]?.graphic;
-          //     if (feature) {
-          //       console.log("Feature clicked:", feature.attributes);
-
-          //       console.log("view", view.popup.actions);
-
-          //     }
-          //   });
-          // });
-
           const geoJsonLayer = new GeoJSONLayer({
             url: "/data/nemesisBioregions.geojson",
             outFields: ["*"],
@@ -304,8 +290,6 @@ function Map({
   // Update map with currRegions and pastRegions
   useEffect(() => {
     if (currRegions.length === 0 && pastRegions.length === 0) return;
-
-    console.log("*** currRegions:", currRegions);
     let currRegionsToShow = [];
     if (datasetsToShow["currentRegions"] === true) {
       currRegionsToShow = currRegions;
@@ -390,7 +374,6 @@ function Map({
   }, [graphicsLayerRef.current, currSites, datasetsToShow]);
 
   const createSitePopupTemplate = (siteInfo) => {
-    console.log(siteInfo)
     let content = `<p><strong>Record Date:</strong> ${siteInfo["Date"]}</p>`;
 
     // console.log("siteInfo:", siteInfo);
@@ -444,7 +427,6 @@ function Map({
    */
   const plotSites = (colors, currSitesToShow) => {
     if (graphicsLayerRef.current) {
-      console.log("currSitesToShow:", currSitesToShow);
       if (currSitesToShow.length > 0) {
         loadModules(["esri/Graphic"]).then(([Graphic]) => {
           const siteGraphics = currSitesToShow
