@@ -11,7 +11,7 @@ const CollapsibleSection = ({ title, body, bodyStyle }) => {
         className="flex flex-row justify-between items-center cursor-pointer"
       >
         <div className="font-bold text-md">{title}</div>
-        {isOpen ? <MdKeyboardArrowDown /> : <MdKeyboardArrowUp />}
+        {isOpen ? <MdKeyboardArrowUp /> : <MdKeyboardArrowDown />}
       </div>
 
       {/* Body Section */}

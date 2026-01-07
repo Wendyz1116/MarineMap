@@ -277,11 +277,26 @@ export default function SpeciesSection() {
       const addYearRegion = (region, data) => {
         console.log("region", region, "data", data);
         data.forEach((record) => {
-          const currYear =
-            !Number.isNaN(record.Date) &&
-            Number(record.Date) >= 1800 &&
-            Number(record.Date <= 2030)
-              ? record.Date
+          
+          let rawDate = record.Date;
+          let extractedYear = "Unknown Date";
+
+          if (rawDate) {
+            // takes last part of mm/dd/yyyy
+            if (rawDate.includes("/")) {
+              const parts = rawDate.split("/");
+              extractedYear = parts[parts.length - 1]; 
+            } else {
+              extractedYear = rawDate; // if already just a year
+            }
+          }
+
+          const yearNum = Number(extractedYear);
+          const currYear = 
+            (!isNaN(yearNum) && 
+            yearNum >= 1800 && 
+            yearNum <= 2030) 
+              ? String(yearNum) 
               : "Unknown Date";
 
           // console.log("currYear", currYear);
@@ -378,7 +393,9 @@ export default function SpeciesSection() {
       };
 
       extractYearsWithGeoloc(yearRegionDetails);
+      console.log("yearRegionDetails", yearRegionDetails)
       setAllYearNemesisSiteData(tempAllYearNemesisSiteData);
+      console.log("tempAllYearNemesisSiteData", tempAllYearNemesisSiteData)
 
       // Extract years from the filtered data
       const years = Object.keys(yearRegionMap).filter(
@@ -402,7 +419,6 @@ export default function SpeciesSection() {
         : null;
     });
     setPastSpeciesRegions(new Set(pastSpeciesRegionsList.flat()));
- 
     setSpeciesRegions([allYearRegionMap[newYear]]);
 
     if (allYearRegionDetail[newYear]) {
@@ -422,13 +438,14 @@ export default function SpeciesSection() {
     if (allYearObisSiteData && newYear in allYearObisSiteData) {
       tempCurrYearSiteData["obisSites"] = allYearObisSiteData[newYear];
     }
-
+    console.log("CURRYEARSITEDATA", tempCurrYearSiteData)
     setCurrYearSiteData(tempCurrYearSiteData);
 
     if (newYear == "all years") {
       setAllYears(true);
       setCurrYearDetail(regionYearMap);
     } else setAllYears(false);
+    
   }, [newYear]);
 
   useEffect(() => {
@@ -436,12 +453,16 @@ export default function SpeciesSection() {
     const obisYears = Object.keys(allYearObisSiteData).filter(
       (key) => key !== "all years"
     );
-    setSpeciesYears(
-      [...speciesYears, ...obisYears]
-        .sort((a, b) => a - b)
-        .filter((year, index, years) => years.indexOf(year) === index)
+    setSpeciesYears(prevYears => 
+      Array.from(new Set([...prevYears, ...obisYears]))
+        .sort((a, b) => Number(a) - Number(b))
     );
+    // console.log("years", years)
   }, [allYearObisSiteData]);
+
+  // useEffect(() => {
+  //   console.log("years changed", speciesYears)
+  // }, [speciesYears]);
 
   return (
     <div className="flex flex-row flex-grow overflow-hidden h-full w-full">
