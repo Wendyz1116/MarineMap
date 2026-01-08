@@ -516,7 +516,7 @@ function Map({
 
     return (
       <div className="absolute top-4 right-4 bg-base-100 p-2 rounded shadow outline outline-primary">
-        <h4 className="text-sm font-bold mb-2">Legend TEST TEST:</h4>
+        <h4 className="text-sm font-bold mb-2">Legend:</h4>
         {itemsToShow // Only render items with true value in datasetsToShow
           .map(({ color, border, label }, index) => (
             <div className="flex items-center" key={index}>

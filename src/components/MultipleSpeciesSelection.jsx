@@ -1,11 +1,20 @@
 import React, { useEffect, useState } from "react";
 import Papa from "papaparse";
 
-function MultipleSpeciesSelection() {
+function MultipleSpeciesSelection({
+    onSpeciesSelect,
+    // onSpeciesSelectB,
+    showingSpeciesDetail
+  }) {
   const [speciesData, setSpeciesData] = useState([]);
   const [selectedSpeciesA, setSelectedSpeciesA] = useState(null);
   const [selectedSpeciesB, setSelectedSpeciesB] = useState(null);
   const [isSidebarVisible, setIsSidebarVisible] = useState(false); // Track sidebar visibility
+  const [showSpeciesDetail, setShowSpeciesDetail] = useState(false); // Track sidebar visibility
+
+  const [nemesisLinkA, setNemesisLinkA] = useState("");
+  const [nemesisLinkB, setNemesisLinkB] = useState("");
+
 
   const handleSpeciesAChange = (event) => {
     setSelectedSpeciesA(event.target.value);
@@ -16,8 +25,39 @@ function MultipleSpeciesSelection() {
   };
 
   const handleButtonClick = () => {
-    if (selectedSpeciesA && selectedSpeciesB) {
+    if (selectedSpeciesAInfo && selectedSpeciesBInfo) {
+      // TODO: Trigger map generation with selected species
+      console.log("Generating map for species:", selectedSpeciesA, selectedSpeciesB);
+      setNemesisLinkA(
+        <a
+          href={
+            "https://invasions.si.edu/nemesis/species_summary/" +
+            selectedSpeciesAInfo["Species Nemesis ID"]
+          }
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Nemesis page
+        </a>
+      );
+      setNemesisLinkB(
+        <a
+          href={
+            "https://invasions.si.edu/nemesis/species_summary/" +
+            selectedSpeciesBInfo["Species Nemesis ID"]
+          }
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Nemesis page
+        </a>
+      );
+      onSpeciesSelect(selectedSpeciesAInfo); //set to species id
+      // onSpeciesSelectB(selectedSpeciesBInfo); //set to species id
+
       setIsSidebarVisible(true); // Show sidebar when a species is selected
+      setShowSpeciesDetail(true); // Populate sidebar with species' detail when a species is selected
+      showingSpeciesDetail(true); // For communicating with timeline that species is selected
     } else {
       alert("Please select a species.");
     }

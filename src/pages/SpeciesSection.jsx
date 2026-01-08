@@ -162,7 +162,7 @@ export default function SpeciesSection() {
   // TODO2: split up general region data cleaning and ras/specific site data cleaning
   useEffect(() => {
     if (selectedSpecies) {
-      
+
 
       // console.log("selected", selectedSpecies, selectedSpecies["Species Name"]);
 
@@ -349,7 +349,7 @@ export default function SpeciesSection() {
                 let site = record["Site Location"];
                 site = site.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join(' ');
                 record["Site Location"] = site;
-                
+
                 if (
                   latitude < 48 &&
                   latitude > 35 &&
@@ -402,7 +402,7 @@ export default function SpeciesSection() {
         : null;
     });
     setPastSpeciesRegions(new Set(pastSpeciesRegionsList.flat()));
- 
+
     setSpeciesRegions([allYearRegionMap[newYear]]);
 
     if (allYearRegionDetail[newYear]) {

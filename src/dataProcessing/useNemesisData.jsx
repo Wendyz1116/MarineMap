@@ -124,7 +124,7 @@ export default function useNemesisData(speciesDetail) {
       setError(null);
 
       // // Fetch the CSV file for species
-      
+
       try {
         // Determine which species set this species belongs to
         const speciesData = await getOBISSpeciesDesc(speciesDetail);
@@ -152,7 +152,7 @@ export default function useNemesisData(speciesDetail) {
             `NemesisFilteredData/NAET2/NAET2SourcesWithLatLong.csv`
           ),
         ]);
-        
+
         const regionData = {
           "NA-ET1": NAET1Data,
           "NA-ET2": NAET2Data,
@@ -176,7 +176,7 @@ export default function useNemesisData(speciesDetail) {
     return () => abortController.abort(); // Cleanup on unmount
   }, [speciesDetail]);
 
-  
+
 
   console.log("returning nemesisRegionData", nemesisRegionData);
   return { nemesisRegionData, loading, error };
