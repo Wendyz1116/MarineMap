@@ -7,6 +7,7 @@ import MultipleSpeciesSelection from "./MultipleSpeciesSelection";
 function Sidebar({
   selectedSpeciesInfo,
   onSpeciesSelect,
+  // onSpeciesSelectB,
   showingSpeciesDetail,
   nemesisRegionNames,
 }) {
@@ -68,7 +69,10 @@ function Sidebar({
             ) : (
               <div>
                 <p className="font-bold text-center">Review Multiple Species</p>
-                <MultipleSpeciesSelection />
+                <MultipleSpeciesSelection
+                onSpeciesSelect={onSpeciesSelect}
+                // onSpeciesSelectB={onSpeciesSelectB}
+                showingSpeciesDetail={showingSpeciesDetail} />
               </div>
             )}
           </div>

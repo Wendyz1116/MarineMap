@@ -44,7 +44,7 @@ function Map({
         max-width: 300px;
         con
       }
-  
+
       .esri-popup__feature-menu {
         display: none !important;
         visibility: hidden !important;
@@ -79,7 +79,7 @@ function Map({
             <div class="custom-popup">
               <p><strong>{expression/regionName}</strong> ({REG_NEWREG})</p>
               <p><strong>{expression/descriptiveText}</strong></p>{expression/popupContent}
-              
+
             </div>
           `,
         },
@@ -120,7 +120,7 @@ function Map({
             var region = $feature.REG_NEWREG;
             var currentRegions = ['${currRegions.join("','")}'];
             var allYears = ${allYears ? "true" : "false"};
-            
+
             var details = {
                 ${Object.entries(regionsDetail)
                   .map(
@@ -140,7 +140,7 @@ function Map({
                   )
                   .join(", ")}
             };
-            
+
             if (allYears) {
               var detailsInfo = Split(details[region], ","); // Split into an array
 
@@ -378,7 +378,7 @@ function Map({
 
     // console.log("siteInfo:", siteInfo);
     if (siteInfo["Site Code"]) {
-      content += `     
+      content += `
       <p><strong>Site Name:</strong> ${siteInfo["Site Location"]}</p>
       <p><strong>City, State:</strong> ${siteInfo["City"]}, ${
         siteInfo["State"]
@@ -417,7 +417,7 @@ function Map({
 
       // content: `<p><strong>Site ID:</strong> {id}</p>`,
     };
-   
+
    };
 
   /** Plot currSitesToShow sites onto the map in the colors color

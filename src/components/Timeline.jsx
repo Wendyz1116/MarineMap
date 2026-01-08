@@ -102,9 +102,12 @@ function Timeline({ allowedYears, setNewYear }) {
   }, [allYears]);
 
   // create 10 year ticks
+  const tick = Math.round((timelineEnd - timelineStart) / 5);
 
-  const gapForTicks = Math.round((timelineEnd - timelineStart) / 20) * 5;
+  // ensure tick is at least 1 year (to avoid infinite loop)
+  const gapForTicks = tick < 1 ? 1 : tick;
   const constantYearTicks = [];
+
   for (let year = timelineStart; year <= timelineEnd; year += gapForTicks) {
     constantYearTicks.push(year);
   }

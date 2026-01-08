@@ -257,6 +257,8 @@ export default function SpeciesSection() {
   // TODO2: split up general region data cleaning and ras/specific site data cleaning
   useEffect(() => {
     if (selectedSpecies) {
+
+
       // console.log("selected", selectedSpecies, selectedSpecies["Species Name"]);
       // --------------------------------------------//
       // Working with RAS species specific site data //
@@ -398,8 +400,47 @@ export default function SpeciesSection() {
         yearRegionMap[key] = Array.from(yearRegionMap[key]);
       });
 
-      const tempAllYearNemesisSiteData = extractYearsWithGeoloc(yearRegionDetails)
-      console.log("yearRegionDetails", yearRegionDetails)
+      // Adding lat and long from source sites
+      const tempAllYearNemesisSiteData = { "all years": [] };
+      const extractYearsWithGeoloc = (yearRegionDetails) => {
+        Object.entries(yearRegionDetails).forEach(([year, regions]) => {
+          Object.entries(regions).forEach(([region, records]) => {
+            records.forEach((record) => {
+              if (record["Latitude"]) {
+                const latitude = record["Latitude"];
+                const longitude = record["Longitude"];
+                let site = record["Site Location"];
+                site = site.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join(' ');
+                record["Site Location"] = site;
+
+                if (
+                  latitude < 48 &&
+                  latitude > 35 &&
+                  longitude < -66 &&
+                  longitude > -78
+                ) {
+                  tempAllYearNemesisSiteData[year]
+                    ? tempAllYearNemesisSiteData[year].push(record)
+                    : (tempAllYearNemesisSiteData[year] = [record]);
+                  tempAllYearNemesisSiteData["all years"].push(record);
+                }
+                else {
+                  console.log(
+                    "RECORD",
+                    record,
+                    "latitude",
+                    latitude,
+                    "longitude",
+                    longitude
+                  );
+                }
+              }
+            });
+          });
+        });
+      };
+
+      extractYearsWithGeoloc(yearRegionDetails);
       setAllYearNemesisSiteData(tempAllYearNemesisSiteData);
       console.log("tempAllYearNemesisSiteData", tempAllYearNemesisSiteData)
 
