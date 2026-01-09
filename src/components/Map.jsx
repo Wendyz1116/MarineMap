@@ -190,6 +190,7 @@ function Map({
         "esri/Graphic",
         "esri/layers/GraphicsLayer",
         "esri/geometry/SpatialReference",
+        "esri/geometry/Extent"
       ],
       { url: "https://js.arcgis.com/4.25/" }
     )
@@ -204,6 +205,7 @@ function Map({
           Graphic,
           GraphicsLayer,
           SpatialReference,
+          Extent,
         ]) => {
           // Adding styles for the popup
           // const style = document.createElement("style");
@@ -219,14 +221,25 @@ function Map({
           //   wkid: 102004, // WKID for North America Lambert Conformal Conic
           // });
 
+          // limits map to some region in N. Am NE
+          const extent = new Extent({
+            ymin: 0, 
+            xmin: -100,
+            xmax: -20,
+            ymax: 50,    
+          });
+
           const view = new MapView({
             map: webmap,
-            zoom: 3,
+            zoom: 4,
             center: [-65, 45],
             container: MapElem.current,
             // spatialReference: lambertConformalConic,
+            
             constraints: {
-              minZoom: 2,
+              geometry: extent,
+              minZoom: 3,
+              maxZoom: 10,
             },
             popup: {
               dockEnabled: false,
@@ -247,7 +260,6 @@ function Map({
               },
             },
           });
-
           view.popup.dockOptions = {
             buttonEnabled: false, // Hides the dock button
             breakpoint: false, // Disables responsive behavior
