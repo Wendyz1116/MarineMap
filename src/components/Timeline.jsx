@@ -133,6 +133,9 @@ function Timeline({ allowedYears, setNewYear }) {
   const containerRef = useRef(null);
 
   const handleMouseDown = (e) => {
+    if (e.target.tagName === 'INPUT' || e.target.closest('button')) {
+      return;
+    }
     const container = containerRef.current;
     const parent = container.parentElement; // Get the parent container for bounds checking
 
@@ -179,9 +182,8 @@ function Timeline({ allowedYears, setNewYear }) {
 
   return (
     <div
-      // TODO2: make this less draggable if only clicking on the timeline part
       className="overflow-hidden absolute bottom-2.5 right-2.5 z-10 cursor-grab bg-base-100
-      shadow-md border border-primary p-2.5 rounded-md w-96"
+      shadow-md border border-primary p-2.5 rounded-md w-96 select-none ${isDragging ? 'dragging' : ''}"
       ref={containerRef}
       onMouseDown={handleMouseDown}
     >
