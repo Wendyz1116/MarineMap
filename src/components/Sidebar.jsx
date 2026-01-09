@@ -51,6 +51,7 @@ function Sidebar({
             className="cursor-pointer w-full p-2 flex justify-end align-bottom items-end"
             onClick={() => {
               setExpandSide(false);
+              onSpeciesSelect(null);
             }}
           >
             ✕
@@ -64,7 +65,7 @@ function Sidebar({
                   onSpeciesSelect={onSpeciesSelect}
                   showingSpeciesDetail={showingSpeciesDetail}
                   nemesisRegionNames={nemesisRegionNames}
-                />
+                                  />
                 {/* <ObisApi /> */}
               </div>
             ) : (
