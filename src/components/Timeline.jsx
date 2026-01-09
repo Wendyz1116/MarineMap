@@ -136,25 +136,28 @@ function Timeline({ allowedYears, setNewYear }) {
     if (e.target.tagName === 'INPUT' || e.target.closest('button')) {
       return;
     }
+    
     const container = containerRef.current;
-    const parent = container.parentElement; // Get the parent container for bounds checking
+    const parent = container.parentElement;
+    const containerRect = container.getBoundingClientRect();
+    const parentRect = parent.getBoundingClientRect();
 
-    container.classList.add("dragging");
-
-    const offsetX = e.clientX - container.offsetLeft;
-    const offsetY = e.clientY - container.offsetTop;
-
-    // Disable `bottom` and `right` for free movement
+    // preserve visual position before removing right/bottom
+    container.style.left = `${containerRect.left - parentRect.left}px`;
+    container.style.top = `${containerRect.top - parentRect.top}px`;
     container.style.bottom = "auto";
     container.style.right = "auto";
 
-    const handleMouseMove = (e) => {
-      const newLeft = e.clientX - offsetX;
-      const newTop = e.clientY - offsetY;
+    const offsetX = e.clientX - containerRect.left;
+    const offsetY = e.clientY - containerRect.top;
 
+    const handleMouseMove = (e) => {
       // Get the bounds of the parent container
       const parentRect = parent.getBoundingClientRect();
       const containerRect = container.getBoundingClientRect();
+
+      const newLeft = e.clientX - parentRect.left - offsetX;
+      const newTop = e.clientY - parentRect.top - offsetY;
 
       // Calculate boundaries
       const minLeft = 0;
