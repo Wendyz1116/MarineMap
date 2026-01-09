@@ -53,11 +53,10 @@ const getOBISSpeciesDesc = async (speciesDetail) => {
   try {
     const speciesSetData = await loadSpeciesSetData();
 
-    // console.log("speciesSetData", speciesSetData, "matching", speciesDetail);
     // Find the matching species in the data
     for (const row of speciesSetData) {
       if (
-        toString(row["Species Nemesis ID"]) === toString(speciesDetail["Species Nemesis ID"])
+        row["Species Nemesis ID"].toString() === speciesDetail["Species Nemesis ID"].toString()
       ) {
         return { speciesSet: row["Species Set Number"], genus: row["Genus"], species: row["Species"] };
       }
