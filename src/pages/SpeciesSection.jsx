@@ -298,8 +298,12 @@ export default function SpeciesSection() {
         Array.from(new Set([...prevYears, "2019"]))
           .sort((a, b) => Number(a) - Number(b))
       );
+      setAllYearRegionMap((prevMap) => ({
+        ...prevMap,
+        "2019": ["NA-ET3"],
+      }));
     }
-  }, [selectedSpecies, NAET1Data, NAET2Data, NAET3Data]);
+  }, [selectedSpecies, ras2019SurveyData, rasSiteLocData]);
 
   // NEMESIS
   useEffect(() => {
@@ -333,8 +337,6 @@ export default function SpeciesSection() {
       const filteredNAET1 = filterBySpeciesID(NAET1Data);
       const filteredNAET2 = filterBySpeciesID(NAET2Data);
       const filteredNAET3 = filterBySpeciesID(NAET3Data);
-
-      console.log("filteredNAET1", filteredNAET1);
 
       const yearRegionMap = {};
       yearRegionMap["all years"] = new Set();
@@ -420,8 +422,11 @@ export default function SpeciesSection() {
       );
       console.log("SET YEARS NEMESIS", years)
       setNewYear(years[0]);
-
-      setAllYearRegionMap(yearRegionMap);
+      console.log("yearRegionMap", yearRegionMap);
+      setAllYearRegionMap((prevMap) => ({
+        ...prevMap,
+        ...yearRegionMap,
+      }));
       setSpeciesRegions(yearRegionMap[years[0]]);
     }
   }, [selectedSpecies, NAET1Data, NAET2Data, NAET3Data]);
