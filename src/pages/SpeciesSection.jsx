@@ -155,7 +155,7 @@ export default function SpeciesSection() {
             if (
               latitude < 48 &&
               latitude > 35 &&
-              longitude < -66 &&
+              longitude < -55 &&
               longitude > -78
             ) {
               tempAllYearNemesisSiteData[year]
