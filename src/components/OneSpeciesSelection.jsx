@@ -160,6 +160,8 @@ function OneSpeciesSelection({
             onClick={() => {
               setShowSpeciesDetail(false);
               showingSpeciesDetail(false);
+              onSpeciesSelect(null);
+              setSelectedSpecies(null);   // clear this component's selection
             }}
           >
             Review new species
