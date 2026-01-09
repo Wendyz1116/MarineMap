@@ -483,12 +483,6 @@ export default function SpeciesSection() {
       Array.from(new Set([...prevYears, ...obisYears]))
         .sort((a, b) => Number(a) - Number(b))
     );
-    // const earliestYear = Math.min(...obisYears.map(year => Number(year)));
-    // if (!speciesYears.includes(String(earliestYear))) {
-    //   if (!newYear || Number(earliestYear) < Number(newYear)) {
-    //     setNewYear(String(earliestYear));
-    //   }
-    // }
 
     console.log("SETTING YEARS OBIS", obisYears[0])
     console.log("prevYears", speciesYears)
