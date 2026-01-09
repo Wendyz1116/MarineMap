@@ -141,20 +141,23 @@ export default function useNemesisData(speciesDetail) {
         // const scientificName = `${genus} ${species}`;
 
         // Fetch all datasets in parallel
-        const [NAET1Data, NAET2Data, NAET3Data] = await Promise.all([
+        const [NAET1Data, NAET1Data2, NAET2Data, NAET3Data] = await Promise.all([
           extractFromRegionsCSV(
             `NemesisFilteredData/NAET1/NAET1SourcesWithLatLong.csv`
           ),
           extractFromRegionsCSV(
-            `NemesisFilteredData/NAET2/NAET2SourcesWithLatLong.csv`
+            `NemesisFilteredData/NAET1/NemesisNAET1Set2Data.csv`
           ),
           extractFromRegionsCSV(
             `NemesisFilteredData/NAET2/NAET2SourcesWithLatLong.csv`
           ),
+          extractFromRegionsCSV(
+            `NemesisFilteredData/NAET3/NAET3SourcesWithLatLong.csv`
+          ),
         ]);
 
         const regionData = {
-          "NA-ET1": NAET1Data,
+          "NA-ET1": NAET1Data.concat(NAET1Data2),
           "NA-ET2": NAET2Data,
           "NA-ET3": NAET3Data,
         };
