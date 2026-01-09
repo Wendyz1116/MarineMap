@@ -13,6 +13,7 @@ function MapSection({
   setNewYear,
   showTimeline,
   nemesisRegionNames,
+  expandSide,
 }) {
   // turn set into list
   pastSpeciesRegions = Array.from(pastSpeciesRegions);
@@ -26,6 +27,7 @@ function MapSection({
         regionsDetail={regionsDetail}
         nemesisRegionNames={nemesisRegionNames}
         currSites={currSites}
+        expandSide={expandSide}
       />
       {showTimeline && (
         <Timeline allowedYears={speciesYears} setNewYear={setNewYear} />

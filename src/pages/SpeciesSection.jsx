@@ -12,6 +12,7 @@ export default function SpeciesSection() {
   // States for sidebar
   const [selectedSpecies, setSelectedSpecies] = useState(null);
   const [selectedSpeciesInfo, setSelectedSpeciesInfo] = useState(null);
+  const [expandSide, setExpandSide] = useState(true);
   const [speciesRegions, setSpeciesRegions] = useState([]);
   const [pastSpeciesRegions, setPastSpeciesRegions] = useState(new Set());
 
@@ -487,6 +488,8 @@ export default function SpeciesSection() {
         onSpeciesSelect={setSelectedSpecies}
         showingSpeciesDetail={setShowingSpeciesDetail}
         nemesisRegionNames={nemesisRegionMap}
+        expandSide={expandSide}
+        setExpandSide={setExpandSide}
       />
       <MapSection
         allYears={allYears}
@@ -499,6 +502,7 @@ export default function SpeciesSection() {
         showTimeline={showingSpeciesDetail}
         currSites={currYearSiteData}
         nemesisRegionNames={nemesisRegionMap}
+        expandSide={expandSide}
       />
     </div>
   );

@@ -10,13 +10,14 @@ function Sidebar({
   // onSpeciesSelectB,
   showingSpeciesDetail,
   nemesisRegionNames,
+  expandSide,
+  setExpandSide,
 }) {
   const [selectedTab, setSelectedTab] = useState("oneSpecies");
-  const [expandSide, setExpandSide] = useState(true);
 
   console.log("selectedSpeciesInfo", selectedSpeciesInfo);
   return (
-    <div className="z-50 w-fit h-full border-r-2 shadow-md border-primary flex flex-row">
+    <div className="z-50 fixed w-fit h-full border-r-2 shadow-md border-primary flex flex-row bg-base-100">
       {/* Collapse sidebar with icons only */}
       <div className="flex flex-col bg-secondary items-center w-8">
         <div

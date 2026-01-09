@@ -10,6 +10,7 @@ function Map({
   regionsDetail,
   nemesisRegionNames,
   currSites = {},
+  expandSide = true,
 }) {
   //TODO4 fix the popup for the first year region
 
@@ -533,7 +534,7 @@ function Map({
 
   return (
     <div className="h-full w-full bg-base-100 relative">
-      <div className="absolute top-0 left-0 z-10 bg-none p-2">
+      <div className={`absolute top-0 z-10 bg-none p-2 ${expandSide ? 'left-60' : 'left-8'}`}>
         <MapSettings
           setDatasetToShow={setDatasetToShow}
           datasetsToShow={datasetsToShow}
@@ -541,7 +542,7 @@ function Map({
           basemap={basemap}
         />
       </div>
-      <div className="absolute text-xs text-primary-content bottom-0 left-0 z-10 bg-none p-2">
+      <div className={`absolute text-xs text-primary-content bottom-0 z-10 bg-none p-2 ${expandSide ? 'left-60' : 'left-8'}`}>
         Data last modified: {lastUpdated}
       </div>
 
