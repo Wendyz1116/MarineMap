@@ -125,10 +125,12 @@ function Map({
             var details = {
                 ${Object.entries(regionsDetail)
                   .map(
-                    ([key, value]) =>
-                      `'${key}': '${
+                    ([key, value]) => {
+                      console.log("region detail value:", value);
+                      const sortedYears = Array.from(new Set(value)).sort();
+                      return `'${key}': '${
                         allYears
-                          ? value
+                          ? sortedYears.join(", ")
                           : value
                               .map(
                                 ({ RegionName, ...rest }) =>
@@ -138,7 +140,7 @@ function Map({
                               )
                               .join(", ")
                       }'`
-                  )
+                })
                   .join(", ")}
             };
 
