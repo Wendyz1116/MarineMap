@@ -206,6 +206,39 @@ export default function SpeciesSection() {
     }
   }, [nemesisRegionData]);
 
+  useEffect(() => {
+    console.log("AMONGUS species", selectedSpecies);
+    console.log("AMONGUS allYearRegionMap", allYearRegionMap);
+    if (!selectedSpecies) {
+      // clear all data related to species when none is selected
+      setSelectedSpeciesInfo(null);
+      setSpeciesRegions([]);
+      setPastSpeciesRegions(new Set());
+
+      setAllYearRasData([]);
+      setSpeciesRasData([]);
+
+      setAllYearObisSiteData([]);
+      setCurrYearSiteData({});
+
+      setAllYearRegionDetail({});
+      setCurrYearDetail([]);
+
+      setAllYearRegionMap({});
+      setRegionYearMap({
+        "NA-ET1": [],
+        "NA-ET2": [],
+        "NA-ET3": [],
+      });
+      setAllYearNemesisSiteData([]);
+
+      setSpeciesYears([]);
+      setNewYear(null);
+      setAllYears(false);
+      setShowingSpeciesDetail(false);
+    }
+  }, [selectedSpecies]);
+
   // update Obis data
   useEffect(() => {
     setAllYearObisSiteData(combinedOBISData["combinedYearSiteMap"]);
@@ -240,7 +273,9 @@ export default function SpeciesSection() {
         });
       }
     }
-
+    console.log("UPDATED allYearRegionDetailWithObis", allYearRegionDetailWithObis);
+    console.log("UPDATED regionYearMapWithObis", regionYearMapWithObis);
+    
     setRegionYearMap(regionYearMapWithObis);
     setAllYearRegionDetail(allYearRegionDetailWithObis);
   }, [combinedOBISData]);
@@ -298,9 +333,15 @@ export default function SpeciesSection() {
         Array.from(new Set([...prevYears, "2019"]))
           .sort((a, b) => Number(a) - Number(b))
       );
+      // setAllYearRegionMap((prevMap) => ({
+      //   ...prevMap,
+      //   "2019": ["NA-ET3"],
+      // }));
       setAllYearRegionMap((prevMap) => ({
         ...prevMap,
-        "2019": ["NA-ET3"],
+        "2019": prevMap["2019"] 
+          ? [...prevMap["2019"], "NA-ET3"] 
+          : ["NA-ET3"],
       }));
     }
   }, [selectedSpecies, ras2019SurveyData, rasSiteLocData]);
@@ -365,7 +406,7 @@ export default function SpeciesSection() {
           }
 
           yearRegionMap["all years"].add(region);
-          yearRegionDetails["all years"][region].push[record];
+          yearRegionDetails["all years"][region].push(record);
           // console.log("for year", currYear, "all year", yearRegionDetails["all years"]);
         });
       };
@@ -390,7 +431,6 @@ export default function SpeciesSection() {
         addYearRegion("NA-ET3", filteredNAET3);
       }
 
-      // Create map in the form region: years
       Object.entries(yearRegionMap).forEach(([year, regions]) => {
         regions.forEach((region) => {
           if (year != "all years") {
@@ -398,6 +438,26 @@ export default function SpeciesSection() {
           }
         });
       });
+
+      // Create map in the form region: years
+      // setRegionYearMap((prev) => {
+      //   const next = {};
+      //   // copy prev
+      //   Object.keys(prev || {}).forEach((k) => {
+      //     next[k] = Array.isArray(prev[k]) ? [...prev[k]] : [];
+      //   });
+
+      //   // add years from yearRegionMap, avoid duplicates and "all years"
+      //   Object.entries(yearRegionMap).forEach(([year, regions]) => {
+      //     if (year === "all years") return;
+      //     Array.from(regions || []).forEach((region) => {
+      //       next[region] = next[region] || [];
+      //       if (!next[region].includes(year)) next[region].push(year);
+      //     });
+      //   });
+
+      //   return next;
+      // });
       setAllYearRegionDetail(yearRegionDetails);
 
       // console.log("***allYearRegionDetail", yearRegionDetails);
@@ -420,16 +480,25 @@ export default function SpeciesSection() {
         Array.from(new Set([...prevYears, ...years]))
           .sort((a, b) => Number(a) - Number(b))
       );
-      console.log("SET YEARS NEMESIS", years)
-      setNewYear(years[0]);
+      // console.log("SET YEARS NEMESIS", years)
+      // console.log("NEW YEARS", speciesYears[0])
+      // setNewYear(speciesYears[0]);
+      // setNewYear(years[0]);
       console.log("yearRegionMap", yearRegionMap);
       setAllYearRegionMap((prevMap) => ({
         ...prevMap,
         ...yearRegionMap,
       }));
-      setSpeciesRegions(yearRegionMap[years[0]]);
+      // setSpeciesRegions(yearRegionMap[years[0]]);
+      // setSpeciesRegions(yearRegionMap[speciesYears[0]]);
     }
   }, [selectedSpecies, NAET1Data, NAET2Data, NAET3Data]);
+
+  // update newYear and SpeciesRegions
+  useEffect(() => {
+    setNewYear(speciesYears[0]);
+    setSpeciesRegions(allYearRegionMap[speciesYears[0]]);
+  }, [speciesYears]);
 
   // Depending on the selected year, update the pastSpeciesRegions and current speciesRegions
   useEffect(() => {
