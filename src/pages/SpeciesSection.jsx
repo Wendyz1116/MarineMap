@@ -122,17 +122,17 @@ export default function SpeciesSection() {
     let extractedYear = rawDate;
     if (rawDate.includes("/")) {
       const parts = rawDate.split("/");
-      extractedYear = parts[parts.length - 1]; 
+      extractedYear = parts[parts.length - 1];
     } else {
       extractedYear = rawDate; // if already just a year
     }
 
     const yearNum = Number(extractedYear);
-    const currYear = 
-      (!isNaN(yearNum) && 
-      yearNum >= 1800 && 
-      yearNum <= 2030) 
-        ? String(yearNum) 
+    const currYear =
+      (!isNaN(yearNum) &&
+      yearNum >= 1800 &&
+      yearNum <= 2030)
+        ? String(yearNum)
         : "Unknown Date";
     return currYear
   };
@@ -151,7 +151,7 @@ export default function SpeciesSection() {
             let site = formattedRecord["Site Location"];
             site = site.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join(' ');
             formattedRecord["Site Location"] = site;
-            
+
             if (
               latitude < 48 &&
               latitude > 35 &&
@@ -221,7 +221,7 @@ export default function SpeciesSection() {
     // Updating all the variables with bioregions to now include OBIS data
     const allYearRegionDetailWithObis = { ...allYearRegionDetail };
     const regionYearMapWithObis = { ...regionYearMap };
-    
+
     for (let year in combinedOBISData["combinedYearRegionMap"]) {
       for (let region of combinedOBISData["combinedYearRegionMap"][year]) {
         if (!allYearRegionDetailWithObis[year]) {
@@ -258,7 +258,7 @@ export default function SpeciesSection() {
   // TODO2: split up general region data cleaning and ras/specific site data cleaning
   useEffect(() => {
     if (selectedSpecies) {
-      // console.log("selected", selectedSpecies, selectedSpecies["Species Name"]);
+      console.log("selected", selectedSpecies, selectedSpecies["Species Name"]);
       // --------------------------------------------//
       // Working with RAS species specific site data //
       // --------------------------------------------//
@@ -294,7 +294,7 @@ export default function SpeciesSection() {
       tempAllYearRasData["2019"] = filteredRASSite;
       tempAllYearRasData["all years"] = filteredRASSite;
       setAllYearRasData(tempAllYearRasData);
-      setSpeciesYears(prevYears => 
+      setSpeciesYears(prevYears =>
         Array.from(new Set([...prevYears, "2019"]))
           .sort((a, b) => Number(a) - Number(b))
       );
@@ -308,6 +308,8 @@ export default function SpeciesSection() {
   // NEMESIS
   useEffect(() => {
     if (selectedSpecies) {
+
+      // console.log("selectedSpecies changed to", selectedSpecies);
       // --------------------------------------------------------//
       // Working with Nemesis species specific first record info //
       // --------------------------------------------------------//
@@ -415,8 +417,8 @@ export default function SpeciesSection() {
       const years = Object.keys(yearRegionMap).filter(
         (key) => key !== "all years"
       );
-      
-      setSpeciesYears(prevYears => 
+
+      setSpeciesYears(prevYears =>
         Array.from(new Set([...prevYears, ...years]))
           .sort((a, b) => Number(a) - Number(b))
       );
@@ -456,6 +458,9 @@ export default function SpeciesSection() {
         allYearNemesisSiteData[newYear];
     }
 
+    console.log("allYearObisSiteData", allYearObisSiteData);
+    console.log("newYear", newYear);
+
     if (allYearObisSiteData && newYear in allYearObisSiteData) {
       tempCurrYearSiteData["obisSites"] = allYearObisSiteData[newYear];
     }
@@ -466,7 +471,7 @@ export default function SpeciesSection() {
       setAllYears(true);
       setCurrYearDetail(regionYearMap);
     } else setAllYears(false);
-    
+
   }, [newYear]);
 
   useEffect(() => {
@@ -474,10 +479,18 @@ export default function SpeciesSection() {
     const obisYears = Object.keys(allYearObisSiteData).filter(
       (key) => key !== "all years"
     );
-    setSpeciesYears(prevYears => 
+    setSpeciesYears(prevYears =>
       Array.from(new Set([...prevYears, ...obisYears]))
         .sort((a, b) => Number(a) - Number(b))
     );
+    // const earliestYear = Math.min(...obisYears.map(year => Number(year)));
+    // if (!speciesYears.includes(String(earliestYear))) {
+    //   if (!newYear || Number(earliestYear) < Number(newYear)) {
+    //     setNewYear(String(earliestYear));
+    //   }
+    // }
+
+    console.log("SETTING YEARS OBIS", obisYears[0])
     console.log("prevYears", speciesYears)
     console.log("obisYears", obisYears)
   }, [allYearObisSiteData]);

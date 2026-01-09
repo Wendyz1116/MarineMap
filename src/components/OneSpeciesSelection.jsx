@@ -22,6 +22,7 @@ function OneSpeciesSelection({
   };
 
   useEffect(() => {
+    // console.log("selectedSpeciesRegionalInfo updated:");
     console.log("nemesisRegionNames");
     console.log(nemesisRegionNames);
     if (selectedSpeciesRegionalInfo) {

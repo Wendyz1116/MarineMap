@@ -223,10 +223,10 @@ function Map({
 
           // limits map to some region in N. Am NE
           const extent = new Extent({
-            ymin: 0, 
+            ymin: 0,
             xmin: -100,
             xmax: -20,
-            ymax: 50,    
+            ymax: 50,
           });
 
           const view = new MapView({
@@ -235,7 +235,7 @@ function Map({
             center: [-65, 45],
             container: MapElem.current,
             // spatialReference: lambertConformalConic,
-            
+
             constraints: {
               geometry: extent,
               minZoom: 3,
@@ -355,6 +355,9 @@ function Map({
 
   // Update the map by ploting the currSites' locations
   useEffect(() => {
+    // console.log("Updating map with currSites:", currSites);
+    // console.log("datasetsToShow:", datasetsToShow);
+    // console.log("graphicsLayerRef:", graphicsLayerRef.current);
     if (graphicsLayerRef.current) {
       graphicsLayerRef.current.removeAll(); // Clear once at the beginning
 
