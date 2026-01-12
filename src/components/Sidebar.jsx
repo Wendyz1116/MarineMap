@@ -38,6 +38,7 @@ function Sidebar({
           onClick={() => {
             setSelectedTab("multipleSpecies");
             setExpandSide(true);
+            onSpeciesSelect(null);
           }}
         >
           M
@@ -46,7 +47,7 @@ function Sidebar({
 
       {/* Expanded sidebar */}
       {expandSide && (
-        <div className="flex flex-col w-52 overflow-y-scroll custom-scrollbar">
+        <div className="flex flex-col w-52 h-full">
           <div
             className="cursor-pointer w-full p-2 flex justify-end align-bottom items-end"
             onClick={() => {
@@ -56,27 +57,29 @@ function Sidebar({
           >
             ✕
           </div>
-          <div className="">
-            {selectedTab === "oneSpecies" ? (
-              <div>
-                <p className="font-bold text-center">Review One Species</p>
-                <OneSpeciesSelection
-                  selectedSpeciesRegionalInfo={selectedSpeciesInfo}
+          <div className="flex-1 overflow-y-auto custom-scrollbar pb-20">
+            <div className="">
+              {selectedTab === "oneSpecies" ? (
+                <div>
+                  <p className="font-bold text-center">Review One Species</p>
+                  <OneSpeciesSelection
+                    selectedSpeciesRegionalInfo={selectedSpeciesInfo}
+                    onSpeciesSelect={onSpeciesSelect}
+                    showingSpeciesDetail={showingSpeciesDetail}
+                    nemesisRegionNames={nemesisRegionNames}
+                                    />
+                  {/* <ObisApi /> */}
+                </div>
+              ) : (
+                <div>
+                  <p className="font-bold text-center">Review Multiple Species</p>
+                  <MultipleSpeciesSelection
                   onSpeciesSelect={onSpeciesSelect}
-                  showingSpeciesDetail={showingSpeciesDetail}
-                  nemesisRegionNames={nemesisRegionNames}
-                                  />
-                {/* <ObisApi /> */}
-              </div>
-            ) : (
-              <div>
-                <p className="font-bold text-center">Review Multiple Species</p>
-                <MultipleSpeciesSelection
-                onSpeciesSelect={onSpeciesSelect}
-                // onSpeciesSelectB={onSpeciesSelectB}
-                showingSpeciesDetail={showingSpeciesDetail} />
-              </div>
-            )}
+                  // onSpeciesSelectB={onSpeciesSelectB}
+                  showingSpeciesDetail={showingSpeciesDetail} />
+                </div>
+              )}
+            </div>
           </div>
         </div>
       )}
