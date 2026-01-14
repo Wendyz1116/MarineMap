@@ -77,8 +77,8 @@ function Sidebar({
                 <div>
                   <p className="font-bold text-center">Review Multiple Species</p>
                   <MultipleSpeciesSelection
-                selectedSpeciesARegionalInfo={selectedSpeciesInfo}
-                selectedSpeciesBRegionalInfo={selectedSpeciesBInfo}
+                  selectedSpeciesARegionalInfo={selectedSpeciesInfo}
+                  selectedSpeciesBRegionalInfo={selectedSpeciesBInfo}
                   onSpeciesSelect={onSpeciesSelect}
                   onSpeciesSelectB={onSpeciesSelectB}
                   showingSpeciesDetail={showingSpeciesDetail} />
