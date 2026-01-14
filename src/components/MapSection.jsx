@@ -12,7 +12,6 @@ function MapSection({
   currSites,
   currSitesB,
   speciesYears,
-  speciesYearsB,
   allYearRegionMap,
   setNewYear,
   showTimeline,
@@ -29,7 +28,6 @@ function MapSection({
   console.log("MapSection currSites", currSites);
   console.log("MapSection currSitesB", currSitesB);
   console.log("MapSection speciesYears", speciesYears);
-  console.log("MapSection speciesYearsB", speciesYearsB);
   console.log("MapSection allYearRegionMap", allYearRegionMap);
   console.log("---------------------------");
   // turn set into list
@@ -50,7 +48,7 @@ function MapSection({
         expandSide={expandSide}
       />
       {showTimeline && (
-        <Timeline allowedYears={speciesYears} allowedYearsB={speciesYearsB} setNewYear={setNewYear} />
+        <Timeline allowedYears={speciesYears} setNewYear={setNewYear} />
       )}
     </div>
   );

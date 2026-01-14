@@ -65,7 +65,6 @@ export default function SpeciesSection() {
   const [allYearNemesisSiteDataB, setAllYearNemesisSiteDataB] = useState([]); // need seperate state for species B
 
   const [speciesYears, setSpeciesYears] = useState([]);
-  const [speciesYearsB, setSpeciesYearsB] = useState([]);
   const [newYear, setNewYear] = useState(null);
 
   // fetch OBIS data
@@ -269,7 +268,6 @@ export default function SpeciesSection() {
       setAllYearNemesisSiteData([]);
 
       setSpeciesYears([]);
-      setSpeciesYearsB([]);
       setNewYear(null);
       setAllYears(false);
       setShowingSpeciesDetail(false);
@@ -455,7 +453,7 @@ export default function SpeciesSection() {
       tempAllYearRasData["all years"] = filteredRASSiteB;
 
       setAllYearRasDataB(tempAllYearRasData);
-      setSpeciesYearsB(prevYears =>
+      setSpeciesYears(prevYears =>
         Array.from(new Set([...prevYears, "2019"]))
           .sort((a, b) => Number(a) - Number(b))
       );
@@ -759,7 +757,7 @@ export default function SpeciesSection() {
         (key) => key !== "all years"
       );
 
-      setSpeciesYearsB(prevYears =>
+      setSpeciesYears(prevYears =>
         Array.from(new Set([...prevYears, ...years]))
           .sort((a, b) => Number(a) - Number(b))
       );
@@ -782,9 +780,9 @@ export default function SpeciesSection() {
 
   // update newYear and SpeciesRegions
   useEffect(() => {
-    setNewYear(Math.min(speciesYears[0], speciesYearsB[0]));
-    setSpeciesRegions(speciesYears[0] < speciesYearsB[0] ? allYearRegionMap[speciesYears[0]] : allYearRegionMapB[speciesYearsB[0]]);
-  }, [speciesYears, speciesYearsB]);
+    setNewYear(speciesYears[0]);
+    setSpeciesRegions(allYearRegionMap[speciesYears[0]]);
+  }, [speciesYears]);
 
   // Depending on the selected year, update the pastSpeciesRegions and current speciesRegions
   useEffect(() => {
@@ -907,7 +905,6 @@ export default function SpeciesSection() {
         regionsDetail={currYearDetail}
         regionsDetailB={currYearDetailB}
         speciesYears={speciesYears}
-        speciesYearsB={speciesYearsB}
         allYearRegionMap={allYearRegionMap}
         setNewYear={setNewYear}
         showTimeline={showingSpeciesDetail}

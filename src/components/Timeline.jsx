@@ -7,8 +7,8 @@ import {
   GiPauseButton,
 } from "react-icons/gi";
 
-function Timeline({ allowedYears, allowedYearsB, setNewYear }) {
-  const timelineStart = Math.min(...allowedYears) - 1; // One year before the minimum year
+function Timeline({ allowedYears, setNewYear }) {
+  const timelineStart = Math.min(...allowedYears,) - 1; // One year before the minimum year
   const timelineEnd = Math.max(...allowedYears) + 1; // One year after the maximum year
 
   const [allYears, setAllYears] = useState(false);
@@ -17,7 +17,6 @@ function Timeline({ allowedYears, allowedYearsB, setNewYear }) {
   const [isPlaying, setIsPlaying] = useState(false);
   // console.log("range value", rangeValue, allowedYears[0]);
 
-  console.log("Timeline allowedYearsB", allowedYearsB);
   console.log("Timeline allowedYears", allowedYears);
 
   useEffect(() => {
