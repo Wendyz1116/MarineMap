@@ -142,6 +142,8 @@ function Timeline({ allowedYears, setNewYear }) {
     const containerRect = container.getBoundingClientRect();
     const parentRect = parent.getBoundingClientRect();
 
+    console.log("containerRect:", containerRect);
+    console.log("parentRect:", parentRect);
     // preserve visual position before removing right/bottom
     container.style.left = `${containerRect.left - parentRect.left}px`;
     container.style.top = `${containerRect.top - parentRect.top}px`;
@@ -160,7 +162,7 @@ function Timeline({ allowedYears, setNewYear }) {
       const newTop = e.clientY - parentRect.top - offsetY;
 
       // Calculate boundaries
-      const minLeft = 0;
+      const minLeft = 242; // 0 if don't care abt sidebar
       const maxLeft = parentRect.width - containerRect.width;
       const minTop = 0;
       const maxTop = parentRect.height - containerRect.height;

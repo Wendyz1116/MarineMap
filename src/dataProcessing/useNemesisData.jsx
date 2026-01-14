@@ -141,26 +141,54 @@ export default function useNemesisData(speciesDetail) {
         // const scientificName = `${genus} ${species}`;
 
         // Fetch all datasets in parallel
-        const [NAET1Data, NAET1Data2, NAET2Data, NAET3Data] = await Promise.all([
-          extractFromRegionsCSV(
-            `NemesisFilteredData/NAET1/NAET1SourcesWithLatLong.csv`
-          ),
-          extractFromRegionsCSV(
-            `NemesisFilteredData/NAET1/NemesisNAET1Set2Data.csv`
-          ),
-          extractFromRegionsCSV(
-            `NemesisFilteredData/NAET2/NAET2SourcesWithLatLong.csv`
-          ),
-          extractFromRegionsCSV(
-            `NemesisFilteredData/NAET3/NAET3SourcesWithLatLong.csv`
-          ),
-        ]);
+        // const [NAET1Data, NAET1Data2, NAET2Data, NAET3Data] = await Promise.all([
+        //   extractFromRegionsCSV(
+        //     `NemesisFilteredData/NAET1/NAET1SourcesWithLatLong.csv`
+        //   ),
+        //   extractFromRegionsCSV(
+        //     `NemesisFilteredData/NAET1/NemesisNAET1Set2Data.csv`
+        //   ),
+        //   extractFromRegionsCSV(
+        //     `NemesisFilteredData/NAET2/NAET2SourcesWithLatLong.csv`
+        //   ),
+        //   extractFromRegionsCSV(
+        //     `NemesisFilteredData/NAET3/NAET3SourcesWithLatLong.csv`
+        //   ),
+        // ]);
 
-        const regionData = {
-          "NA-ET1": NAET1Data.concat(NAET1Data2),
-          "NA-ET2": NAET2Data,
-          "NA-ET3": NAET3Data,
+        // const regionData = {
+        //   "NA-ET1": NAET1Data.concat(NAET1Data2),
+        //   "NA-ET2": NAET2Data,
+        //   "NA-ET3": NAET3Data,
+        // };
+
+        // setNemesisRegionData(regionData);
+
+        const numSets = 2;
+        const regionData = { "NA-ET1": [], "NA-ET2": [], "NA-ET3": [] };
+        const filesByFolder = {
+          "NA-ET1": Array.from(
+            { length: numSets },  (_, i) =>
+            `NemesisFilteredData/NAET1/NemesisNAET1Set${i + 1}Data.csv`
+          ),
+          "NA-ET2": Array.from(
+            { length: numSets },  (_, i) =>
+            `NemesisFilteredData/NAET2/NemesisNAET2Set${i + 1}Data.csv`
+          ),
+          "NA-ET3": Array.from(
+            { length: numSets },  (_, i) =>
+            `NemesisFilteredData/NAET3/NemesisNAET3Set${i + 1}Data.csv`
+          )
         };
+
+        await Promise.all(
+          Object.entries(filesByFolder).map(async ([key, paths]) => {
+            const parsedArrays = await Promise.all(
+              paths.map((p) => extractFromRegionsCSV(p))
+            );
+            regionData[key] = parsedArrays.flat();
+          })
+        );
 
         setNemesisRegionData(regionData);
       } catch (err) {

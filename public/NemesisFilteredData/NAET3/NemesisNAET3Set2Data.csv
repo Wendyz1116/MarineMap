@@ -1,0 +1,287 @@
+SpeciesID,Date,RegionID,RegionName,Source(s),Site Location,Latitude,Longitude
+98734,Unknown Date,m010,Woods Hole/MA/Vineyard Sound-Buzzards Bay,Verrill and Smith 1873,woods hole ma,41.529306,-70.6686769
+98734,Unknown Date,m010,New Bedford/MA/Buzzards Bay,MIT Sea Grant 2002,new bedford ma,41.663254,-70.9281304
+98734,Unknown Date,m010,"Massachusetts Maritime Academy, Bourne/MA/Buzzards Bay",MIT Sea Grant 2002,"massachusetts maritime academy, bourne ma",41.7408213,-70.6222566
+98734,MCZ 5411,m010,New Bedford/MA/Buzzards Bay, Museum of Comparative Zoology 2009,new bedford ma,41.663254,-70.9281304
+98734,1842,m020,Newport/RI/Rhode Island Sound, De Kay 1844,newport ri rhode island sound,41.4333325,-71.216111
+98734,Unknown Date,m020,MA-RI/Mount Hope Bay,Curley et al. 1974,ma-ri,42.3886215,-73.3530935
+98734,2000,m020,"India Point, Providence/RI/Providence River", MIT Sea Grant 2003,"india point, providence ri providence river",41.8174476,-71.3903767
+98734,2000,m020,"Warwick Cove Marina/RI/Warwick Cove, Narragansett Bay", MIT Sea Grant 2003,warwick cove marina ri,41.6656728,-71.4458111
+98734,2000,m020,"Roger Williams University, Bristol/RI/Mount Hope Bay", MIT Sea Grant 2003,"roger williams university, bristol ri",41.6505663,-71.2590928
+98734,2000,m020,Prudence Island/RI/Potters Cove, MIT Sea Grant 2003,prudence island ri potters cove,41.6415353,-71.3389206
+98734,2000,m020,North Kingstown/RI/Allen Harbor, MIT Sea Grant 2003,north kingstown ri allen harbor,41.619683,-71.4113013
+98734,2000,m020,"Wickford Marina/RI/Wickford Harbor, Narragansett Bay", MIT Sea Grant 2003,wickford marina ri,41.5678545,-71.4483034
+98734,2000,m020,"Fort Getty, Jamestown/RI/Narragansett Bay", MIT Sea Grant 2003,"fort getty, jamestown ri",41.488838,-71.399154
+98734,1851,m023,Point Judith/RI/Rhode Island Sound, Leidy 1855,point judith ri rhode island sound,41.3689274,-71.4888973
+98734,Unknown Date,m023,Narragansett/RI/Pettaquamscutt River,Ropes 1989,narragansett ri pettaquamscutt river,41.4420461,-71.4408889
+98734,2003,m023,Washington Co./RI/Point Judith Pond, de Rivera et al. 2005,washington co. ri point judith pond,41.4001709,-71.504343
+98734,2019,m023,"Point Judith Pond Marina, Wakefield/RI/Point Judith Pond", Pederrson et al. 2021),"point judith pond marina, wakefield ri point judith pond",41.4403745,-71.4983924
+98734,Unknown Date,m030,"""Long Island""", Rafinesque 1817,"""long island""",40.8521095,-72.9490754
+98734,2003,m030,"Stirling Harbor Shipyard, Greenport/NY/Peconic Bay", MIT Sea Grant 2003,"stirling harbor shipyard, greenport ny",41.1128896,-72.3587782
+98734,Unknown Date,m036,"""Long Island""",Rafinesque 1817,"""long island""",40.8521095,-72.9490754
+98734,1817,m040,"""Long Island""", Rafinesque 1817,"""long island""",40.8521095,-72.9490754
+98734,Unknown Date,m040,"Brewer Yacht Yard, Mystic/CT/Fishers Island Sound",MIT Sea Grant 2003,"brewer yacht yard, mystic ct fishers island sound",41.3560299,-71.9564725
+98734,2003,m040,"Milford Yacht Club, Milford/CT/Long Island Sound", MIT Sea Grant 2003,"milford yacht club, milford ct long island sound",41.2113088,-73.0501365
+98734,2003,m040,"Brewer Yacht Haven Marine Center, Stamford/CT/Long Island Sound", MIT Sea Grant 2003,"brewer yacht haven marine center, stamford ct long island sound",41.034176,-73.533425
+98734,Unknown Date,m050,"""Long Island""",Rafinesque 1817,"""long island""",40.8521095,-72.9490754
+98734,introduced,m050,Fire Island/NY/Great South Bay, established,fire island ny,40.6959271,-73.0234575
+98734,Unknown Date,m060,"1st Record: ""Long Island""",Rafinesque 1817,"1st record: ""long island""",40.8521095,-72.9490754
+98734,2003,m060,"Great Kills Park, Staten Island/NY/New York Harbor", MIT Sea Grant 2003,"great kills park, staten island ny new york harbor",40.5492367,-74.1238486
+98734,2019,m060,"Moonbeam Gateway Marina, Brooklym/NY/Nrew York Harbor", Pederson et al. 2021,"moonbeam gateway marina, brooklym ny nrew york harbor",40.5882843,-73.8994879
+98734,1973,m070,NJ/Barnegat Bay, Loveland and Voughliotis 1984,nj barnegat bay,39.8841407,-74.1221935
+98734,1972,m070,NJ/Barnegat Inlet, Peterson 1979,nj barnegat inlet,39.764564,-74.0995797
+98734,"Little Egg Harbor""",m080,"NJ/""Bays and Inlets""", Say 1817,"nj ""bays and inlets""",2.9392198,-75.2699627
+98734,2003,m080,NJ/Great Bay, de Rivera et al. 2005,nj great bay,39.5202589,-74.3732657
+98734,~1853,m080,Somers Point/NJ/Atlantic Ocean, MCZ 5412,somers point nj,39.3148849,-74.6004965
+98734,1900,m090,Cape May/NJ/Delaware Bay, Rathbun 1930,cape may nj,38.9402139,-74.9010624
+98734,2002,m090,, de Rivera et al. 2005
+98734,Unknown Date,m090,Lewes/DE/Delaware Bay,Leathem and Maurer 1980,lewes de,38.782336,-75.1480965
+98734,2003,m100,DE/Indian River Inlet, Miller and Brown 2005,de indian river inlet,38.6072842,-75.0654028
+98734,1995,m110,MD/Inland Bays, Hines,md inland bays,33.6953344,-117.7944064
+98734,Unknown Date,m110,MD/Assawoman Bay,Miller and Brown 2005,md assawoman bay,38.4192198,-75.0826011
+98734,2003,m110,Worcester County/MD/Sinepuxent Bay, de Rivera et al. 2005,worcester county md,38.1704495,-75.3909105
+98734,1876,m128,Northampton County/VA/Hog Island Bay, Kingsley 1879,northampton county va,37.353418,-75.939225
+98734,6-25-2007,m130,Somerset County/upper Manokin River, Kevin Josenhans,somerset county upper manokin river,38.1426917,-75.8242685
+98734,1904,n185,Chatham/MA/Atlantic Ocean, MCZ 62319,chatham ma,41.6310645,-69.98317
+98734,2003,n185,Eastham/MA/Nauset Marsh, de Rivera et al. 2005,eastham ma nauset marsh,41.8301442,-69.9515329
+98734,1903,n190,MA/Waquoit Bay, MCZ 7436,ma waquoit bay,41.5657258,-70.5252019
+98734,Unknown Date,n190,"""Buzzards Bay, Vineyard Sound, and the various connecting ponds and estuaries""",Sumner et al. 1910
+98734,2003,n190,Falmouth/MA/Waquoit Bay, de Rivera et al. 2005; Malpass and Geist 1996,falmouth ma,41.585599,-70.5977475
+98734,Unknown Date,n195,Marthas Vineyard/MA/Vineyard Sound,Gould 1841; Verrill and Smith 1873,marthas vineyard ma vineyard sound,41.799781,-70.525054
+98734,Unknown Date,n195,"""Buzzards Bay, Vineyard Sound, and the various connecting ponds and estuaries""",Sumner et al. 1910)
+96450,2014,m010,"1st Record: Moby Dick Marina, Fairhaven/MA/Buzzaeds Bay", Bors et al. 2019,"1st record: moby dick marina, fairhaven ma",33.6951047,-117.7959709
+96450,2010,m020,"Gardner Jackson Park, Providence/RI/Providence River", Cremins 10/7/2010,"gardner jackson park, providence ri providence river",33.6951047,-117.7959709
+96450,2019,m020,"Save the Bay Docks, Providence/RI/Providence River", Pederson et al. 2021,"save the bay docks, providence ri providence river",41.785777,-71.381355
+96450,2013,m020,"Fort Adams State Park, Newport/RI/Narragansett Bay", Wells et al. 2014,"fort adams state park, newport ri",41.4790898,-71.3358244
+96450,2019,m023,"Point Judith Pond Marina, Wakefield/RI/Point Judith Pond", Pederson et al. 2021,"point judith pond marina, wakefield ri point judith pond",41.4403745,-71.4983924
+96450,2001,m040,Bronx/New York City/East River, Warkentine and Rachlin 2010,bronx new york city east river,40.85166,-73.840934
+96450,2001,m040,Bronx/New York City/Long Island Sound, Warkentine and Rachlin 2010,bronx new york city long island sound,40.8193196,-73.0576455
+96450,2009,m040,Mystic/CT/Mystic River estuary, USGS Nonindigenous Aquatic Species Program 2010; Wojtas 6/16/2010; 2014,mystic ct mystic river estuary,41.3545433,-71.9689621
+96450,Unknown Date,m040,Bridgeport Yacht Haven/CT/Long Island Sound,Pederson et al. 2021,bridgeport yacht haven ct long island sound,33.6951047,-117.7959709
+96450,2001-2002,m060,Bronx/New York City/Bronx River, 2008,bronx new york city bronx river,40.893594,-73.9088895
+96450,2010,m060,"SUNY-Maritime College Campus, New York City/NY/East River", Warkentine and Rachlin 2012,"suny-maritime college campus, new york city ny east river",40.8074244,-73.796808
+96450,2019,m060,"Moonbeam Gateway Marina, Brooklyn/NC/New York Harbor", Pderson et al. 2021,"moonbeam gateway marina, brooklyn nc new york harbor",40.5882843,-73.8994879
+96450,2007,m130,Edgewater/MD/Rhode River, 'summer',edgewater md rhode river,38.8922218,-76.5250303
+96450,2020,m130,Galesveille/MD/West River, Monaca Noble,galesveille md west river,38.8446749,-76.5396673
+96450,2011,m130,"Centreville, Queen Anne County/MD/Corsica River", SERC 2017,"centreville, queen anne county md corsica river",39.0431519,-76.0605735
+96450,2008,m130,", VA/James River", Llanso and Sillet 2009,", va james river",37.3938324,-78.1596117
+96450,2009,m130,VA/York River, Llanso,va york river,37.2476414,-76.3824455
+-95,McGovern and Hellberg 2003,m010,1st Record?: Woods Hole/MA/Buzzards Bay-Vineyard Sound, 41Â°31' N,1st record?: woods hole ma,41.529306,-70.6686769
+-95,2000,m020,"Coasters Harbor Island, Newport/RI/East Passage, Narragansett Bay", MIT Sea Grant 2003,"coasters harbor island, newport ri",41.5089506,-71.3274372
+-95,2000,m020,Newport Shipyard, MIT Sea Grant 2003,newport shipyard,33.6122411,-117.9269005
+-95,Unknown Date,m020,RI/Narragansett Bay,Ruiz et al. unpubllished data,ri narragansett bay,41.6270201,-71.3465145
+-95,2010,m020,"Fort Adams St. Park, Newport/RI/Narragansett Bay", MacIntyre et al. 2011; Massachusetts Office of Coastal Zone Management 2013,"fort adams st. park, newport ri",41.4790898,-71.3358244
+-95,2010,m023,"Point Judith Marina, South Kingston/RI/Point Judith Pond", MacIntyre et al. 2010; Massachusetts Office of Coastal Zone Management 2013,"point judith marina, south kingston ri point judith pond",41.3874816,-71.5172653
+-95,41 20N; 72 08W,m040,Waterford/CT/Long Island Sound, McGovern and Hellberg 2003; Fehlauer et al. 2014,waterford ct long island sound,41.351724,-72.1542129
+-95,2000,m040,"Avery Point, Groton/CT/Fishers Island Sound", Osman,"avery point, groton ct fishers island sound",41.3179294,-72.0647414
+-95,2019,m060,"Moonbeam Gateway Marina, Brooklyn/NY/Jamaica Bay", Pederson et al. 2021,"moonbeam gateway marina, brooklyn ny",40.5882843,-73.8994879
+-95,2003,m110,DE/Indian River Lagoon, 38 35N; 75 17W,de indian river lagoon,28.0552941,-80.5761641
+-95,2013,m120,"Sunset Marina, Ocean City/MD/Ocean City Inlet", Paul Fofonoff,"sunset marina, ocean city md",38.3282965,-75.1046865
+-95,2013,m120,"Chincoteague/VA/Merritt Harbor, Chincoteague Inlet", Paul Fofonoff,"chincoteague va merritt harbor, chincoteague inlet",37.8845684,-75.4118661
+-95,2009,m128,Wachapreague/VA/Wachapreague Inlet, Canning-Clode,wachapreague va wachapreague inlet,37.6041713,-75.688507
+-95,2000,m130,Kiptopeake/VA/Chesapeake Bay, Ruiz et al. unpublished data,kiptopeake va,37.1703207,-75.9809899
+-572,2010,m010,1st Record: Woods Hole/MA/Eel Pond, ICES 2011,1st record: woods hole ma eel pond,41.5258856,-70.6704608
+-572,2013,m020,"Fort Adams State Park, Newport/RI/Narragansett Bay", Wells et al. 2014,"fort adams state park, newport ri",41.4790898,-71.3358244
+-572,8/17-20,m020,"Allnes Harbor, North Kingstwn/RI/West Passage,Narragansett Bay", 2019,"allnes harbor, north kingstwn ri",33.6951047,-117.7959709
+-572,2022,m026,"1st Record: Napatree Ponit, Westerly/RI/Block island Sound", Brandler and Carlton 2022,"1st record: napatree ponit, westerly ri block island sound",41.3094804,-71.8767101
+-572,8/17-20,m060,"Moonbeam Gateway Marina/, Brooklyn/NY/Jamiaca Bay", 2019,"moonbeam gateway marina , brooklyn ny",40.5882843,-73.8994879
+-334,2000,m010,"Tripps Marina, Westport/MA/Buzzards Bay", MIT Sea Grant 2003; 2010,"tripps marina, westport ma",41.5131407,-71.0776318
+-334,2000,m010,"Massachusetts Marine Academy, Bourne/MA/Buzzards Bay", MIT Sea Grant 2003; 2010,"massachusetts marine academy, bourne ma",41.7408213,-70.6222566
+-334,2004,m010,West Falmouth/MA/West Falmouth Harbor, USGS Woods Hole Science Center 2003-2007,west falmouth ma west falmouth harbor,41.6056626,-70.6494753
+-334,2005,m020,"South Pier, Prudence Island/RI/Narragansett Bay", Auker and Oviatt 2008; Absent 2015,"south pier, prudence island ri",41.6186955,-71.3071537
+-334,2005,m020,"Fort Wetherill, Jamestown/RI/East Passage, Narragansett Bay", Auker and Oviatt 2008; Auker 2019,"fort wetherill, jamestown ri",41.4773239,-71.3578303
+-334,Ruiz et al.,m020,"Jamestown Boatyard, Jamestown/RI/Narragansett Bay", unpublished data,"jamestown boatyard, jamestown ri",41.482128,-71.36042
+-334,Ruiz et al.,m020,"New England Boatworks, Jamestown/RI/Narragansett Bay", unpublished data,"new england boatworks, jamestown ri",41.5887836,-71.2840901
+-334,2007,m023,Block Island/RI/Great Salt Pond," 41o10'62"" 71o34'58""",block island ri great salt pond,41.1921428,-71.5806786
+-334,2009,m023,"Matunuck, Point Judith Maina/RI/Point Judith Pond", MIT Sea Grant 2011; Massachusetts Office of Coastal Zone Management 2013; 2019,"matunuck, point judith maina ri point judith pond",41.3689274,-71.4888973
+-334,2009,m030,"521 East Lake Drive, Montauk, Long Island/NY/Montauk Harbor", USGS Woods Hole Science Center 2010,"521 east lake drive, montauk, long island ny montauk harbor",41.0752394,-71.9337568
+-334,2000,m040,"Avery Point, Groton/CT/Long Island Sound", Osman and Whitlatch 2007,"avery point, groton ct long island sound",41.3179294,-72.0647414
+-334,209,m040,"Brewer Mysyic Marina, Mystic/CT/Fishers Island Sound", Pederson et al. 2021,"brewer mysyic marina, mystic ct fishers island sound",41.3560299,-71.9564725
+-334,39.9 min N lat,n185,Chatham/MA/Chatham Harbor, 69 deg 57.4,chatham ma chatham harbor,33.6951047,-117.7959709
+-334,2005,n185,Osterville/MA/Cotuit Bay, USGS Woods Hole Science Center 2003-2007,osterville ma,41.6324585,-70.3953044
+-334,2004,n195,Vineyard Haven/MA/Vineyard Sound, MIT Sea Grant 2003-2007; USGS Woods Hole Science Center 2003-2007,vineyard haven ma vineyard sound,41.799781,-70.525054
+-334,2003,n195,Vineyard Haven/MA/Vineyard Haven, Carman et al. 2007,vineyard haven ma vineyard haven,41.4557866,-70.6035529
+-334,2007,n195,Martha's Vineyard/MA/Lagoon Pond," 41o27'28.4"" 70o35'11.8""",martha's vineyard ma lagoon pond,41.4516258,-70.5996042
+-334,2012-2013,n195,Marthas Vineyard/MA/Stonewall Pond, Colarusso et al. 2016,marthas vineyard ma stonewall pond,41.3273821,-70.7600559
+159099,2003,m010,"Tripps Marina, Westport/MA/Buzzards Bay", MIT Sea Grant 2003; 2010,"tripps marina, westport ma",41.5131407,-71.0776318
+159099,1998,m010,Woods Hole/MA/Buzzards Bay-Vineyard Sound;, Whitlatch and Osman 2000,woods hole ma,41.529306,-70.6686769
+159099,1998,m010,"Woods Hole/MA/Eel Pond, Vineyard Sound;", MIT Sea Grant 2003,"woods hole ma eel pond, vineyard sound;",41.5258856,-70.6704608
+159099,2019,m020,"Save the Bay Marina, Providence/RI/Providence River", Pederson et al. 2021,"save the bay marina, providence ri providence river",41.785777,-71.381355
+159099,2019,m020,"Allen Harbor, North Kingstown/RI/Prpvidence River", Pederson et al. 2021,"allen harbor, north kingstown ri prpvidence river",41.6188959,-71.4114225
+159099,2000,m020,"Coasters Harbor Island, Newport/RI/East Passage, Narragansett Bay", MIT Sea Grant 2007,"coasters harbor island, newport ri",41.5089506,-71.3274372
+159099,2010,m020,Fort Adams State Park/Newport/RI/Narragansett Bay, Massachusetts Office of Coastal Zone Management 2013,fort adams state park newport ri,41.4790898,-71.3358244
+159099,2013,m020,North Kingstown/RI/Allend Harbor, Wells et al. 2014,north kingstown ri allend harbor,41.619683,-71.4113013
+159099,1998,m020,Jamestown/RI/Narragansett Bay, Whitlatch and Osman 2000,jamestown ri,41.5225845,-71.3672694
+159099,Ruiz et al.,m020,RI/Narragansett Bay, unpublished data),ri narragansett bay,41.6270201,-71.3465145
+159099,MacIntyre et al. 2010; Massachusetts Office of Coastal Zone Management 2013; 2019,m023,"Point Judith Marina, South Kingston/RI/Point Judith Pond", Pederson et al. 2021),"point judith marina, south kingston ri point judith pond",41.3874816,-71.5172653
+159099,209,m040,"Brewer Mysyic Marina, Mystic/CT/Fishers Island Sound", Pederson et al. 2021,"brewer mysyic marina, mystic ct fishers island sound",41.3560299,-71.9564725
+159099,Freeman et al. 2016,m050,"Point Lookout/NY/Reynolds Channel, South Oyster Bay", 2012-213,point lookout ny,40.5905711,-73.580659
+159099,2001,m130,Cape Charles/VA/Chesapeake Bay-Atlantic Ocean, Ruiz et al.,cape charles va,37.2582325,-76.0100055
+159099,2003,n185,Chatham/MA/Chatham Harbor, Carman et al. 2007,chatham ma chatham harbor,33.6951047,-117.7959709
+159099,2003,n195,"Vineyard Haven/MA/Vineyard Haven, Vineyard Sound", Carman et al. 2007,"vineyard haven ma vineyard haven, vineyard sound",41.458886,-70.6050529
+159099,2008,n195,"Tisbury, Marthas Vineyard/MA/Lake Tashmoo", Carman and Grunden 2010,"tisbury, marthas vineyard ma lake tashmoo",41.4676115,-70.6252145
+159099,Unknown Date,n195,"5 of 24 aquaculture sites, Martha's Vineyard/MA/19 surveyed embayments",Carman et al. 2010,"5 of 24 aquaculture sites, martha's vineyard ma",33.6951047,-117.7959709
+159099,2012-2013,n195,Marthas Vineyard/MA/Stonewall Pond, Colarusso et al. 2016,marthas vineyard ma stonewall pond,41.3273821,-70.7600559
+159337,MIT Sea Grant 2003; 2010,m010,Massachusetts Maritime Academy Bourne/MA/Buzzards Bay, Massachusetts Office of Coastal Zone Management 2013,massachusetts maritime academy bourne ma,41.7408213,-70.6222566
+159337,Unknown Date,m010,New Bedford/MA/New Bedford Harbor,MIT Sea Grant 2003; Carman et al. 2007,new bedford ma new bedford harbor,41.6340113,-70.927039
+159337,2010,m010,"Popes Island Marina, New Bedford", Massachusetts Office of Coastal Zone Management 2013,"popes island marina, new bedford",41.6399323,-70.9134258
+159337,2003,m010,North Falmouth/MA/Megansett Harbor, Carman et al. 2007,north falmouth ma megansett harbor,41.6564286,-70.634004
+159337,2003,m010,Woods Hole/MA/Quissett Harbor, Carman et al. 2007,woods hole ma quissett harbor,41.5407576,-70.6595999
+159337,1986,m010,Woods Hole/MA/Eel Pond, Marine Biological Laboratory,woods hole ma eel pond,41.5258856,-70.6704608
+159337,2019,m020,"Save the Bay Marina, Providence/RI/Providence River", Pederson et al. 2021,"save the bay marina, providence ri providence river",41.785777,-71.381355
+159337,Unknown Date,m020,"Quonset Point, North Kingstown, West Passage, Narragansett Bay",MIT Sea Grant 2003
+159337,1976,m020,"Wickford Marina, Wickford/RI/West Passage, Narragansett Bay", Fofonoff,"wickford marina, wickford ri",41.5678545,-71.4483034
+159337,Unknown Date,m020,"Colt State Park, Bristol/RI/East Passage, Narragansett Bay",MIT Sea Grant 2003,"colt state park, bristol ri",41.6769145,-71.2985319
+159337,Unknown Date,m020,"Coasters Harbor Island, Newport/RI/East Passage, Narragansett Bay;",MIT Sea Grant 2003,"coasters harbor island, newport ri",41.5089506,-71.3274372
+159337,2010,m020,Fort Adams State Park/Newport/RI/Narragansett Bay, MacIntyre et al. 2010; Massachusetts Office of Coastal Zone Management 2013,fort adams state park newport ri,41.4790898,-71.3358244
+159337,Unknown Date,m020,Beavertail Point/RI/Narragansett Bay,MIT Sea Grant 2003,beavertail point ri,33.6880788,-116.4034284
+159337,Unknown Date,m020,Sakonnet Point/RI/Rhode Island Sound-Buzzards Bay,Whitlatch and Osman 2000,sakonnet point ri,41.4542699,-71.1947675
+159337,2007,m023,Block Island/RI/Great Salt Pond," 41o10'62"" 71o34'58""",block island ri great salt pond,41.1921428,-71.5806786
+159337,2009,m023,Point Judith Marina/RI/Point Judith Pond, MIT Sea Grant 2011; Massachusetts Office of Coastal Zone Management 2013; Pederson et al. 2021,point judith marina ri point judith pond,41.3874816,-71.5172653
+159337,1973,m030,Montauk Point/NY/Peconic Bay, Carlton 1989; James T. Carlton,montauk point ny,33.6951047,-117.7959709
+159337,2003,m030,South Jamesport/NY/Peconic Bay, MIT Sea Grant 2003,south jamesport ny,40.936502,-72.5754392
+159337,1988,m040,NY/Long Island Sound, Carlton 1989,ny long island sound,40.9605641,-72.9707965
+159337,Unknown Date,m040,Stamford/CT/Long Island Sound,MIT Sea Grant 2003,stamford ct long island sound,41.0374111,-73.5438353
+159337,Unknown Date,m040,"Brewer Yacht Haven Marine Center, Milford Yacht Club, Milford/CT/Long Island Sound",MIT Sea Grant 2003,"brewer yacht haven marine center, milford yacht club, milford ct long island sound",33.6951047,-117.7959709
+159337,Unknown Date,m040,"Brewer Yacht Yard, Mystic/CT/Fishers Island Sound",MIT Sea Grant 2003; Pederson et al. 2021,"brewer yacht yard, mystic ct fishers island sound",41.3560299,-71.9564725
+159337,Unknown Date,m040,Groton/CT/Fishers Island Sound,Whitlatch and Osman 2000,groton ct fishers island sound,41.338498,-72.0279266
+159337,2011-2013,m040,35 of 45 sites sampled/NY-CT/Long Island Sound, Brunetti and Cuomo 2014,35 of 45 sites sampled ny-ct long island sound,33.6951047,-117.7959709
+159337,2019,m040,"Stirling Hsrbot, Greenport, Long Island/NY/Long Island Sound", Pederson et al. 2021,"stirling hsrbot, greenport, long island ny long island sound",41.1128896,-72.3587782
+159337,2019,m060,"Moonbeam Gateway Marina, Brooklym/NY/Jamaica Bay", Pederson et al. 2021,"moonbeam gateway marina, brooklym ny",40.5882843,-73.8994879
+159337,1998,m080,30 mi NE of Cape May/NJ/Coastal Bay inlets, John McDermott,30 mi ne of cape may nj,33.6951047,-117.7959709
+159337,2013,m080,Cape May/NJ/Cape May Harbor, Paul Fofonoff,cape may nj cape may harbor,38.9415636,-74.9042437
+159337,2003,m090,Cape Henlopen/DE/Delaware Bay, several specimens washed up on beach,cape henlopen de,38.8031672,-75.0946255
+159337,2013,m100,Indian River Marina/NJ/Indian River Marina/, Paul Fofonoff,indian river marina nj indian river marina ,45.418138,-84.605903
+159337,1994,m120,Chincoteague/VA/Atlantic Ocean, U.S. National Museum of Natural History 2002,chincoteague va,37.9459079,-75.3383599
+159337,2013,m120,"Chincoteague/VA/Merritt Harbor, Chincoteague Inlet", Paul Fofonoff,"chincoteague va merritt harbor, chincoteague inlet",37.8845684,-75.4118661
+159337,2013,m120,"Sunset Marina, Ocean City/MD/Ocean City Inlet", Paul Fofonoff,"sunset marina, ocean city md",38.3282965,-75.1046865
+159337,2011,n185,"Cotuit Town Dock/MA/Cotuit Bay, Nantucket Sound", MIT Sea Grant 2012,cotuit town dock ma,41.616461,-70.433534
+159337,2011,n185,"Wianno Yacht Club/MA/West Bay, Nantucket Sound", MIT Sea Grant 2012,wianno yacht club ma,41.622248,-70.39496
+159337,Unknown Date,n185,Hyannis/MA/Nantucket Sound,Whitlatch and Osman 2000,hyannis ma nantucket sound,41.664559,-70.28634
+159337,2003,n185,Chatham/MA/Chatham Harbor, Carman et al. 2007,chatham ma chatham harbor,41.7042777,-69.9369596
+159337,2003,n190,Falmouth-Mashpee/MA/Waquoit Bay, Carman et al. 2007,falmouth-mashpee ma,41.8456544,-70.7611986
+159337,1986,n195,Woods Hole/MA/Vineyard Sound; Woods Hole/MA/Eel Pond, Marine Biological Laboratory,woods hole ma vineyard sound; woods hole ma eel pond,41.5258856,-70.6704608
+159337,2003,n195,Vineyard Haven/MA/Vineyard Haven, Carman et al. 2007,vineyard haven ma vineyard haven,41.4557866,-70.6035529
+159337,2003,n195,East Falmouth/MA/Great Pond, Carman et al. 2007,east falmouth ma great pond,41.5611485,-70.5795635
+159337,2007,n195,Martha's Vineyard/MA/Lagoon Pond," 41o27'28.4"" 70o35'11.8""",martha's vineyard ma lagoon pond,41.4516258,-70.5996042
+159337,2008,n195,"14 of 24 aquaculture sites, Marthas Vineyard/MA/24 surveyed aquaculture sites", Carman et al. 2010,"14 of 24 aquaculture sites, marthas vineyard ma 24 surveyed aquaculture sites",33.6951047,-117.7959709
+-100,1998,m010,Westport/MA/Westport River, Whitlatch and Osman 2000,westport ma westport river,41.5112846,-71.0879886
+-100,2000,m010,"Tripps Marina, Westport/MA/Westport River", MIT Sea Grant 2003; 2010,"tripps marina, westport ma westport river",41.5112846,-71.0879886
+-100,2000,m010,New Bedford State Pier/MA/Acushnet River, MIT Sea Grant 2003,new bedford state pier ma acushnet river,41.6347908,-70.9206157
+-100,2010,m010,"Popes Island Marina, New Bedford", Massachusetts Office of Coastal Zone Management 2013,"popes island marina, new bedford",41.6399323,-70.9134258
+-100,2000,m010,"Massachusetts Maritime Academy, Bourne/MA/Buzzards Bay", 2003,"massachusetts maritime academy, bourne ma",41.7408213,-70.6222566
+-100,2000,m010,Bourne Marina/MA/, 2003,bourne marina ma ,33.6951047,-117.7959709
+-100,1998,m010,West Falmouth/MA/Buzzards Bay, Whitlatch and Osman 2000,west falmouth ma,33.848905,-117.9538004
+-100,1998,m013,Sakonnet Point/RI/Buzzards Bay, Whitlach and Osman 2000,sakonnet point ri,41.4542699,-71.1947675
+-100,2003,m020,"Beavertaill State Park, Jamestown/RI/Rhode Island Sound", MIT Sea Grant 2003,"beavertaill state park, jamestown ri rhode island sound",41.4535106,-71.3975929
+-100,2010,m020,Fort Adams State Park/Newport/RI/Narragansett Bay, MacIntyre et al. 2010; Massachusetts Office of Coastal Zone Management 2013,fort adams state park newport ri,41.4790898,-71.3358244
+-100,2000,m020,"Coasters Harbor Island, Newport/RI/East Passage, Narragansett Bay", MIT Sea Grant 2003,"coasters harbor island, newport ri",41.5089506,-71.3274372
+-100,2000,m020,"Newport Shipyard/RI/East Passage, Narragansett Bay", MIT Sea Grant 2003,newport shipyard ri,41.4904393,-71.3217185
+-100,1998,m020,"Jamestown/RI/East Passage, Narragansett Bay", Whitlatch and Osman 2000,jamestown ri,41.5225845,-71.3672694
+-100,2000,m020,"Fort Getty Pier, Jamestown/RI/West Passage, Narragansett Bay", MIT Sea Grant 2003,"fort getty pier, jamestown ri",41.488838,-71.399154
+-100,2000,m020,"Wickford Marina, Wickford/RI/WestPassage, Narragansett Bay", MIT Sea Grant 2003,"wickford marina, wickford ri",41.5678545,-71.4483034
+-100,2000,m020,"Narragansett Bay T-wharf, Prudence Island/RI/Narragansett Bay", MIT Sea Grant 2003,"narragansett bay t-wharf, prudence island ri",41.5909573,-71.3244867
+-100,2000,m020,"North Kingston/RI/Allens Harbor, West Passage, Narragansett Bay", MIT Sea Grant 2003; 2010,north kingston ri,41.5760855,-71.4514855
+-100,2000,m020,"Roger Williams University Dock, Bristol/RI/Narragansett Bay", MIT Sea Grant 2003,"roger williams university dock, bristol ri",41.6505663,-71.2590928
+-100,2000,m020,"Warwick Cove Marina/RI/Warwick Cove, Narragansett Bay", MIT Sea Grant 2003,warwick cove marina ri,41.6656728,-71.4458111
+-100,2000,m020,"Cove Haven Marina, Bristol/RI/Providence River", MIT Sea Grant 2003,"cove haven marina, bristol ri providence river",41.7512722,-71.3501494
+-100,2000,m020,"Edgewood Marina, Cranston/RI/Providence River", MIT Sea Grant 2003; 2010,"edgewood marina, cranston ri providence river",41.7669917,-71.4040005
+-100,2019,m020,"Save the Bay Marina, Providence/RI/Providence River", Pederson et al. 2021,"save the bay marina, providence ri providence river",41.785777,-71.381355
+-100,1998,m020,Tiverton/RI/Sakonnet River, Whitlatch and Osman 2000,tiverton ri sakonnet river,41.659206,-71.1913442
+-100,2007,m023,Block Island/RI/Great Salt Pond," 41o10'62"" 71o34'58""",block island ri great salt pond,41.1921428,-71.5806786
+-100,2009,m023,"Point Judith Marina, Matunuck/RI/Point Judith Pond", MIT Sea Grant 2011; 2010,"point judith marina, matunuck ri point judith pond",41.3874816,-71.5172653
+-100,2003,m030,"Stirling Yacht Harbor, Greenport, Long Island/NY/Long Island Sound", MIT Sea Grant 2003,"stirling yacht harbor, greenport, long island ny long island sound",33.6953344,-117.7944064
+-100,2003,m040,"Brewer Yacht Haven Marine Center, Stamford/CT/Long Island Sound", MIT Sea Grant 2003;Pederson et al. 2021,"brewer yacht haven marine center, stamford ct long island sound",41.034176,-73.533425
+-100,2003,m040,Milford Yacht Club/CT/Long Island Sound, MIT Sea Grant 2003,milford yacht club ct long island sound,41.2113088,-73.0501365
+-100,1997,m040,Bridgeport/CT/Long Island Sound, Whitlatch and Osman 2000,bridgeport ct long island sound,41.1847559,-73.19897
+-100,1997,m040,Niantic/CT/Long Island Sound, Whitlatch and Osman 2000,niantic ct long island sound,41.3210676,-72.1971195
+-100,2003,m040,"Brewer Yacht Yard, Mystic/CT/Mystic River", MIT Sea Grant 2003; Pederson et al. 2021,"brewer yacht yard, mystic ct mystic river",33.6953344,-117.7944064
+-100,2019,m040,"Sterling Harbor Shipyard, Greenport/NW/Long Island Sound", Pederson et al. 2021,"sterling harbor shipyard, greenport nw long island sound",41.1074,-72.3588005
+-100,Freeman et al. 2016,m050,"Point Lookout/NY/Reynolds Channel, South Oyster Bay", 2012-213,point lookout ny,40.5905711,-73.580659
+-100,Unknown Date,m060,South Street Seaport/New York City/Hudson River,MIT Sea Grant 2003,south street seaport new york city hudson river,40.7073676,-74.0012268
+-100,2019,m060,"Moonbeam Gateway Marina, Brooklyn/NY/Jamaica Bay", Pederson et al. 2021,"moonbeam gateway marina, brooklyn ny",40.5882843,-73.8994879
+-100,2013,m080,Cape May/NJ/Cape May Harbor, Paul Fofonoff,cape may nj cape may harbor,38.9415636,-74.9042437
+-100,2013,m100,Indian River Marina/NJ/Indian River Marina/, Paul Fofonoff,indian river marina nj indian river marina ,45.418138,-84.605903
+-100,2013,m120,"Chincoteague/VA/Merritt Harbor, Chincoteague Inlet", Paul Fofonoff,"chincoteague va merritt harbor, chincoteague inlet",37.8845684,-75.4118661
+-100,2000,m130,Norfolk/VA/Little Creek, Ruiz et al.,norfolk va little creek,36.9157406,-76.2928064
+-100,2000,m130,Poquoson/VA/Hampton Roads, Ruiz et al.,poquoson va hampton roads,36.4258985,-76.3183965
+-100,2000,m130,Belle Isle Marina/VA/Rapphannock River?, uiz et al.,belle isle marina va rapphannock river?,37.0973809,-76.2929502
+-100,2000,m130,Kiptopeke/VA/Chesapeake Bay, Ruiz et al.,kiptopeke va,33.6953344,-117.7944064
+-100,2000,m130,"Amoco Refinery, Yorktown/VA/York River", Ruiz et al.,"amoco refinery, yorktown va york river",37.1394494,-76.4226157
+-100,2011,n185,"Cotuit Town Dock/MA/Cotuit Bay, Nantucket Sound", MIT Sea Grant 2012,cotuit town dock ma,41.616461,-70.433534
+-100,2011,n185,"Wianno Yacht Club/MA/West Bay, Nantucket Sound", MIT Sea Grant 2012,wianno yacht club ma,41.622248,-70.39496
+-100,1998,n185,Hyannis/MA/Nantucket Sound, Whitlatch and Osman 2000,hyannis ma nantucket sound,41.664559,-70.28634
+-100,1998,n185,Chatham/MA/Pleasant Bay, Whitlatch and Osman 2000,chatham ma,41.6310645,-69.98317
+-100,2003,n195,Vineyard Haven/MA/Vineyard Haven, Carman et al. 2007,vineyard haven ma vineyard haven,41.4557866,-70.6035529
+-100,2007,n195,Martha's Vineyard/MA/Lagoon Pond," 41o27'28.4"" 70o35'11.8""",martha's vineyard ma lagoon pond,41.4516258,-70.5996042
+-100,Unknown Date,n195,"15 of 24 aquaculture sites, Martha's Vineyard/MA/19 Martha's Vineyard, embayments",Carmen et al. 2010,"15 of 24 aquaculture sites, martha's vineyard ma",33.6953344,-117.7944064
+-100,2012-2013,n195,Marthas Vineyard/MA/Stonewall Pond, Colarusso et al. 2016,marthas vineyard ma stonewall pond,41.3273821,-70.7600559
+159373,Unknown Date,m010,Woods Hole/MA/Buzzards Bay-Vineyard Sound,Verrilll and Smith 1873,woods hole ma,33.6953344,-117.7944064
+159373,1881,m010,Woods Hole/MA/Buzzards Bay-Vineyard Sound, USNM 15761,woods hole ma,41.529306,-70.6686769
+159373,Unknown Date,m010,Penikese Island/Buzzards Bay-Vineyard Sound,Sumner et al. 1913,penikese island,41.4494004,-70.9220079
+159373,Unknown Date,m010,"Tarpaulin Cove, Naushon Island/MA/Vineyard Sound)",Sumner et al. 1913,"tarpaulin cove, naushon island ma vineyard sound)",41.4752935,-70.7611532
+159373,Unknown Date,m010,"West Chop, Martha's Vineyard/MA/Vineyard Sound",Sumner et al. 1913,"west chop, martha's vineyard ma vineyard sound",41.4801104,-70.6028065
+159373,2010,m010,"Popes Island Marina, New Bedford", Massachusetts Office of Coastal Zone Management 2013,"popes island marina, new bedford",41.6399323,-70.9134258
+159373,MIT Sea Grant 2003; 2010,m010,"Massachusetts Maritime Academy, Bourne/MA/Buzzards Bay", Massachusetts Office of Coastal Zone Management 2013,"massachusetts maritime academy, bourne ma",41.7408213,-70.6222566
+159373,1880,m020,"""Rhode Island""", USNM 20014,"""rhode island""",41.5573165,-71.4979145
+159373,Unknown Date,m020,Fall River/MA/Mount Hope Bay,MIT Sea Grant 2003,fall river ma,41.6856475,-71.1053515
+159373,MIT Sea Grant 2003; 2010,m020,"Edgewood Yacht Club, Cranston/RI/Providence River", Massachusetts Office of Coastal Zone Management 2013,"edgewood yacht club, cranston ri providence river",41.7763698,-71.3907691
+159373,Unknown Date,m020,"Cove Haven Marina, Barrington/RI/Providence River",MIT Sea Grant 2003,"cove haven marina, barrington ri providence river",41.7512722,-71.3501494
+159373,Unknown Date,m020,"Colt State Park, Bristol/RI/Narragansett Bay",MIT Sea Grant 2003,"colt state park, bristol ri",41.6769145,-71.2985319
+159373,Unknown Date,m020,"Roger Williams University Dock, Bristol//RI/Mount Hope Bay",MIT Sea Grant 2003; Yund et al. 2016,"roger williams university dock, bristol  ri",41.6505663,-71.2590928
+159373,MIT Sea Grant 2003; 2010,m020,North Kingston/RI/Allens Harbor, Massachusetts Office of Coastal Zone Management 2013; Pederson et al. 2021,north kingston ri allens harbor,41.6213333,-71.4100833
+159373,Unknown Date,m020,Wickford/RI/Wickford Harbor,MIT Sea Grant 2003,wickford ri wickford harbor,41.5750146,-71.4425522
+159373,Unknown Date,m020,"Newport Shipyard, Newport/RI/Narragansett Bay",MIT Sea Grant 2003,"newport shipyard, newport ri",41.4904393,-71.3217185
+159373,2010,m020,Fort Adams State Park/Newport/RI/Narragansett Bay, Massachusetts Office of Coastal Zone Management 2013,fort adams state park newport ri,41.4790898,-71.3358244
+159373,2007,m023,Block Island/RI/Great Salt Pond," 41o10'62"" 71o34'58""",block island ri great salt pond,41.1921428,-71.5806786
+159373,Unknown Date,m026,Watch Hill/RI/Rhode Island Sound,Verrill and Smith 1873),watch hill ri rhode island sound,41.3140885,-71.8497266
+159373,2003,m030,"Stirling Harbor Shipyard, Greenport/NY/Peconic Bay", MIT Sea Grant 2003,"stirling harbor shipyard, greenport ny",41.1128896,-72.3587782
+159373,2003,m030,"East Creek Marina, Jamesport/NY/Peconic Bay", MIT Sea Grant 2003,"east creek marina, jamesport ny",40.9472303,-72.5711311
+159373,1874,m040,Noank/CT/Long Island Sound, USNM 16013,noank ct long island sound,41.0662938,-73.4481484
+159373,2003,m040,"rewer Yacht Center, Mystic/CT/Long Island Sound", MIT Sea Grant 2003; Pederson et al. 2021,"rewer yacht center, mystic ct long island sound",41.0473025,-72.9192774
+159373,2003,m040,"Milford Yacht Club, Milford/CT/Long Island Sound", MIT Sea Grant 2003,"milford yacht club, milford ct long island sound",41.2113088,-73.0501365
+159373,2003,m040,"Brewer Yacht Haven Marina, Stamford/CT/Long Island Sound", MIT Sea Grant 2003; Pederson et al. 2021,"brewer yacht haven marina, stamford ct long island sound",41.034176,-73.533425
+159373,2003,m040,"Stirling Harbor Shipyard, Greenport/NY/Long Island Spound,", MIT Sea Grant 2003; Pederson et al. 2021,"stirling harbor shipyard, greenport ny long island spound,",41.1128896,-72.3587782
+159373,Freeman et al. 2016,m050,"Point Lookout/NY/Reynolds Channel, South Oyster Bay", 2012-213,point lookout ny,40.5905711,-73.580659
+159373,2003,m060,"Snug Harbor Cultural Center, Staten Island/NY/Kill Van Kull;", MIT Sea Grant 2003,"snug harbor cultural center, staten island ny kill van kull;",40.6439994,-74.12
+159373,2003,m060,"Great Kills Park, Staten Island/NY/New York Harbor", MIT Sea Grant 2003,"great kills park, staten island ny new york harbor",40.5492367,-74.1238486
+159373,2003,m060,"Great Kills Park, Staten Island/NY/New York Harbor", MIT Sea Grant 2003; 2019,"great kills park, staten island ny new york harbor",40.5492367,-74.1238486
+159373,Unknown Date,m070,NJ/Barnegat Bay,Richards 1938; Loveland and Shafto 1984,nj barnegat bay,39.8841407,-74.1221935
+159373,1929,m080,"Cape May, Schelengers Landing/NJ/Delaware Bay", USNM 13042,"cape may, schelengers landing nj",38.9502404,-74.9070376
+159373,2013,m100,Indian River Marina/NJ/Indian River Marina/, Paul Fofonoff,indian river marina nj indian river marina ,45.418138,-84.605903
+159373,1994,m120,Chincoteague/VA/Chincoteague Bay, USNM 20713,chincoteague va,37.9459079,-75.3383599
+159373,1923,m130,dredge 'Chinook'/VA/Hampton Roads, Visscher 1928,dredge 'chinook' va hampton roads,36.8160294,-76.3298189
+159373,1962,m130,Gloucester Point /VA/York River, Wass 1963; Calder,gloucester point  va york river,37.2568573,-76.4806426
+159373,Otsuka and Dauer 1980; Ruiz et al.,m130,Virginia Beach/VA/Lynnhaven Bay, unpublished data,virginia beach va,36.7955845,-76.0127786
+159373,Andrews 1973; Ruiz et al.,m130,VA/Mobjack Bay, unpublished data,va mobjack bay,37.3223329,-76.3435862
+159373,Ruiz et al.,m130,Eastern Shore/VA/Lower Chesapeake Bay, unpublished data,eastern shore va,37.509321,-75.7014465
+159373,Unknown Date,m130,Norfolk/VA/Hampton Roads,Calder and Brehmer 1967,norfolk va hampton roads,36.4258985,-76.3183965
+159373,2011,n185,"Cotuit Town Dock/MA/Cotuit Bay, Nantucket Sound", MIT Sea Grant 2012,cotuit town dock ma,41.616461,-70.433534
+159373,2011,n185,"Wianno Yacht Club/MA/West Bay, Nantucket Sound", MIT Sea Grant 2012,wianno yacht club ma,41.622248,-70.39496
+159373,2003,n185,Chatham/MA/Chatham Harbor, Carman et al. 2007,chatham ma chatham harbor,41.7042777,-69.9369596
+159373,2003,n190,Falmouth-Mashpee/MA/Waquoit Bay, Carman et al. 2007,falmouth-mashpee ma,41.8456544,-70.7611986
+159373,Unknown Date,n195,"Tarpaulin Cove, Naushon Island/MA/Vineyard Sound)",Sumner et al. 1913,"tarpaulin cove, naushon island ma vineyard sound)",41.4752935,-70.7611532
+159373,1871,n195,Woods Hole/MA/Woods Hole Harbor, Verrill and Smith 1873,woods hole ma woods hole harbor,41.523736,-70.669341
+159373,Unknown Date,n195,"West Chop, Martha's Vineyard/MA/Vineyard Sound",Sumner et al. 1913,"west chop, martha's vineyard ma vineyard sound",41.4801104,-70.6028065
+159373,2007,n195,Martha's Vineyard/MA/Lagoon Pond," 41o27'28.4"" 70o35'11.8""",martha's vineyard ma lagoon pond,41.4516258,-70.5996042
+159373,2008,n195,14 of 26 aquaculture sites/MA/19 Martha's Vineyard embayments, Carman et al. 2010,14 of 26 aquaculture sites ma,44.6951117,-121.2021095
+159373,2012-2013,n195,Marthas Vineyard/MA/Stonewall Pond, Colarusso et al. 2016,marthas vineyard ma stonewall pond,41.3273821,-70.7600559
+159213,1983,m010,1st Records: MA/Cape Cod Canal, Richard Whittaker,1st records: ma cape cod canal,41.7681606,-70.5661411
+159213,1997,m020,Jamestown/RI/Narragansett Bay, Whitlatch and Osman 2000,jamestown ri,41.5225845,-71.3672694
+159213,2000,m020,"Fall River/MA/Battleship Cove, Mount Hope Bay", MIT Sea Grant 2003,fall river ma,41.6856475,-71.1053515
+159213,2000,m020,"Colt State Park, Bristol/ RI/Narragansett Bay", MIT Sea Grant 2003,"colt state park, bristol  ri",41.6769145,-71.2985319
+159213,2000,m020,"Roger Williams University dock, Bristol/RI/Narragansett Bay", MIT Sea Grant 2003,"roger williams university dock, bristol ri",41.6505663,-71.2590928
+159213,2000,m020,"Potters Cove, Prudence Island/RI/Narragansett Bay", MIT Sea Grant 2003,"potters cove, prudence island ri",41.6415353,-71.3389206
+159213,2000,m020,"Prudence Island T-Wharf, Bay Islands Park/RI/Narragansett Bay", MIT Sea Grant 2003,"prudence island t-wharf, bay islands park ri",33.6951047,-117.7959709
+159213,2000,m020,"Wickford Marina, Wickford/RI/Wickford Harbor", MIT Sea Grant 2003,"wickford marina, wickford ri wickford harbor",41.5678545,-71.4483034
+159213,2000,m020,"Newport Shipyard, Newport/RI/East Passage, Narragansett Bay", MIT Sea Grant 2003,"newport shipyard, newport ri",41.4904393,-71.3217185
+159213,2000,m020,"Coasters Harbor, Newport/RI/East Passage, Narragansett Bay", MIT Sea Grant 2003,"coasters harbor, newport ri",41.5089506,-71.3274372
+159213,2010,m020,Fort Adams State Park/Newport/RI/Narragansett Bay, Massachusetts Office of Coastal Zone Management 2013),fort adams state park newport ri,41.4790898,-71.3358244
+159213,2009,m023,"Point Judith Marina, Wakefield/RI/Point Judith Pond", MIT Sea Grant 2011; 2010,"point judith marina, wakefield ri point judith pond",41.3874816,-71.5172653
+159213,1985,m040,"Avery Point, Groton/CT/Fishers Island Sound", 1997 Berger and Whitlach 1997; Osman and Whitlatch 1999; Whitlatch and Osman 2000,"avery point, groton ct fishers island sound",41.3179294,-72.0647414
+159213,2009,m040,"Mystic Marine Fuel, Mystic/CT/Mystic River", MIT Sea Grant 2011,"mystic marine fuel, mystic ct mystic river",41.3510481,-71.9661257
+159213,2019,m040,"Stirling Harbor Shipyard, Greenport, Long Island/NY/Long Island Sound", Pederson et al. 2021,"stirling harbor shipyard, greenport, long island ny long island sound",41.1128896,-72.3587782
+159213,2002,m130,Gloucester Point/VA/York River, empty tunic on fouling plate,gloucester point va york river,37.2568573,-76.4806426
+159213,2007,n195,Martha's Vineyard/MA/Lagoon Pond," 41o27'28.4"" 70o35'11.8""",martha's vineyard ma lagoon pond,41.4516258,-70.5996042
+159213,2008,n195,9 of 24 Martha's Vineyard aquaculture sites/MA/survey of 19 embayments, Carman et al. 2010,9 of 24 martha's vineyard aquaculture sites ma,33.6951047,-117.7959709
+159213,2012-2013,n195,Marthas Vineyard/MA/Stonewall Pond, Colarusso et al. 2016,marthas vineyard ma stonewall pond,41.3273821,-70.7600559

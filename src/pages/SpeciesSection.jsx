@@ -6,6 +6,7 @@ import Papa from "papaparse";
 import MapSection from "../components/MapSection";
 import useFetchObisData from "../dataProcessing/useFetchObisData";
 import useNemesisData from "../dataProcessing/useNemesisData";
+// import useRASData from "../dataProcessing/useRASData";
 import { use } from "react";
 
 export default function SpeciesSection() {
@@ -69,6 +70,11 @@ export default function SpeciesSection() {
 
   console.log("GOT combinedNemesisData", nemesisRegionData);
 
+  // // fetch RAS data
+  // console.log("running useRASData with", selectedSpecies);
+  // const { RASRegionData } =
+  //   useRASData(selectedSpecies);
+
   // extract data from the csv file for regions NA-ET1, Na-ET2, and Na-ET3
   function extractFromRegionsCSV(csvPath, setRegionsData) {
     fetch(csvPath)
@@ -103,16 +109,28 @@ export default function SpeciesSection() {
       : [];
   };
 
+  const checkSameSpecies = (speciesName, selectedSpecies) => {
+    const speciesWords = selectedSpecies.toLowerCase().split(" ");
+    for (const word of speciesWords) {
+      if (!word.includes(".") && !speciesName.toLowerCase().includes(word)) {
+        console.log("CHECK: not the same ", speciesName, selectedSpecies)
+        return false;
+      }
+    }
+
+    console.log("CHECK: same species :) ", speciesName, selectedSpecies)
+    return true;
+  }
+
   // Filter the RAS data based on selectedSpecies name
-  const filterRASBySpecies = (data, selectedGenus, selectedSpecies) => {
+  const filterRASBySpecies = (data, selectedSpecies) => {
     return data.filter(
-      (item) =>
-        item.Species.trim() === selectedSpecies &&
-        item.Genus.trim() === selectedGenus
+      (item) => checkSameSpecies(item.SpeciesName, selectedSpecies)
     );
   };
+  
   const filterRASBySite = (data, siteCodes) => {
-    return data.filter((item) => siteCodes.includes(item["Site Code"]));
+    return data.filter((item) => siteCodes.includes(item["Abbreviation"]));
   };
 
   // function to extract year
@@ -296,10 +314,15 @@ export default function SpeciesSection() {
       // Working with RAS species specific site data //
       // --------------------------------------------//
       // Update species' sites base on RAS data
+      // const filteredRAS = filterRASBySpecies(
+      //   ras2019SurveyData,
+      //   selectedSpecies["RAS Genus Name"],
+      //   selectedSpecies["RAS Species Name"]
+      // )[0];
+
       const filteredRAS = filterRASBySpecies(
         ras2019SurveyData,
-        selectedSpecies["RAS Genus Name"],
-        selectedSpecies["RAS Species Name"]
+        selectedSpecies["Species Name"]
       )[0];
 
       // TODO3 dk if i need a temp?
@@ -331,10 +354,7 @@ export default function SpeciesSection() {
         Array.from(new Set([...prevYears, "2019"]))
           .sort((a, b) => Number(a) - Number(b))
       );
-      // setAllYearRegionMap((prevMap) => ({
-      //   ...prevMap,
-      //   "2019": ["NA-ET3"],
-      // }));
+
       setAllYearRegionMap((prevMap) => ({
         ...prevMap,
         "2019": prevMap["2019"] 
