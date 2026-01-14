@@ -7,9 +7,12 @@ function Map({
   allYears = false,
   currRegions = [],
   pastRegions = [],
+  pastRegionsB = [],
   regionsDetail,
+  regionsDetailB,
   nemesisRegionNames,
   currSites = {},
+  currSitesB = {},
   expandSide = true,
 }) {
   //TODO4 fix the popup for the first year region
@@ -362,15 +365,27 @@ function Map({
     // console.log("graphicsLayerRef:", graphicsLayerRef.current);
     if (graphicsLayerRef.current) {
       graphicsLayerRef.current.removeAll(); // Clear once at the beginning
-
+      const speciesAStyle = "circle";
+      const speciesBStyle = "triangle";
       // Plot nemesisSpecificSites if enabled
+
       if (
         datasetsToShow["nemesisSpecificSites"] === true &&
         currSites["nemesisSpecificSites"]
       ) {
         plotSites(
           { fill: "rgba(147,192,209,1)", outline: "rgba(6,9,14,0.8)" },
-          currSites["nemesisSpecificSites"]
+          currSites["nemesisSpecificSites"], speciesAStyle
+        );
+      }
+
+      if (
+        datasetsToShow["nemesisSpecificSites"] === true &&
+        currSitesB["nemesisSpecificSites"]
+      ) {
+        plotSites(
+          { fill: "rgba(243,163,158,1)", outline: "rgba(6,9,14,0.8)" },
+          currSitesB["nemesisSpecificSites"], speciesBStyle
         );
       }
 
@@ -378,18 +393,32 @@ function Map({
       if (datasetsToShow["rasSites"] === true && currSites["rasSites"]) {
         plotSites(
           { fill: "rgba(245,200,92, 1)", outline: "rgba(6,9,14,0.8)" },
-          currSites["rasSites"]
+          currSites["rasSites"], speciesAStyle
+        );
+      }
+
+      if (datasetsToShow["rasSites"] === true && currSitesB["rasSites"]) {
+        plotSites(
+          { fill: "rgba(245,200,92, 1)", outline: "rgba(6,9,14,0.8)" },
+          currSitesB["rasSites"], speciesBStyle
         );
       }
 
       if (datasetsToShow["obisSites"] === true && currSites["obisSites"]) {
         plotSites(
           { fill: "rgba(121, 209, 168, 1)", outline: "rgba(6,9,14,0.8)" },
-          currSites["obisSites"]
+          currSites["obisSites"], speciesAStyle
+        );
+      }
+
+      if (datasetsToShow["obisSites"] === true && currSitesB["obisSites"]) {
+        plotSites(
+          { fill: "rgba(121, 209, 168, 1)", outline: "rgba(6,9,14,0.8)" },
+          currSitesB["obisSites"], speciesBStyle
         );
       }
     }
-  }, [graphicsLayerRef.current, currSites, datasetsToShow]);
+  }, [graphicsLayerRef.current, currSites, currSitesB, datasetsToShow]);
 
   const createSitePopupTemplate = (siteInfo) => {
     let content = `<p><strong>Record Date:</strong> ${siteInfo["Date"]}</p>`;
@@ -443,7 +472,7 @@ function Map({
    * @param {fill: string, outline: string} colors
    * @param {Array<Object>} currSitesToShow: Array of region objects
    */
-  const plotSites = (colors, currSitesToShow) => {
+  const plotSites = (colors, currSitesToShow, style) => {
     if (graphicsLayerRef.current) {
       if (currSitesToShow.length > 0) {
         loadModules(["esri/Graphic"]).then(([Graphic]) => {
@@ -466,6 +495,7 @@ function Map({
                   },
                   symbol: {
                     type: "simple-marker",
+                    style: style || "circle",
                     color: colors["fill"],
                     size: "7px",
                     outline: { color: colors["outline"], width: 0.6 },

@@ -1,13 +1,15 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "../index.css";
 import OneSpeciesSelection from "./OneSpeciesSelection";
 import MultipleSpeciesSelection from "./MultipleSpeciesSelection";
+import { use } from "react";
 // import ObisApi from "./fetchObisData";
 
 function Sidebar({
   selectedSpeciesInfo,
+  selectedSpeciesBInfo,
   onSpeciesSelect,
-  // onSpeciesSelectB,
+  onSpeciesSelectB,
   showingSpeciesDetail,
   nemesisRegionNames,
   expandSide,
@@ -15,7 +17,8 @@ function Sidebar({
 }) {
   const [selectedTab, setSelectedTab] = useState("oneSpecies");
 
-  console.log("selectedSpeciesInfo", selectedSpeciesInfo);
+  console.log("selectedSpeciesInfo", selectedSpeciesInfo, selectedSpeciesBInfo);
+
   return (
     <div className="z-50 fixed w-fit h-full border-r-2 shadow-md border-primary flex flex-row bg-base-100">
       {/* Collapse sidebar with icons only */}
@@ -72,8 +75,10 @@ function Sidebar({
               <div>
                 <p className="font-bold text-center">Review Multiple Species</p>
                 <MultipleSpeciesSelection
+                selectedSpeciesARegionalInfo={selectedSpeciesInfo}
+                selectedSpeciesBRegionalInfo={selectedSpeciesBInfo}
                 onSpeciesSelect={onSpeciesSelect}
-                // onSpeciesSelectB={onSpeciesSelectB}
+                onSpeciesSelectB={onSpeciesSelectB}
                 showingSpeciesDetail={showingSpeciesDetail} />
               </div>
             )}
