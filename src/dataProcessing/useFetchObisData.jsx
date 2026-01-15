@@ -100,8 +100,9 @@ const filterBySpeciesName = (data, speciesName) => {
  * @param {string} scientificName - The scientific name to search for
  * @returns {Object} - Contains data, loading, and error states
  */
-export default function useFetchObisData(speciesDetail) {
+export default function useFetchObisData(speciesDetail, speciesDetailB) {
   const [combinedOBISData, setCombinedOBISData] = useState({});
+  const [combinedOBISDataB, setCombinedOBISDataB] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -169,6 +170,68 @@ export default function useFetchObisData(speciesDetail) {
     return () => abortController.abort(); // Cleanup on unmount
   }, [speciesDetail]);
 
+  useEffect(() => {
+    // Don't do anything if no scientificName is provided
+    if (!speciesDetailB) {
+      setLoading(false);
+      return;
+    }
+
+    const abortController = new AbortController();
+
+    const fetchAllData = async () => {
+      setLoading(true);
+      setError(null);
+
+      try {
+        // Determine which species set this species belongs to
+        const speciesData = await getOBISSpeciesDesc(speciesDetailB);
+        if (!speciesData) {
+          throw new Error(`Species "${speciesDetailB}" not found in species set data`);
+        }
+
+        const { speciesSet, genus, species } = speciesData;
+        const scientificName = `${genus} ${species}`;
+
+        // Fetch all datasets in parallel
+        const [NAET1Data, NAET2Data, NAET3Data] = await Promise.all([
+          extractFromRegionsCSV(`/OBISFilteredData/NAET1/OBISNAET1Set${speciesSet}Data.csv`).then((data) =>
+            filterBySpeciesName(data, scientificName)
+          ),
+          extractFromRegionsCSV(`/OBISFilteredData/NAET2/OBISNAET2Set${speciesSet}Data.csv`).then((data) =>
+            filterBySpeciesName(data, scientificName)
+          ),
+          extractFromRegionsCSV(`/OBISFilteredData/NAET3/OBISNAET3Set${speciesSet}Data.csv`).then((data) =>
+            filterBySpeciesName(data, scientificName)
+          ),
+        ]);
+
+        console.log("NAET1Data B", NAET1Data, "NAET2Data B", NAET2Data, "NAET3Data B", NAET3Data);
+
+        // Process each dataset
+        const yearRegionMap = processDatasets({
+          "NA-ET1": NAET1Data,
+          "NA-ET2": NAET2Data,
+          "NA-ET3": NAET3Data,
+        });
+
+        setCombinedOBISDataB(yearRegionMap);
+      } catch (err) {
+        if (!abortController.signal.aborted) {
+          setError(err);
+        }
+      } finally {
+        if (!abortController.signal.aborted) {
+          setLoading(false);
+        }
+      }
+    };
+
+    fetchAllData();
+
+    return () => abortController.abort(); // Cleanup on unmount
+  }, [speciesDetailB]);
+
   // Process datasets and create a combined map
   const processDatasets = (datasets) => {
     const combinedYearSiteMap = {};
@@ -235,6 +298,7 @@ export default function useFetchObisData(speciesDetail) {
   };
 
   console.log("DONE! combinedOBISData", combinedOBISData);
+  console.log("DONE! combinedOBISDataB", combinedOBISDataB);
   // const combinedOBISData = combinedOBISData;
-  return { combinedOBISData, loading, error };
+  return { combinedOBISData, combinedOBISDataB, loading, error };
 }

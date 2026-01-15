@@ -6,8 +6,11 @@ function MapSection({
   allYears,
   currSpeciesRegions,
   pastSpeciesRegions,
+  pastSpeciesRegionsB,
   regionsDetail,
+  regionsDetailB,
   currSites,
+  currSitesB,
   speciesYears,
   allYearRegionMap,
   setNewYear,
@@ -15,6 +18,18 @@ function MapSection({
   nemesisRegionNames,
   expandSide,
 }) {
+  console.log("---------------------------");
+  console.log("MapSection allYears", allYears);
+  console.log("MapSection currSpeciesRegions", currSpeciesRegions);
+  console.log("MapSection pastSpeciesRegions", pastSpeciesRegions);
+  console.log("MapSection pastSpeciesRegionsB", pastSpeciesRegionsB);
+  console.log("MapSection regionsDetail", regionsDetail);
+  console.log("MapSection regionsDetailB", regionsDetailB);
+  console.log("MapSection currSites", currSites);
+  console.log("MapSection currSitesB", currSitesB);
+  console.log("MapSection speciesYears", speciesYears);
+  console.log("MapSection allYearRegionMap", allYearRegionMap);
+  console.log("---------------------------");
   // turn set into list
   pastSpeciesRegions = Array.from(pastSpeciesRegions);
 
@@ -24,9 +39,12 @@ function MapSection({
         allYears={allYears}
         currRegions={currSpeciesRegions}
         pastRegions={pastSpeciesRegions}
+        pastRegionsB={pastSpeciesRegionsB}
+        regionsDetailB={regionsDetailB}
         regionsDetail={regionsDetail}
         nemesisRegionNames={nemesisRegionNames}
         currSites={currSites}
+        currSitesB={currSitesB}
         expandSide={expandSide}
       />
       {showTimeline && (

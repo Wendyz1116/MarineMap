@@ -1,9 +1,14 @@
 import React, { useEffect, useState } from "react";
 import Papa from "papaparse";
+import CollapsibleSection from "./CollapsibleSection";
+
+import { use } from "react";
 
 function MultipleSpeciesSelection({
+    selectedSpeciesARegionalInfo,
+    selectedSpeciesBRegionalInfo,
     onSpeciesSelect,
-    // onSpeciesSelectB,
+    onSpeciesSelectB,
     showingSpeciesDetail
   }) {
   const [speciesData, setSpeciesData] = useState([]);
@@ -11,6 +16,10 @@ function MultipleSpeciesSelection({
   const [selectedSpeciesB, setSelectedSpeciesB] = useState(null);
   const [isSidebarVisible, setIsSidebarVisible] = useState(false); // Track sidebar visibility
   const [showSpeciesDetail, setShowSpeciesDetail] = useState(false); // Track sidebar visibility
+  const [speciesFormatedRegionalInfoA, setSpeciesFormatedRegionalInfoA] =
+    useState("");
+  const [speciesFormatedRegionalInfoB, setSpeciesFormatedRegionalInfoB] =
+    useState("");
 
   const [nemesisLinkA, setNemesisLinkA] = useState("");
   const [nemesisLinkB, setNemesisLinkB] = useState("");
@@ -23,6 +32,62 @@ function MultipleSpeciesSelection({
   const handleSpeciesBChange = (event) => {
     setSelectedSpeciesB(event.target.value);
   };
+
+  console.log("selectedSpeciesARegionalInfo", selectedSpeciesARegionalInfo);
+  console.log("selectedSpeciesBRegionalInfo", selectedSpeciesBRegionalInfo);
+
+  useEffect(() => {
+    // console.log("selectedSpeciesRegionalInfo updated:");
+    console.log("updating multiple species regional info: ", selectedSpeciesARegionalInfo, selectedSpeciesBRegionalInfo);
+    if (selectedSpeciesARegionalInfo && selectedSpeciesBRegionalInfo) {
+      console.log("selectedSpeciesARegionalInfo", selectedSpeciesARegionalInfo);
+      console.log("selectedSpeciesBRegionalInfo", selectedSpeciesBRegionalInfo);
+      let bodyA = Object.entries(selectedSpeciesARegionalInfo).map(
+        ([region, details]) => {
+          const { Year, Vectors, ...rest } = details;
+          return (
+            <div key={region} className="py-1">
+              <span className="font-bold">
+                {region} ({Year}):
+              </span>
+              <br />
+              <span className="font-semibold"> Invasion Status: </span>{" "}
+              {rest["Invasion Status"]}
+              <br />
+              <span className="font-semibold"> Population Status: </span>{" "}
+              {rest["Population Status"]}
+              <br />
+              <span className="font-semibold"> Vectors: </span> {Vectors}
+            </div>
+          );
+        }
+      );
+      setSpeciesFormatedRegionalInfoA(bodyA);
+
+      let bodyB = Object.entries(selectedSpeciesBRegionalInfo).map(
+        ([region, details]) => {
+          const { Year, Vectors, ...rest } = details;
+          return (
+            <div key={region} className="py-1">
+              <span className="font-bold">
+                {region} ({Year}):
+              </span>
+              <br />
+              <span className="font-semibold"> Invasion Status: </span>{" "}
+              {rest["Invasion Status"]}
+              <br />
+              <span className="font-semibold"> Population Status: </span>{" "}
+              {rest["Population Status"]}
+              <br />
+              <span className="font-semibold"> Vectors: </span> {Vectors}
+            </div>
+          );
+        }
+      );
+
+      setSpeciesFormatedRegionalInfoB(bodyB);
+    }
+  }, [selectedSpeciesARegionalInfo, selectedSpeciesBRegionalInfo]);
 
   const handleButtonClick = () => {
     if (selectedSpeciesAInfo && selectedSpeciesBInfo) {
@@ -37,7 +102,7 @@ function MultipleSpeciesSelection({
           target="_blank"
           rel="noopener noreferrer"
         >
-          Nemesis page
+          Nemesis page ({selectedSpeciesAInfo["Species Name"]})
         </a>
       );
       setNemesisLinkB(
@@ -49,11 +114,11 @@ function MultipleSpeciesSelection({
           target="_blank"
           rel="noopener noreferrer"
         >
-          Nemesis page
+          Nemesis page ({selectedSpeciesBInfo["Species Name"]})
         </a>
       );
       onSpeciesSelect(selectedSpeciesAInfo); //set to species id
-      // onSpeciesSelectB(selectedSpeciesBInfo); //set to species id
+      onSpeciesSelectB(selectedSpeciesBInfo); //set to species id
 
       setIsSidebarVisible(true); // Show sidebar when a species is selected
       setShowSpeciesDetail(true); // Populate sidebar with species' detail when a species is selected
@@ -171,6 +236,22 @@ function MultipleSpeciesSelection({
           </div>
 
           {/* Add more species details */}
+          <CollapsibleSection
+            title={`First records for ${selectedSpeciesAInfo["Species Name"]}:`}
+            body={speciesFormatedRegionalInfoA}
+          />
+          <CollapsibleSection
+            title={`First records for ${selectedSpeciesBInfo["Species Name"]}:`}
+            body={speciesFormatedRegionalInfoB}
+          />
+          {/* <CollapsibleSection title="Classification:" body="Classification" /> */}
+          <CollapsibleSection
+            title="More details:"
+            body={
+              <div><p>{nemesisLinkA}</p> <p>{nemesisLinkB}</p></div>
+            }
+            bodyStyle="text-primary"
+          />
           <button
             className="mt-4 btn btn-sm btn-secondary"
             onClick={() => setIsSidebarVisible(false)} // Close the sidebar
