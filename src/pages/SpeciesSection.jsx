@@ -896,6 +896,25 @@ export default function SpeciesSection() {
         nemesisRegionNames={nemesisRegionMap}
         expandSide={expandSide}
         setExpandSide={setExpandSide}
+        resetStates={() => {
+          setAllYearRegionDetail({});
+          setAllYearRegionDetailB({});
+          setCurrYearDetail([]);
+          setCurrYearDetailB([]);
+          setAllYearRegionMap({});
+          setAllYearRegionMapB({});
+          setRegionYearMap({
+            "NA-ET1": [],
+            "NA-ET2": [],
+            "NA-ET3": [],
+          });
+          setAllYearNemesisSiteData([]);
+          setAllYearNemesisSiteDataB([]);
+          setSpeciesYears([]);
+          setNewYear(null);
+          setAllYears(false);
+          setShowingSpeciesDetail(false);
+        }}
       />
       <MapSection
         allYears={allYears}

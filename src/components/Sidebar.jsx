@@ -14,6 +14,7 @@ function Sidebar({
   nemesisRegionNames,
   expandSide,
   setExpandSide,
+  resetStates,
 }) {
   const [selectedTab, setSelectedTab] = useState("oneSpecies");
 
@@ -30,6 +31,9 @@ function Sidebar({
           onClick={() => {
             setSelectedTab("oneSpecies");
             setExpandSide(true);
+            onSpeciesSelect(null);
+            onSpeciesSelectB(null);
+            resetStates();
           }}
         >
           S
@@ -42,6 +46,8 @@ function Sidebar({
             setSelectedTab("multipleSpecies");
             setExpandSide(true);
             onSpeciesSelect(null);
+            onSpeciesSelectB(null);
+            resetStates();
           }}
         >
           M
@@ -56,6 +62,8 @@ function Sidebar({
             onClick={() => {
               setExpandSide(false);
               onSpeciesSelect(null);
+              onSpeciesSelectB(null);
+              resetStates();
             }}
           >
             ✕

@@ -254,7 +254,15 @@ function MultipleSpeciesSelection({
           />
           <button
             className="mt-4 btn btn-sm btn-secondary"
-            onClick={() => setIsSidebarVisible(false)} // Close the sidebar
+            onClick={() => {
+              setIsSidebarVisible(false)
+              setShowSpeciesDetail(false);
+              showingSpeciesDetail(false);
+              onSpeciesSelect(null);
+              onSpeciesSelectB(null);
+              setSelectedSpeciesA(null);
+              setSelectedSpeciesB(null);   // clear this component's selection
+            }} // Close the sidebar
           >
             Review new species
           </button>

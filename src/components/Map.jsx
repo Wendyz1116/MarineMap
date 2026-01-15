@@ -307,7 +307,16 @@ function Map({
 
   // Update map with currRegions and pastRegions
   useEffect(() => {
-    if (currRegions.length === 0 && pastRegions.length === 0) return;
+    if (currRegions.length === 0 && pastRegions.length === 0) {
+      if (geoJsonLayerRef.current) {
+        geoJsonLayerRef.current.renderer = {
+          type: "unique-value",
+          field: "REG_NEWREG",
+          uniqueValueInfos: [],
+        };
+      }
+      return;
+    };
     let currRegionsToShow = [];
     if (datasetsToShow["currentRegions"] === true) {
       currRegionsToShow = currRegions;
