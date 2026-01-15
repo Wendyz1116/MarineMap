@@ -6,23 +6,6 @@ import Papa from "papaparse";
  */
 let speciesSetCache = null;
 
-
-// Filter the RAS data based on selectedSpecies name
-const filterRASBySpecies = (data, selectedGenus, selectedSpecies) => {
-    if ("Species" in data && "Genus" in data) {
-        return data.filter(
-        (item) =>
-        item.Species.trim() === selectedSpecies &&
-        item.Genus.trim() === selectedGenus
-        );
-    }
-    
-};
-
-const filterRASBySite = (data, siteCodes) => {
-    return data.filter((item) => siteCodes.includes(item["Site Code"]));
-};
-
 async function extractFromRegionsCSV(csvPath) {
   const response = await fetch(csvPath);
   const csvData = await response.text();
@@ -37,6 +20,7 @@ async function extractFromRegionsCSV(csvPath) {
   });
 }
 
+// from wide to long format
 const melt = (data, idVars, valueVars) => {
   return data.flatMap(row => 
     valueVars.map(variable => ({
@@ -47,34 +31,42 @@ const melt = (data, idVars, valueVars) => {
   );
 };
 
+// get long and lat from ras site info
 const getLngLat = (siteData, siteAbbr) => {
   const targetSite = siteData.find(record => record.Abbreviation === siteAbbr);
   try {
-    return [targetSite.Longitude, targetSite.Latitude] 
+    return [targetSite.Longitude, targetSite.Latitude, targetSite["Site Name"]] 
   } catch {
-    return [null, null]
+    return [null, null, null]
   }
   
 }
 
 async function extractFromFileNames(fileNames) {
+  // get data from CSV files
   const [rasSiteLocData, speciesRASData] = await Promise.all(
-  [extractFromRegionsCSV(fileNames[1]), extractFromRegionsCSV(fileNames[0])]);
-  console.log("GURT EXTRACTED", speciesRASData);
-  const meltSpeciesRASData = melt(speciesRASData, ["SpeciesName"], rasSiteLocData.map(site => site.Abbreviation))
-  console.log("GURT MELT", meltSpeciesRASData)
+    [extractFromRegionsCSV(fileNames[1]), 
+    extractFromRegionsCSV(fileNames[0])]
+  );
+
+  // convert species data to long format
+  const meltSpeciesRASData = melt(
+    speciesRASData, 
+    ["SpeciesName"], 
+    rasSiteLocData.map(site => site.Abbreviation)
+  )
   const filteredSpeciesRASData = meltSpeciesRASData.filter(
     (record) => record.value.includes('x')
   )
-  console.log("GURT FILTERED", filteredSpeciesRASData)
 
+  // add coords and location to record based on site location data
   const speciesRASDataLngLat = filteredSpeciesRASData.map(record => ({
     ...record,
     Longitude: getLngLat(rasSiteLocData, record.variable)[0],
-    Latitude: getLngLat(rasSiteLocData, record.variable)[1]
+    Latitude: getLngLat(rasSiteLocData, record.variable)[1],
+    SiteLocation: getLngLat(rasSiteLocData, record.variable)[2]
   }))
-  console.log("GURT latlonged", speciesRASDataLngLat)
-  return filteredSpeciesRASData
+  return speciesRASDataLngLat
 }
 
 export default function useRASData(speciesDetail) {
@@ -84,7 +76,6 @@ export default function useRASData(speciesDetail) {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    console.log("HELLO")
     // Don't do anything if no scientificName is provided
     if (!speciesDetail) {
       setLoading(false);
@@ -95,7 +86,7 @@ export default function useRASData(speciesDetail) {
 
     const getRASData = () => {
       return new Promise((resolve, reject) => {
-        Papa.parse("/public/RAS data/rasSourceInfo.csv", {
+        Papa.parse("/RAS data/rasSourceInfo.csv", {
           download: true,
           header: true,
           skipEmptyLines: true,
@@ -110,26 +101,27 @@ export default function useRASData(speciesDetail) {
       setError(null);
 
       const RASdata = await getRASData();
-      console.log("GURT", RASdata);
+      const regionData = { "NA-ET1": [], "NA-ET2": [], "NA-ET3": [] };
 
-      const years = RASdata
-        .map(row => parseInt(row.Year))
-        .filter(year => !isNaN(year));
-
-      console.log("GURT YEARS", years);
-      const surveyFiles = Array.from(years, year => 
-        [`public/RAS data/ras${year}Survey.csv`, `public/RAS data/ras${year}Sites.csv`]);
-      console.log("GURT FILES", surveyFiles);
-      
-      const regionData = {}
-      
       await Promise.all(
-        surveyFiles.map(async (fileNames) => {
-          console.log("GURT LOOP")
+        RASdata.map(async (record) => {
+          const fileNames = [
+            `/RAS data/ras${record.Year}Survey.csv`, 
+            `/RAS data/ras${record.Year}Sites.csv`
+          ];
 
-          const filteredRASSite = await extractFromFileNames(fileNames)
+          const filteredRASSite = await extractFromFileNames(fileNames);
+          
+          // add info columns
+          const RASSiteInfo = filteredRASSite.map((data) => ({
+              ...data,
+              Location: record.Location.trim(),
+              Date: record.Year.trim(),
+              Source: record.Source.trim()
+            })
+          );
 
-          console.log("GURT filtered", filteredRASSite)
+          regionData[record.Location.trim()].push(...RASSiteInfo);
         })
       );
 
