@@ -1,0 +1,54 @@
+SpeciesName,BFM,PHM,WHM,UNH,HSP,HCM,ROW,GHM,SWM,WHC,MBL,MMA,POP,TRM,PEW,ALM,FAD,PTJ
+Chlorophyta (green algae),,,,,,,,,,,,,,,,,,
+Codium fragile  subsp. fragile  (dead man's fingers),,,,,,x,,,,x,,x,x,x,,x,x,x
+Heterokontophyta (brown algae),,,,,,,,,,,,,,,,,,
+Colpomenia peregrina  (sea potato),,,,,,,,,x,,,,,,,,,
+Melanosiphon intestinalis  (dark sea tubes),,,x,,,,,,,,,,,,,,,
+Rhodophyta (red algae),,,,,,,,,,,,,,,,,,
+Bonnemaisonia hamifera  (hooked red weed),,,x,,,,,,,,,,,x,,,,
+Gracilaria vermiculophylla  (wormleaf),,,,,,,,,,,,,x,,x,x,,
+Grateloupia turuturu  (Devil's tongue weed),,,,,,,x,,x,x,,x,x,x,,x,x,x
+Heterosiphonia japonica  (siphoned feather weed),,,,x,,,,,,,,x,,x,,,x,
+Lomentaria clavellosa  (club bead-weed),,,,,x,x,,,x,,,,,x,,,x,
+Lomentaria orcadensis  (Orkney weed),,,,,,,,,x,,,,,,,,,
+Neosiphonia harveyi  (doughball weed),x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x
+Pyropia yezoensis  (open sea nori),,,,,,x,,,,,,,,,,,,x
+Annelida (ringed worms),,,,,,,,,,,,,,,,,,
+Neodexiospira brasiliensis  (Brazilian spiral tubeworm),,,,,,,,,,,,,,x,,,x,x
+"Arthropoda (crabs, shrimp, and relatives)",,,,,,,,,,,,,,,,,,
+*Amphibalanus amphitrite (striped barnacle),,,,,,,,,,,,,x,,,,,
+Caprella mutica  (Japanese skeleton shrimp),x,x,x,x,x,x,x,x,x,x,x,x,x,x,,x,x,x
+Carcinus maenas  (European green crab),x,x,x,x,x,x,x,x,x,x,,x,x,x,,x,x,x
+Hemigrapsus sanguineus  (Asian shore crab),x,,x,,x,x,x,x,x,x,x,x,x,x,x,x,x,x
+Ianiropsis serricaudis  (isopod),,,,,x,x,x,x,x,x,x,x,x,x,,,x,x
+*Melita palmata  (palmed gammarid),,,,,,,x,,,,,,,,,,,
+Microdeutopus gryllotalpa  (tube builder),x,,,x,,,,,,,x,,,x,,,,
+Palaemon elegans  (European rock pool shrimp),,x,x,,x,x,,x,x,,,,,,,,,
+*Palaemon floridanus (Florida grass shrimp),,,,,,,,,,x,,,,,,,,
+Palaemon macrodactylus  (oriental grass prawn),,,,,,,,,,,,,,,,,x,
+Praunus flexuosus  (bent opossum shrimp),x,x,x,,x,x,,x,x,,,,,,,,,
+*Stenothoe valida  (gammarid amphipod),x,,x,x,,,,,,,,,,x,,,,
+Bryozoa (bryozoans),,,,,,,,,,,,,,,,,,
+Bugula neritina  (purple bugula),,,,,,x,x,,,x,x,,x,,,,x,x
+Bugula simplex  (fan bugula),x,,,x,x,x,x,x,x,x,x,x,x,,,x,x,x
+Bugula stolonifera  (stoloned bugula),x,,,,,,,,,,,,,,,,,x
+Conopeum seurati  (encrusting bryozoan),,,,,,,x,,,,,,,,,,,
+Membranipora membranacea  (lacy crust bryozoan),,x,x,x,x,,x,,x,,,,x,,,,,
+Tricellaria inopinata  (unexpected bryozoan),,,,,x,x,x,x,x,x,x,x,,,,,x,
+Chordata (tunicates and vertebrates),,,,,,,,,,,,,,,,,,
+Ascidiella aspersa  (European tunicate),x,x,,,,x,x,x,x,x,x,x,x,,,,x,x
+Botrylloides violaceus  (sheath tunicate),x,x,x,x,x,x,x,x,x,x,x,x,x,x,,x,x,x
+Botryllus schlosseri  (star tunicate),x,x,x,x,x,x,x,x,x,x,x,x,x,x,,x,x,x
+Botryllus  sp. (colonial tunicate),,,,,,,x,x,,x,x,x,x,,,x,,
+Didemnum vexillum  (pancake batter tunicate),x,,x,x,,x,x,x,x,x,x,x,,x,,,x,x
+Diplosoma listerianum  (gelatinous tunicate),x,x,x,x,x,x,x,x,x,x,x,x,x,,,x,x,x
+Styela canopus  (rough tunicate),,,,,,,,,,x,,x,,x,,,x,x
+Styela clava  (club tunicate),,x,,,,x,x,x,x,x,x,x,x,x,,x,x,x
+"Cnidaria (anemones, hydroids, and relatives)",,,,,,,,,,,,,,,,,,
+Aiptasiogeton eruptaurantia  (pink-spotted sea anemone),,,,,,,,,,,,,,,,,,x
+*Clytia linearis  (hydroid),,,,,,x,,x,x,x,x,x,x,x,x,x,x,
+Diadumene lineata  (orange striped anemone),,x,,,,x,x,x,x,,,x,x,x,x,x,x,x
+Hydrodendron  sp. (hydroid),,,,,,,,,,,,,x,,,,,
+Mollusca (snails and bivalves),,,,,,,,,,,,,,,,,,
+Littorina littorea  (common periwinkle),x,,,x,x,,x,,,,,,,,,,,
+Ostrea edulis  (European oyster),x,x,x,x,x,x,x,x,,,,,x,,,,x,

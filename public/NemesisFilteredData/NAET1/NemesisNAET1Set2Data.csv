@@ -1,50 +1,50 @@
-SpeciesID,Date,RegionID,RegionName,Source(s),Site Location,Latitude,Longitude,Site Location,Latitude,Longitude,Site Location,Latitude,Longitude
-98734,1960,na-et1,Lockeport/Nova Scotia/Atlantic Ocean, Audet et al. 2003,lockeport,43.7028634,-65.1176361
-98734,1966,na-et1,Halifax/Nova Scotia/Atlantic Ocean, Introduced,halifax,41.9873595,-70.8593605
-98734,Unknown Date,na-et1,Tor Bay/Nova Scotia/Atlantic Ocean,Audet et al. 2003,tor bay,45.1988234,-61.3664059
-98734,1991,na-et1,Cape Breton/Nova Scotia/Strait of Canso, introduced,strait of canso,45.5972214,-61.377222
-98734,Unknown Date,na-et1,Nova Scotia/Bras d'Or Lakes,Cameron 2005,bras d'or lakes,46.0813907,-60.819125
-98734,2008,na-et1,Sydney/Nova Scotia/Atlantic Ocean, Choi et al. 2016,sydney,42.3624704,-71.0967296
-98734,2010,na-et1,Burnt Island/Newfoundland/Cabot Strait, Fisheries and Oceans Canada 2011,cabot strait,47.2333324,-59.716667
+SpeciesID,Date,RegionID,RegionName,Source(s),Site Location,Latitude,Longitude
+98734,1960,na-et1,Lockeport/Nova Scotia/Atlantic Ocean, Audet et al. 2003,lockeport nova scotia,43.7028634,-65.1176361
+98734,1966,na-et1,Halifax/Nova Scotia/Atlantic Ocean, Introduced,halifax nova scotia,44.646189,-63.6328975
+98734,Unknown Date,na-et1,Tor Bay/Nova Scotia/Atlantic Ocean,Audet et al. 2003,tor bay nova scotia,45.1988234,-61.3664059
+98734,1991,na-et1,Cape Breton/Nova Scotia/Strait of Canso, introduced,cape breton nova scotia,46.2950631,-60.6701976
+98734,Unknown Date,na-et1,Nova Scotia/Bras d'Or Lakes,Cameron 2005,nova scotia,45.3077481,-63.028289
+98734,2008,na-et1,Sydney/Nova Scotia/Atlantic Ocean, Choi et al. 2016,sydney nova scotia,46.1443834,-60.2323708
+98734,2010,na-et1,Burnt Island/Newfoundland/Cabot Strait, Fisheries and Oceans Canada 2011,burnt island newfoundland,47.61231,-58.8651271
 98734,2007,na-et1,Newfoundland/Placentia Bay, Canadian Broadcasting Company News 2007; Best et al. 2017,newfoundland,53.494364,-60.2205257
-98734,2007,na-et1,Come by Chance Harbour/Newfoundland/Placentia Bay, Blakeslee et al. 2010,come by chance harbour,47.835385,-53.9966274
-98734,2007,na-et1,North Harbour/Newfoundland/Placentia Bay, Blakeslee et al. 2010,north harbour,42.3624704,-71.0967296
-98734,2010,na-et1,Fox Harbour/Newfoundland/Placentia Bay, Fisheries and Oceans Canada 2011,fox harbour,42.3624704,-71.0967296,fox harbour,45.8681,-63.4538864
-98734,2010,na-et1,Spanish Room/Newfoundland/Placentia Bay, Fisheries and Oceans 2011,spanish room,47.1999995,-55.083333,spanish room,42.3624704,-71.0967296
-98734,Unknown Date,na-et1,Petty Harbour/Newfoundland/Atlantic Ocean,Matheson and Gagnon 2012,petty harbour,47.4709698,-52.7060065,petty harbour,47.4709698,-52.7060065
-159099,2012,na-et1,Lunenburg/Nova Scotia/Mahone Bay, Moore et al. 2014,lunenburg,42.58733,-71.7201781,lunenburg,42.58733,-71.7201781
-159337,2012,na-et1,Pirate Harbour/Nova Scotia/Canso Canal, Moore et al. 2014,canso canal,45.6482541,-61.4139015,canso canal,45.6482541,-61.4139015
-159337,2013,na-et1,Venus Harbour/Nova Scotia/Canso Canal, Moore et al. 2014,canso canal,45.6482541,-61.4139015,canso canal,45.6482541,-61.4139015
-159337,2012,na-et1,Halifax/Nova Scotia/Halifax Harbour, Moore et al. 2014,halifax harbour,44.6543502,-63.565801,halifax harbour,42.3624704,-71.0967296
-159337,2012,na-et1,Lunenburg/Nova Scotia/Mahone Bay, Moore et al. 2014,lunenburg,42.58733,-71.7201781,lunenburg,42.58733,-71.7201781
--100,2007,na-et1,Belleoram/Newfoundland/Fortune Bay, Callahan et al. 2010,belleoram,42.3515117,-71.109201,belleoram,47.5251118,-55.4160824
--100,Unknown Date,na-et1,"South Bar, Cape Breton Island/Nova Scotia/Great Bras d'Or Bay",Bock et al. 2011,"south bar, cape breton island",46.201326,-60.1770685,"south bar, cape breton island",46.201326,-60.1770685
--100,Unknown Date,na-et1,Chester/Nova Scotia/Atlantic Ocean,Bock et al. 2011,chester,42.970641,-71.2394295
--100,Unknown Date,na-et1,Lunenburg/Nova Scotia/Atlantic Ocean,Locke et al. 2007,lunenburg,42.58733,-71.7201781
--100,2006,na-et1,Petit de Grat/Nova Scotia/Chedebucto Bay, Sephton et al. 2011,petit de grat,45.5056675,-60.9568269
--100,Unknown Date,na-et1,Lockeport/Nova Scotia/Lockeport Harbour,Bock et al. 2011,lockeport harbour,43.6722386,-65.1177156
--100,Unknown Date,na-et1,Port l'Hebert/Nova Scotia/Port Herbert River,Wong and Vercaemer 2012,port herbert river,-18.1687739,145.7373394
--100,2008,na-et1,Point Tupper/Nova Scotia/Gut of Canso, Lacoursiere-Roussel et al. 2016,gut of canso,45.5972214,-61.377222
--100,2006,na-et1,Big Bras d'Or/Nova Scotia/Bras d'Or Lake, Sephton et al. 2006,bras d'or lake,46.0000401,-60.7269237
--100,2008,na-et1,Shelburne/Nova Scotia/Atlantic Ocean, Lacoursiere-Roussel et l. 2016,shelburne,42.3624704,-71.0967296
-159373,2008,na-et1,Hermitage/Newfoundland/Atlantic Ocean, Callahan et al. 2010,hermitage,41.2293495,-80.4526341
-159373,2010,na-et1,Baine Harbour/Newfoundland/Placentia Bay, Fisheries and Oceans Canada 2011,baine harbour,47.3627122,-54.8917995
-159373,2008,na-et1,North Harbour/Newfoundland/Placentia Bay, Callahan et al. 2010,north harbour,42.3624704,-71.0967296
-159373,2008,na-et1,Arnold's Cove/Newfoundland/Placentia Bay, Callahan et al. 2010,arnold's cove,47.7679723,-53.9936682
-159373,2008,na-et1,Argentia/Newfoundland/Placentia Bay, Callahan et al. 2010; Ma et al. 2011,argentia,47.3020515,-53.986824
-159373,2011,na-et1,Foxtrap/Newfoundland/Conception Bay, McKenzie et al. 2016,foxtrap,42.3624704,-71.0967296
-159373,2012,na-et1,Long Pond/Newfoundland/Conception Bay, McKenzie et al. 2016,long pond,42.4496082,-71.1256619
-159373,2007,na-et1,"Sydney, Cape Breton Island/Nova Scotia", Sephton et al. 2011; Yund et al. 2015,nova scotia,45.3077481,-63.028289
-159373,Clade A,na-et1,"Louisbourg, Cape Breton Island/Nova Scotia/Atlantic Ocean", Bock et al. 2012; Yund et al. 2015,"louisbourg, cape breton island",45.9398239,-59.9608135
-159373,Unknown Date,na-et1,Cape Breton Island/Nova Scotia/Bras d'Or Lakes,Locke et al. 2007,bras d'or lakes,42.3624704,-71.0967296
-159373,Clade A,na-et1,"St. Peters, Cape Breton Island/Nova Scotia/Atlantic Ocean", Bock et al. 2012,"st. peters, cape breton island",45.6604304,-60.894402
-159373,2006,na-et1,Arichat/Nova Scotia/Strait of Canso, Sephton et al. 2011,strait of canso,45.5972214,-61.377222
-159373,2006,na-et1,Nyanza/Nova Scotia/Bras d'Or Lakes, Sephton et al. 2011,bras d'or lakes,46.0813907,-60.819125
-159373,2006,na-et1,Canso/Nova Scotia/Atlantic Ocean, Sephton et al. 2011,canso,42.3624704,-71.0967296
-159373,2006,na-et1,Port Bickerton East/Nova Scotia/Atlantic Ocean, Sephton et al. 2011,port bickerton east,45.0990357,-61.7311975
-159373,2008,na-et1,Halifax/Nova Scotia/Halifax Harbour, Lacoursiere-Roussel et al. 2016,halifax harbour,42.3624704,-71.0967296
-159373,Unknown Date,na-et1,"Lunenburg/Nova Scotia/Mahone Bay, Atlantic Ocean",Locke et al. 2007; Yund et al. 2015,lunenburg,42.58733,-71.7201781
-159373,Unknown Date,na-et1,Port l'Hebert/Nova Scotia/Port Herbert River,Wong and Vercaemer 2012,port herbert river,-18.1687739,145.7373394
-159373,Unknown Date,na-et1,Shelburne/Nova Scotia/Atlantic Ocean,Yund et al. 2015; Lacoursiere-Roussel et al. 2016,shelburne,42.3624704,-71.0967296
-159373,Unknown Date,na-et1,Ingomar/Nova Scotia/Atlantic Ocean,Clade A Bock et al. 2012; Yund et al. 2015,ingomar,39.7531699,-96.0237027
-159213,2012,na-et1,Lunenburg/Nova Scotia/Mahone Bay, Moore et al. 2014,lunenburg,42.3624704,-71.0967296
+98734,2007,na-et1,Come by Chance Harbour/Newfoundland/Placentia Bay, Blakeslee et al. 2010,come by chance harbour newfoundland,47.835385,-53.9966274
+98734,2007,na-et1,North Harbour/Newfoundland/Placentia Bay, Blakeslee et al. 2010,north harbour newfoundland,47.1518153,-53.663336
+98734,2010,na-et1,Fox Harbour/Newfoundland/Placentia Bay, Fisheries and Oceans Canada 2011,fox harbour newfoundland,47.3190514,-53.888591
+98734,2010,na-et1,Spanish Room/Newfoundland/Placentia Bay, Fisheries and Oceans 2011,spanish room newfoundland,47.1999995,-55.083333
+98734,Unknown Date,na-et1,Petty Harbour/Newfoundland/Atlantic Ocean,Matheson and Gagnon 2012,petty harbour newfoundland,47.4709698,-52.7060065
+159099,2012,na-et1,Lunenburg/Nova Scotia/Mahone Bay, Moore et al. 2014,lunenburg nova scotia,44.3758988,-64.3172311
+159337,2012,na-et1,Pirate Harbour/Nova Scotia/Canso Canal, Moore et al. 2014,pirate harbour nova scotia,45.5832565,-61.384313
+159337,2013,na-et1,Venus Harbour/Nova Scotia/Canso Canal, Moore et al. 2014,venus harbour nova scotia,33.6953344,-117.7944064
+159337,2012,na-et1,Halifax/Nova Scotia/Halifax Harbour, Moore et al. 2014,halifax nova scotia,44.646189,-63.6328975
+159337,2012,na-et1,Lunenburg/Nova Scotia/Mahone Bay, Moore et al. 2014,lunenburg nova scotia,44.3758988,-64.3172311
+-100,2007,na-et1,Belleoram/Newfoundland/Fortune Bay, Callahan et al. 2010,belleoram newfoundland,47.5251118,-55.4160824
+-100,Unknown Date,na-et1,"South Bar, Cape Breton Island/Nova Scotia/Great Bras d'Or Bay",Bock et al. 2011,"south bar, cape breton island nova scotia",46.201326,-60.1770685
+-100,Unknown Date,na-et1,Chester/Nova Scotia/Atlantic Ocean,Bock et al. 2011,chester nova scotia,44.5440247,-64.236794
+-100,Unknown Date,na-et1,Lunenburg/Nova Scotia/Atlantic Ocean,Locke et al. 2007,lunenburg nova scotia,44.3758988,-64.3172311
+-100,2006,na-et1,Petit de Grat/Nova Scotia/Chedebucto Bay, Sephton et al. 2011,petit de grat nova scotia,45.5056675,-60.9568269
+-100,Unknown Date,na-et1,Lockeport/Nova Scotia/Lockeport Harbour,Bock et al. 2011,lockeport nova scotia,43.7028634,-65.1176361
+-100,Unknown Date,na-et1,Port l'Hebert/Nova Scotia/Port Herbert River,Wong and Vercaemer 2012,port l'hebert nova scotia,43.8017505,-64.932292
+-100,2008,na-et1,Point Tupper/Nova Scotia/Gut of Canso, Lacoursiere-Roussel et al. 2016,point tupper nova scotia,45.6056955,-61.353417
+-100,2006,na-et1,Big Bras d'Or/Nova Scotia/Bras d'Or Lake, Sephton et al. 2006,big bras d'or nova scotia,46.2666664,-60.433333
+-100,2008,na-et1,Shelburne/Nova Scotia/Atlantic Ocean, Lacoursiere-Roussel et l. 2016,shelburne nova scotia,43.768925,-65.3203695
+159373,2008,na-et1,Hermitage/Newfoundland/Atlantic Ocean, Callahan et al. 2010,hermitage newfoundland,47.542708,-55.9221586
+159373,2010,na-et1,Baine Harbour/Newfoundland/Placentia Bay, Fisheries and Oceans Canada 2011,baine harbour newfoundland,47.3627122,-54.8917995
+159373,2008,na-et1,North Harbour/Newfoundland/Placentia Bay, Callahan et al. 2010,north harbour newfoundland,47.1518153,-53.663336
+159373,2008,na-et1,Arnold's Cove/Newfoundland/Placentia Bay, Callahan et al. 2010,arnold's cove newfoundland,47.7679723,-53.9936682
+159373,2008,na-et1,Argentia/Newfoundland/Placentia Bay, Callahan et al. 2010; Ma et al. 2011,argentia newfoundland,47.3020515,-53.986824
+159373,2011,na-et1,Foxtrap/Newfoundland/Conception Bay, McKenzie et al. 2016,foxtrap newfoundland,47.5075715,-52.9767379
+159373,2012,na-et1,Long Pond/Newfoundland/Conception Bay, McKenzie et al. 2016,long pond newfoundland,47.5780744,-52.7329725
+159373,2007,na-et1,"Sydney, Cape Breton Island/Nova Scotia", Sephton et al. 2011; Yund et al. 2015,"sydney, cape breton island",46.1426364,-60.1792627
+159373,Clade A,na-et1,"Louisbourg, Cape Breton Island/Nova Scotia/Atlantic Ocean", Bock et al. 2012; Yund et al. 2015,"louisbourg, cape breton island nova scotia",45.9398239,-59.9608135
+159373,Unknown Date,na-et1,Cape Breton Island/Nova Scotia/Bras d'Or Lakes,Locke et al. 2007,cape breton island nova scotia,46.2950631,-60.6701976
+159373,Clade A,na-et1,"St. Peters, Cape Breton Island/Nova Scotia/Atlantic Ocean", Bock et al. 2012,"st. peters, cape breton island nova scotia",45.6604304,-60.894402
+159373,2006,na-et1,Arichat/Nova Scotia/Strait of Canso, Sephton et al. 2011,arichat nova scotia,45.5124454,-61.0182874
+159373,2006,na-et1,Nyanza/Nova Scotia/Bras d'Or Lakes, Sephton et al. 2011,nyanza nova scotia,46.0902504,-60.8907981
+159373,2006,na-et1,Canso/Nova Scotia/Atlantic Ocean, Sephton et al. 2011,canso nova scotia,45.3359529,-60.9789798
+159373,2006,na-et1,Port Bickerton East/Nova Scotia/Atlantic Ocean, Sephton et al. 2011,port bickerton east nova scotia,45.0990357,-61.7311975
+159373,2008,na-et1,Halifax/Nova Scotia/Halifax Harbour, Lacoursiere-Roussel et al. 2016,halifax nova scotia,44.646189,-63.6328975
+159373,Unknown Date,na-et1,"Lunenburg/Nova Scotia/Mahone Bay, Atlantic Ocean",Locke et al. 2007; Yund et al. 2015,lunenburg nova scotia,44.3758988,-64.3172311
+159373,Unknown Date,na-et1,Port l'Hebert/Nova Scotia/Port Herbert River,Wong and Vercaemer 2012,port l'hebert nova scotia,43.8017505,-64.932292
+159373,Unknown Date,na-et1,Shelburne/Nova Scotia/Atlantic Ocean,Yund et al. 2015; Lacoursiere-Roussel et al. 2016,shelburne nova scotia,43.768925,-65.3203695
+159373,Unknown Date,na-et1,Ingomar/Nova Scotia/Atlantic Ocean,Clade A Bock et al. 2012; Yund et al. 2015,ingomar nova scotia,43.5637164,-65.358526
+159213,2012,na-et1,Lunenburg/Nova Scotia/Mahone Bay, Moore et al. 2014,lunenburg nova scotia,44.3758988,-64.3172311
