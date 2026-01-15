@@ -18,18 +18,7 @@ function MapSection({
   nemesisRegionNames,
   expandSide,
 }) {
-  console.log("---------------------------");
-  console.log("MapSection allYears", allYears);
-  console.log("MapSection currSpeciesRegions", currSpeciesRegions);
-  console.log("MapSection pastSpeciesRegions", pastSpeciesRegions);
-  console.log("MapSection pastSpeciesRegionsB", pastSpeciesRegionsB);
-  console.log("MapSection regionsDetail", regionsDetail);
-  console.log("MapSection regionsDetailB", regionsDetailB);
-  console.log("MapSection currSites", currSites);
-  console.log("MapSection currSitesB", currSitesB);
-  console.log("MapSection speciesYears", speciesYears);
-  console.log("MapSection allYearRegionMap", allYearRegionMap);
-  console.log("---------------------------");
+
   // turn set into list
   pastSpeciesRegions = Array.from(pastSpeciesRegions);
 

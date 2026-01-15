@@ -110,8 +110,13 @@ function Timeline({ allowedYears, setNewYear }) {
   const gapForTicks = tick < 1 ? 1 : tick;
   const constantYearTicks = [];
 
-  for (let year = timelineStart; year <= timelineEnd; year += gapForTicks) {
+  constantYearTicks.push(timelineStart);
+
+  for (let year = timelineStart+gapForTicks; year <= timelineEnd; year += gapForTicks) {
     constantYearTicks.push(year);
+  }
+  if (timelineEnd-constantYearTicks[constantYearTicks.length - 1]> gapForTicks/2) {
+    constantYearTicks.push(timelineEnd);
   }
   const bigYearTicks = [];
   for (let year = timelineStart; year <= timelineEnd; year += gapForTicks) {
