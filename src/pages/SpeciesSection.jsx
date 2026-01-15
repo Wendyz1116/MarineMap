@@ -6,7 +6,7 @@ import Papa from "papaparse";
 import MapSection from "../components/MapSection";
 import useFetchObisData from "../dataProcessing/useFetchObisData";
 import useNemesisData from "../dataProcessing/useNemesisData";
-// import useRASData from "../dataProcessing/useRASData";
+import useRASData from "../dataProcessing/useRASData";
 import { use } from "react";
 
 export default function SpeciesSection() {
@@ -70,10 +70,10 @@ export default function SpeciesSection() {
 
   console.log("GOT combinedNemesisData", nemesisRegionData);
 
-  // // fetch RAS data
-  // console.log("running useRASData with", selectedSpecies);
-  // const { RASRegionData } =
-  //   useRASData(selectedSpecies);
+  // fetch RAS data
+  console.log("running useRASData with", selectedSpecies);
+  const { RASRegionData } =
+    useRASData(selectedSpecies);
 
   // extract data from the csv file for regions NA-ET1, Na-ET2, and Na-ET3
   function extractFromRegionsCSV(csvPath, setRegionsData) {
@@ -113,12 +113,9 @@ export default function SpeciesSection() {
     const speciesWords = selectedSpecies.toLowerCase().split(" ");
     for (const word of speciesWords) {
       if (!word.includes(".") && !speciesName.toLowerCase().includes(word)) {
-        console.log("CHECK: not the same ", speciesName, selectedSpecies)
         return false;
       }
     }
-
-    console.log("CHECK: same species :) ", speciesName, selectedSpecies)
     return true;
   }
 
