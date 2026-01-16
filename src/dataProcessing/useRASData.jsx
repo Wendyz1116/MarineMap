@@ -117,7 +117,7 @@ export default function useRASData(speciesDetail) {
               ...data,
               Location: record.Location.trim(),
               Date: record.Year.trim(),
-              Source: record.Source.trim()
+              "Source(s)": record.Source.trim()
             })
           );
 

@@ -36,7 +36,6 @@ export default function SpeciesSection() {
   // TODO3, change ras to all sentence case
   const [allYearRasData, setAllYearRasData] = useState([]); // {year: [record1, record2]}
   const [allYearRasDataB, setAllYearRasDataB] = useState([]); // need seperate state for species B
-  const [speciesRasData, setSpeciesRasData] = useState([]);
 
   // OBIS Data
   const [allYearObisSiteData, setAllYearObisSiteData] = useState([]); // {year: [record1, record2]}
@@ -274,42 +273,52 @@ export default function SpeciesSection() {
       setNAET3Data(nemesisRegionData["NA-ET3"]);
     }
   }, [nemesisRegionData]);
+
+  const clearData = () => {
+    // clear all data related to species when none is selected
+    console.log("Clearing all species data");
+    setSelectedSpecies(null);
+    setSelectedSpeciesInfo(null);
+    setSelectedSpeciesB(null);
+    setSelectedSpeciesBInfo(null);
+    setSpeciesRegions([]);
+    setPastSpeciesRegions(new Set());
+    setPastSpeciesRegionsB(new Set());
+
+    setAllYearRasData([]);
+    setAllYearRasDataB([]);
+
+    setAllYearObisSiteData([]);
+    setAllYearObisSiteDataB([]);
+
+    setCurrYearSiteData({});
+    setCurrYearSiteDataB({});
+
+    setAllYearRegionDetail({});
+    setAllYearRegionDetailB({});
+    setCurrYearDetail([]);
+    setCurrYearDetailB([]);
+
+    setAllYearRegionMap({});
+    setAllYearRegionMapB({});
+    setRegionYearMap({
+      "NA-ET1": [],
+      "NA-ET2": [],
+      "NA-ET3": [],
+    });
+    setAllYearNemesisSiteData([]);
+    setAllYearNemesisSiteDataB([]);
+
+    setSpeciesYears([]);
+    setNewYear(null);
+    setAllYears(false);
+    setShowingSpeciesDetail(false);
+  }
   
   // clear all data related to species when none is selected
   useEffect(() => {
     if (!selectedSpecies && !selectedSpeciesB) {
-      // clear all data related to species when none is selected
-      console.log("Clearing all species data");
-      setSelectedSpeciesInfo(null);
-      setSelectedSpeciesB(null);
-      setSelectedSpeciesBInfo(null);
-      setSpeciesRegions([]);
-      setPastSpeciesRegions(new Set());
-
-      setAllYearRasData([]);
-      setSpeciesRasData([]);
-      setAllYearRasDataB([]);
-
-      setAllYearObisSiteData([]);
-      setAllYearObisSiteDataB([]);
-      setCurrYearSiteData({});
-
-      setAllYearRegionDetail({});
-      setAllYearRegionDetailB({});
-      setCurrYearDetail([]);
-
-      setAllYearRegionMap({});
-      setRegionYearMap({
-        "NA-ET1": [],
-        "NA-ET2": [],
-        "NA-ET3": [],
-      });
-      setAllYearNemesisSiteData([]);
-
-      setSpeciesYears([]);
-      setNewYear(null);
-      setAllYears(false);
-      setShowingSpeciesDetail(false);
+      clearData();
     }
   }, [selectedSpecies, selectedSpeciesB]);
 
