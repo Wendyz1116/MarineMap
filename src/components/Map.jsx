@@ -372,6 +372,8 @@ function Map({
     // console.log("Updating map with currSites:", currSites);
     // console.log("datasetsToShow:", datasetsToShow);
     // console.log("graphicsLayerRef:", graphicsLayerRef.current);
+    console.log("Plotting A", currSites);
+    console.log("Plotting B", currSitesB);
     if (graphicsLayerRef.current) {
       graphicsLayerRef.current.removeAll(); // Clear once at the beginning
       const speciesAStyle = "circle";

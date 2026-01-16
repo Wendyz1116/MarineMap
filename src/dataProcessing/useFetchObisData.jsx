@@ -109,6 +109,7 @@ export default function useFetchObisData(speciesDetail, speciesDetailB) {
   useEffect(() => {
     // Don't do anything if no scientificName is provided
     if (!speciesDetail) {
+      setCombinedOBISData({}); // Clear data for species A
       setLoading(false);
       return;
     }
@@ -173,6 +174,7 @@ export default function useFetchObisData(speciesDetail, speciesDetailB) {
   useEffect(() => {
     // Don't do anything if no scientificName is provided
     if (!speciesDetailB) {
+      setCombinedOBISDataB({}); // Clear data for species B
       setLoading(false);
       return;
     }

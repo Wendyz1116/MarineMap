@@ -198,7 +198,7 @@ export default function SpeciesSection() {
             } catch {
               site = formattedRecord["SiteLocation"];
             }
-            
+
             formattedRecord["Site Location"] = site;
 
             if (
@@ -274,7 +274,7 @@ export default function SpeciesSection() {
       setNAET3Data(nemesisRegionData["NA-ET3"]);
     }
   }, [nemesisRegionData]);
-  
+
   // clear all data related to species when none is selected
   useEffect(() => {
     if (!selectedSpecies && !selectedSpeciesB) {
@@ -454,14 +454,14 @@ export default function SpeciesSection() {
           Array.from(new Set([...prevYears, ...years]))
             .sort((a, b) => Number(a) - Number(b))
         );
-        
+
         setAllYearRegionMap((prevMap) => ({
           ...prevMap,
           ...yearRegionMap,
         }));
 
         setAllYearRasData(extractYearsWithGeoloc(yearRegionDetails))
-      } 
+      }
     }
     if (selectedSpeciesB) {
       console.log("selected B", selectedSpeciesB, selectedSpeciesB["Species Name"]);
@@ -517,14 +517,14 @@ export default function SpeciesSection() {
           Array.from(new Set([...prevYears, ...years]))
             .sort((a, b) => Number(a) - Number(b))
         );
-        
+
         setAllYearRegionMapB((prevMap) => ({
           ...prevMap,
           ...yearRegionMap,
         }));
 
         setAllYearRasDataB(extractYearsWithGeoloc(yearRegionDetails))
-      } 
+      }
     }
   }, [selectedSpecies, selectedSpeciesB, RASRegionData]);
 
@@ -739,7 +739,7 @@ export default function SpeciesSection() {
       }));
     }
   }, [selectedSpecies, selectedSpeciesB, NAET1Data, NAET2Data, NAET3Data]);
-  
+
   // OBIS
   useEffect(() => {
     if (!allYearObisSiteData) return;
