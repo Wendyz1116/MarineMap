@@ -395,7 +395,7 @@ function Map({
         currSitesB["nemesisSpecificSites"]
       ) {
         plotSites(
-          { fill: "rgba(243,163,158,1)", outline: "rgba(6,9,14,0.8)" },
+          { fill: "rgba(147,192,209,1)", outline: "rgba(6,9,14,0.8)" },
           currSitesB["nemesisSpecificSites"], speciesBStyle
         );
       }
