@@ -111,7 +111,10 @@ function OneSpeciesSelection({
             <option disabled selected>
               Select a species
             </option>
-            {speciesData.map((species, index) => (
+            {speciesData.sort((a,b) =>
+              a["Species Name"].localeCompare(b["Species Name"])
+              )
+              .map((species, index) => (
               <option key={index} value={species["Species Name"]}>
                 {species["Species Name"]}
               </option>
