@@ -1,9 +1,9 @@
-Abbreviation,Site Name,Location,Site Location,Latitude,Longitude
-POP,Pope's Island Marina,"New Bedford, MA","Pope's Island Marina New Bedford, MA",41.6399323,-70.9134258
-MMA,Massachusetts Maritime Academy,"Buzzards Bay, MA","Massachusetts Maritime Academy Buzzards Bay, MA",41.7408213,-70.6222566
-SWM,Sandwich Marina,"Sandwich, MA","Sandwich Marina Sandwich, MA",41.7698087,-70.5045894
-ROW,Rowes Wharf,"Boston, MA","Rowes Wharf Boston, MA",42.3571728,-71.0501177
-HCM,Hawthorne Cove Marina,"Salem, MA","Hawthorne Cove Marina Salem, MA",42.5225143,-70.8827165
-UNH,UNH Coastal Marine Laboratory,"Newcastle, NH","UNH Coastal Marine Laboratory Newcastle, NH",33.6953344,-117.7944064
-PHM,Port Harbor Marine,"South Portland, ME","Port Harbor Marine South Portland, ME",43.6482129,-70.2318692
-BFM,Brewer South Freeport Marine,"South Freeport, ME","Brewer South Freeport Marine South Freeport, ME",43.8214865,-70.1063945
+Abbreviation,Site Name,Location,Site Location,Latitude,Longitude,Region
+POP,Pope's Island Marina,"New Bedford, MA","Pope's Island Marina New Bedford, MA",41.6399323,-70.9134258,NA-ET3
+MMA,Massachusetts Maritime Academy,"Buzzards Bay, MA","Massachusetts Maritime Academy Buzzards Bay, MA",41.7408213,-70.6222566,NA-ET3
+SWM,Sandwich Marina,"Sandwich, MA","Sandwich Marina Sandwich, MA",41.7698087,-70.5045894,NA-ET2
+ROW,Rowes Wharf,"Boston, MA","Rowes Wharf Boston, MA",42.3571728,-71.0501177,NA-ET2
+HCM,Hawthorne Cove Marina,"Salem, MA","Hawthorne Cove Marina Salem, MA",42.5225143,-70.8827165,NA-ET2
+UNH,UNH Coastal Marine Laboratory,"Newcastle, NH","UNH Coastal Marine Laboratory Newcastle, NH",33.6953344,-117.7944064,
+PHM,Port Harbor Marine,"South Portland, ME","Port Harbor Marine South Portland, ME",43.6482129,-70.2318692,NA-ET2
+BFM,Brewer South Freeport Marine,"South Freeport, ME","Brewer South Freeport Marine South Freeport, ME",43.8214865,-70.1063945,NA-ET2

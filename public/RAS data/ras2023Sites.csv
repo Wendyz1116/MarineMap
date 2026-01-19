@@ -1,10 +1,10 @@
-Abbreviation,Site Name,Location,,Site Location,Latitude,Longitude
-JEM,Journey's End Marina,"Rockland, ME",Central Coastal Maine,"Journey's End Marina Rockland, ME",44.1049596,-69.1027754
-DRM,Derecktor Robin Hood Marine Center,"Georgetown, ME",Central Coastal Maine,"Derecktor Robin Hood Marine Center Georgetown, ME",43.8525405,-69.7335203
-BFM,Brewer South Freeport Marine,"South Freeport, ME",Casco Bay,"Brewer South Freeport Marine South Freeport, ME",43.8214865,-70.1063945
-WHM,Wells Harbor Marina,"Wells, ME",Piscataqua,"Wells Harbor Marina Wells, ME",43.3214743,-70.5594974
-BPP,Beverly Public Pier,"Beverly, MA",Massachusetts Bay,"Beverly Public Pier Beverly, MA",42.5407328,-70.8859909
-SWM,Sandwich Marina,"Sandwich, MA",Massachusetts Bay,"Sandwich Marina Sandwich, MA",41.7698087,-70.5045894
-MMA,Massachusetts Maritime Academy,"Buzzards Bay, MA",Buzzards Bay,"Massachusetts Maritime Academy Buzzards Bay, MA",41.7408213,-70.6222566
-NMI,Northeast Maritime Institute,"Fairhaven, MA",Buzzards Bay,"Northeast Maritime Institute Fairhaven, MA",41.6376224,-70.9035606
-TRM,"F.L. Tripp and Sons, Inc.","Westport, MA",Buzzards Bay,"F.L. Tripp and Sons, Inc. Westport, MA",41.5131407,-71.0776318
+Abbreviation,Site Name,Location,,Site Location,Latitude,Longitude,Region
+JEM,Journey's End Marina,"Rockland, ME",Central Coastal Maine,"Journey's End Marina Rockland, ME",44.1049596,-69.1027754,NA-ET2
+DRM,Derecktor Robin Hood Marine Center,"Georgetown, ME",Central Coastal Maine,"Derecktor Robin Hood Marine Center Georgetown, ME",43.8525405,-69.7335203,NA-ET2
+BFM,Brewer South Freeport Marine,"South Freeport, ME",Casco Bay,"Brewer South Freeport Marine South Freeport, ME",43.8214865,-70.1063945,NA-ET2
+WHM,Wells Harbor Marina,"Wells, ME",Piscataqua,"Wells Harbor Marina Wells, ME",43.3214743,-70.5594974,NA-ET2
+BPP,Beverly Public Pier,"Beverly, MA",Massachusetts Bay,"Beverly Public Pier Beverly, MA",42.5407328,-70.8859909,NA-ET2
+SWM,Sandwich Marina,"Sandwich, MA",Massachusetts Bay,"Sandwich Marina Sandwich, MA",41.7698087,-70.5045894,NA-ET2
+MMA,Massachusetts Maritime Academy,"Buzzards Bay, MA",Buzzards Bay,"Massachusetts Maritime Academy Buzzards Bay, MA",41.7408213,-70.6222566,NA-ET3
+NMI,Northeast Maritime Institute,"Fairhaven, MA",Buzzards Bay,"Northeast Maritime Institute Fairhaven, MA",41.6376224,-70.9035606,NA-ET3
+TRM,"F.L. Tripp and Sons, Inc.","Westport, MA",Buzzards Bay,"F.L. Tripp and Sons, Inc. Westport, MA",41.5131407,-71.0776318,NA-ET3

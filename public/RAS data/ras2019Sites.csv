@@ -1,11 +1,11 @@
-Abbreviation,Site Name,State,City,Longitude,Latitude
-STB,Save the Bay docks,RI,Providence,-71.3813,41.7856
-ALH,Allen Harbor Marina,RI,North Kingstown,-71.4113,41.6213
-PTJ,Point Judith Marina,RI,Wakefield,-71.5172,41.3877
-BMM,Brewer Mystic Marina,CT,Mystic,-71.9680,41.3467
-SBJ,Bruce and Johnsons Marina,CT,Branford,-72.8030,41.2654
-CED,Cedar Marina,CT,Bridgeport,-72.2106,41.1589
-SHS,Stirling Harbor Shipyard,NY,Greenport,-72.3581,41.1123
-BYH,Brewer Yacht Haven Marina,CT,Stamford,-73.5345,41.0329
-MBG,Moonbeam Gateway Marina,NY,Brooklyn,-73.8994,40.5881
-GKS,Great Kills Marina,NY,Great Kills,-74.1330,40.5364
+Abbreviation,Site Name,State,City,Longitude,Latitude,Region
+STB,Save the Bay docks,RI,Providence,-71.3813,41.7856,NA-ET3
+ALH,Allen Harbor Marina,RI,North Kingstown,-71.4113,41.6213,NA-ET3
+PTJ,Point Judith Marina,RI,Wakefield,-71.5172,41.3877,NA-ET3
+BMM,Brewer Mystic Marina,CT,Mystic,-71.9680,41.3467,NA-ET3
+SBJ,Bruce and Johnsons Marina,CT,Branford,-72.8030,41.2654,NA-ET3
+CED,Cedar Marina,CT,Bridgeport,-72.2106,41.1589,NA-ET3
+SHS,Stirling Harbor Shipyard,NY,Greenport,-72.3581,41.1123,NA-ET3
+BYH,Brewer Yacht Haven Marina,CT,Stamford,-73.5345,41.0329,NA-ET3
+MBG,Moonbeam Gateway Marina,NY,Brooklyn,-73.8994,40.5881,NA-ET3
+GKS,Great Kills Marina,NY,Great Kills,-74.1330,40.5364,NA-ET3

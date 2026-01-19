@@ -35,9 +35,9 @@ const melt = (data, idVars, valueVars) => {
 const getLngLat = (siteData, siteAbbr) => {
   const targetSite = siteData.find(record => record.Abbreviation === siteAbbr);
   try {
-    return [targetSite.Longitude, targetSite.Latitude, targetSite["Site Name"]] 
+    return [targetSite.Longitude, targetSite.Latitude, targetSite["Site Name"], targetSite.Region] 
   } catch {
-    return [null, null, null]
+    return [null, null, null, null]
   }
   
 }
@@ -60,12 +60,17 @@ async function extractFromFileNames(fileNames) {
   )
 
   // add coords and location to record based on site location data
-  const speciesRASDataLngLat = filteredSpeciesRASData.map(record => ({
-    ...record,
-    Longitude: getLngLat(rasSiteLocData, record.variable)[0],
-    Latitude: getLngLat(rasSiteLocData, record.variable)[1],
-    SiteLocation: getLngLat(rasSiteLocData, record.variable)[2]
-  }))
+  const speciesRASDataLngLat = filteredSpeciesRASData.map(record => {
+    const [Longitude, Latitude, SiteLocation, Region] = getLngLat(rasSiteLocData, record.variable);
+    
+    return {
+      ...record,
+      Longitude,
+      Latitude,
+      SiteLocation,
+      Region
+    };
+  });
   return speciesRASDataLngLat
 }
 
@@ -115,16 +120,21 @@ export default function useRASData(speciesDetail) {
           // add info columns
           const RASSiteInfo = filteredRASSite.map((data) => ({
               ...data,
-              Location: record.Location.trim(),
               Date: record.Year.trim(),
               "Source(s)": record.Source.trim()
             })
           );
-
-          regionData[record.Location.trim()].push(...RASSiteInfo);
+          console.log("GURT RAS", RASSiteInfo)
+          
+          RASSiteInfo.forEach(row => {
+            const region = row.Region.trim();
+            if (region) {
+              regionData[region].push(row);
+            }
+          });
+          // regionData[record.Location.trim()].push(...RASSiteInfo);
         })
       );
-
       setRASRegionData(regionData);
     }
     fetchAllData();
