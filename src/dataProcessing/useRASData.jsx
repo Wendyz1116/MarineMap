@@ -124,8 +124,8 @@ export default function useRASData(speciesDetail) {
               "Source(s)": record.Source.trim()
             })
           );
-          console.log("GURT RAS", RASSiteInfo)
           
+          // add region column
           RASSiteInfo.forEach(row => {
             const region = row.Region.trim();
             if (region) {
