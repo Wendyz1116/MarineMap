@@ -8,7 +8,6 @@ function MapSection({
   pastSpeciesRegions,
   pastSpeciesRegionsB,
   regionsDetail,
-  regionsDetailB,
   currSites,
   currSitesB,
   speciesYears,
@@ -29,7 +28,6 @@ function MapSection({
         currRegions={currSpeciesRegions}
         pastRegions={pastSpeciesRegions}
         pastRegionsB={pastSpeciesRegionsB}
-        regionsDetailB={regionsDetailB}
         regionsDetail={regionsDetail}
         nemesisRegionNames={nemesisRegionNames}
         currSites={currSites}

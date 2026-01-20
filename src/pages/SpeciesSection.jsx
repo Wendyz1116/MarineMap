@@ -902,7 +902,6 @@ export default function SpeciesSection() {
         pastSpeciesRegions={pastSpeciesRegions}
         pastSpeciesRegionsB={pastSpeciesRegionsB}
         regionsDetail={currYearDetail}
-        regionsDetailB={currYearDetailB}
         speciesYears={speciesYears}
         allYearRegionMap={allYearRegionMap}
         setNewYear={setNewYear}

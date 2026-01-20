@@ -9,7 +9,6 @@ function Map({
   pastRegions = [],
   pastRegionsB = [],
   regionsDetail,
-  regionsDetailB,
   nemesisRegionNames,
   currSites = {},
   currSitesB = {},
@@ -154,7 +153,7 @@ function Map({
             }
             return IIF(
                 Includes(currentRegions, region),
-                IIF(hasKey(details, region), details[region], 'Source undefined'),
+                IIF(hasKey(details, region), details[region], 'Source not found'),
                 'Species have been spotted here in the past'
             );
             `,
