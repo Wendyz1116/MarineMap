@@ -110,9 +110,10 @@ export default function useRASData(speciesDetail) {
 
       await Promise.all(
         RASdata.map(async (record) => {
+          const author = record.Source.split(" ")[0];
           const fileNames = [
-            `/RAS data/ras${record.Year}Survey.csv`, 
-            `/RAS data/ras${record.Year}Sites.csv`
+            `/RAS data/${author}${record.Year}Survey.csv`, 
+            `/RAS data/${author}${record.Year}Sites.csv`
           ];
 
           const filteredRASSite = await extractFromFileNames(fileNames);
