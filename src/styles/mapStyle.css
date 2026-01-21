@@ -26,3 +26,10 @@
     display: block !important;
     /* Ensure the pointer aligns correctly */
 }
+
+.popup-body {
+    max-height: 200px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    margin-top: 8px;
+}

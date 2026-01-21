@@ -319,7 +319,6 @@ export default function SpeciesSection() {
     setAllYearRegionDetail({});
     setAllYearRegionDetailB({});
     setCurrYearDetail([]);
-    setCurrYearDetailB([]);
 
     setAllYearRegionMap({});
     setAllYearRegionMapB({});
@@ -808,13 +807,24 @@ export default function SpeciesSection() {
       : [];
     setSpeciesRegions(Array.from(new Set([...newSpeciesRegionsA, ...newSpeciesRegionsB])));
 
+    const newCurrYearDetail = {
+      "NA-ET1": [],
+      "NA-ET2": [],
+      "NA-ET3": []
+  };
     if (allYearRegionDetail[newYear]) {
-      setCurrYearDetail(allYearRegionDetail[newYear]);
+      for (const key in allYearRegionDetail[newYear]) {
+        newCurrYearDetail[key] = newCurrYearDetail[key].concat(allYearRegionDetail[newYear][key]);
+      }
     }
 
     if (allYearRegionDetailB[newYear]) {
-      setCurrYearDetailB(allYearRegionDetailB[newYear]);
+      for (const key in allYearRegionDetailB[newYear]) {
+        newCurrYearDetail[key] = newCurrYearDetail[key].concat(allYearRegionDetailB[newYear][key]);
+      }
     }
+
+    setCurrYearDetail(newCurrYearDetail);
 
     const tempCurrYearSiteData = {};
     const tempCurrYearSiteDataB = {};
@@ -855,7 +865,6 @@ export default function SpeciesSection() {
     if (newYear == "all years") {
       setAllYears(true);
       setCurrYearDetail(regionYearMap);
-      setCurrYearDetailB(regionYearMap);
     } else setAllYears(false);
 
   }, [newYear]);
@@ -880,7 +889,6 @@ export default function SpeciesSection() {
           setAllYearRegionDetail({});
           setAllYearRegionDetailB({});
           setCurrYearDetail([]);
-          setCurrYearDetailB([]);
           setAllYearRegionMap({});
           setAllYearRegionMapB({});
           setRegionYearMap({

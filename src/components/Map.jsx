@@ -80,8 +80,15 @@ function Map({
           type: "text",
           text: `
             <div class="custom-popup">
-              <p><strong>{expression/regionName}</strong> ({REG_NEWREG})</p>
-              <p><strong>{expression/descriptiveText}</strong></p>{expression/popupContent}
+              <div class="popup-header">
+                <p><strong>{expression/regionName}</strong> ({REG_NEWREG})</p>
+                <p><strong>{expression/descriptiveText}</strong></p>
+              </div>
+
+            <div class="popup-body">
+              <p>{expression/popupContent}</p>
+            </div>
+
 
             </div>
           `,
@@ -110,7 +117,7 @@ function Map({
             var allYears = ${allYears ? "true" : "false"};
 
             When(
-              allYears, 'Years with Records:',
+              allYears, 'Years with Records (scroll for more):',
               Includes(currentRegions, region), 'Sources:',
               'Past Region:'
             )
@@ -174,7 +181,11 @@ function Map({
         }
       })
       .catch((err) => console.error("Error updating popup:", err));
-  }, [regionsDetail, geoJsonLayerRef.current, allYears, currRegions]);
+  }, [regionsDetail,
+    geoJsonLayerRef.current,
+    allYears,
+    currRegions
+  ]);
 
   //---------------------------------------------------//
   // Creating the main section of the map with regions //
