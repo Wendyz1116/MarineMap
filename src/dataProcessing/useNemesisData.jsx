@@ -140,7 +140,7 @@ export default function useNemesisData(speciesDetail) {
         const { speciesSet, genus, species } = speciesData;
         const scientificName = `${genus} ${species}`;
 
-        const numSets = 2;
+        const numSets = 4;
         const regionData = { "NA-ET1": [], "NA-ET2": [], "NA-ET3": [] };
         const filesByFolder = {
           "NA-ET1": Array.from(
