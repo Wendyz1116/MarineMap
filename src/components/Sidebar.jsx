@@ -29,11 +29,13 @@ function Sidebar({
             selectedTab === "oneSpecies" ? "bg-base-200" : ""
           }`}
           onClick={() => {
-            setSelectedTab("oneSpecies");
-            setExpandSide(true);
-            onSpeciesSelect(null);
-            onSpeciesSelectB(null);
-            resetStates();
+            if (selectedTab === "multipleSpecies") {
+              setSelectedTab("oneSpecies");
+              setExpandSide(true);
+              onSpeciesSelect(null);
+              onSpeciesSelectB(null);
+              resetStates();
+            }
           }}
         >
           S
@@ -43,11 +45,13 @@ function Sidebar({
             selectedTab === "multipleSpecies" ? "bg-base-200" : ""
           }`}
           onClick={() => {
-            setSelectedTab("multipleSpecies");
-            setExpandSide(true);
-            onSpeciesSelect(null);
-            onSpeciesSelectB(null);
-            resetStates();
+            if (selectedTab == "oneSpecies") {
+              setSelectedTab("multipleSpecies");
+              setExpandSide(true);
+              onSpeciesSelect(null);
+              onSpeciesSelectB(null);
+              resetStates();
+            }
           }}
         >
           M
@@ -58,15 +62,18 @@ function Sidebar({
       {expandSide && (
         <div className="flex flex-col w-52 h-full">
           <div
-            className="cursor-pointer w-full p-2 flex justify-end align-bottom items-end"
-            onClick={() => {
-              setExpandSide(false);
-              onSpeciesSelect(null);
-              onSpeciesSelectB(null);
-              resetStates();
-            }}
-          >
-            ✕
+            className="w-full p-2 flex justify-end align-bottom items-end">
+            <span
+              className="cursor-pointer"
+              onClick={() => {
+                setExpandSide(false);
+                onSpeciesSelect(null);
+                onSpeciesSelectB(null);
+                resetStates();
+              }}
+            >
+              ✕
+            </span>
           </div>
           <div className="flex-1 overflow-y-auto custom-scrollbar pb-20">
             <div className="">
