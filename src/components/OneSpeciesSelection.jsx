@@ -102,7 +102,6 @@ function OneSpeciesSelection({
     if (!selectedSpeciesRegionalInfo) {
       return
     }
-    console.log("GURT", selectedSpeciesRegionalInfo[1])
     {/* <CollapsibleSection title="Classification:" body="Classification" /> */}
     if (selectedSpeciesRegionalInfo[1]) {
       return (
@@ -124,13 +123,17 @@ function OneSpeciesSelection({
         <>
         <CollapsibleSection
           title="First records:"
-          body={selectedSpeciesRegionalInfo[0]["First records"]}
+          body={
+          <>
+            {selectedSpeciesRegionalInfo[0][0]["First records"]}
+          </>
+        }
         />
         
         <CollapsibleSection
           title="More details:"
-          body={selectedSpeciesRegionalInfo[0]["More details"]}
-          bodyStyle="text-primary"
+          body={selectedSpeciesRegionalInfo[0][0]["More details"]}
+          // bodyStyle="text-primary"
         />
         </>
       )
