@@ -114,7 +114,6 @@ export default function useFetchObisData(speciesDetail, speciesDetailB) {
       setLoading(false);
       return;
     }
-    console.log("GURT", speciesDetail)
     const abortController = new AbortController();
 
     const fetchAllData = async () => {
