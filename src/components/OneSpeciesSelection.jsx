@@ -26,7 +26,7 @@ function OneSpeciesSelection({
     console.log("nemesisRegionNames");
     console.log(nemesisRegionNames);
     if (selectedSpeciesRegionalInfo) {
-      let body = Object.entries(selectedSpeciesRegionalInfo).map(
+      let body = Object.entries(selectedSpeciesRegionalInfo[0]).map(
         ([region, details]) => {
           const { Year, Vectors, ...rest } = details;
           return (
@@ -98,6 +98,45 @@ function OneSpeciesSelection({
       .catch((error) => console.error("Error fetching the CSV file:", error));
   }, []);
 
+  const formattedCollapsible = (() => {
+    if (!selectedSpeciesRegionalInfo) {
+      return
+    }
+    console.log("GURT", selectedSpeciesRegionalInfo[1])
+    {/* <CollapsibleSection title="Classification:" body="Classification" /> */}
+    if (selectedSpeciesRegionalInfo[1]) {
+      return (
+        <>
+        <CollapsibleSection
+          title="First records:"
+          body={speciesFormatedRegionalInfo}
+        />
+        
+        <CollapsibleSection
+          title="More details:"
+          body={nemesisLink}
+          bodyStyle="text-primary"
+        />
+        </>
+      )
+    } else if (!selectedSpeciesRegionalInfo[1]) {
+      return (
+        <>
+        <CollapsibleSection
+          title="First records:"
+          body={selectedSpeciesRegionalInfo[0]["First records"]}
+        />
+        
+        <CollapsibleSection
+          title="More details:"
+          body={selectedSpeciesRegionalInfo[0]["More details"]}
+          bodyStyle="text-primary"
+        />
+        </>
+      )
+    }
+  });
+
   return (
     <div>
       {!showSpeciesDetail && (
@@ -147,16 +186,7 @@ function OneSpeciesSelection({
             className="w-full h-auto"
           />
 
-          <CollapsibleSection
-            title="First records:"
-            body={speciesFormatedRegionalInfo}
-          />
-          {/* <CollapsibleSection title="Classification:" body="Classification" /> */}
-          <CollapsibleSection
-            title="More details:"
-            body={nemesisLink}
-            bodyStyle="text-primary"
-          />
+          {formattedCollapsible()}
 
           <button
             className="mt-4 btn btn-sm btn-secondary"

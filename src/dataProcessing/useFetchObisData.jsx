@@ -56,8 +56,9 @@ const getOBISSpeciesDesc = async (speciesDetail) => {
     // Find the matching species in the data
     for (const row of speciesSetData) {
       if (
-        row["Species Nemesis ID"].toString() === speciesDetail["Species Nemesis ID"].toString()
+        row["Species OBIS ID"].toString() === speciesDetail["Species OBIS ID"].toString()
       ) {
+        console.log("Species found", { speciesSet: row["Species Set Number"], genus: row["Genus"], species: row["Species"] })
         return { speciesSet: row["Species Set Number"], genus: row["Genus"], species: row["Species"] };
       }
     }
@@ -113,7 +114,7 @@ export default function useFetchObisData(speciesDetail, speciesDetailB) {
       setLoading(false);
       return;
     }
-
+    console.log("GURT", speciesDetail)
     const abortController = new AbortController();
 
     const fetchAllData = async () => {

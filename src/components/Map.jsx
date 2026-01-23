@@ -614,8 +614,6 @@ function Map({
         Data last modified: {lastUpdated}
       </div>
 
-      {/* TODO5: can see the white bkg if zoom out small enough,
-  lock the map if so that we can't zoom out too far */}
       <div ref={MapElem} className="h-full"></div>
       {/* Legend */}
       <Legend datasetsToShow={datasetsToShow} />

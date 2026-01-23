@@ -29,6 +29,7 @@ export default function SpeciesSection() {
   const [NAET1SpeciesInfo, setNAET1SpeciesInfo] = useState(null);
   const [NAET2SpeciesInfo, setNAET2SpeciesInfo] = useState(null);
   const [NAET3SpeciesInfo, setNAET3SpeciesInfo] = useState(null);
+  const [noNemesisInfo, setNoNemesisInfo] = useState(null);
   const [nemesisRegionNames, setNemesisRegionNames] = useState([]);
   const [nemesisRegionMap, setNemesisRegionMap] = useState({});
 
@@ -277,6 +278,7 @@ export default function SpeciesSection() {
     extractFromRegionsCSV("/data/nemesisNAET1.csv", setNAET1SpeciesInfo);
     extractFromRegionsCSV("/data/nemesisNAET2.csv", setNAET2SpeciesInfo);
     extractFromRegionsCSV("/data/nemesisNAET3.csv", setNAET3SpeciesInfo);
+    extractFromRegionsCSV("/data/speciesSidebarData.csv", setNoNemesisInfo)
   }, []);
 
   // extract data from the csv file for regions NA-ET1, Na-ET2, and Na-ET3
@@ -562,17 +564,24 @@ export default function SpeciesSection() {
       const filteredNAET2Species = filterBySpeciesName(NAET2SpeciesInfo);
       const filteredNAET3Species = filterBySpeciesName(NAET3SpeciesInfo);
 
-      const regionSpeciesData = {};
+      const regionSpeciesData = [{}, true];
 
       if (filteredNAET1Species[0]) {
-        regionSpeciesData["NA-ET1"] = filteredNAET1Species[0];
+        regionSpeciesData[0]["NA-ET1"] = filteredNAET1Species[0];
       }
       if (filteredNAET2Species[0]) {
-        regionSpeciesData["NA-ET2"] = filteredNAET2Species[0];
+        console.log(filteredNAET2Species)
+        regionSpeciesData[0]["NA-ET2"] = filteredNAET2Species[0];
       }
       if (filteredNAET3Species[0]) {
-        regionSpeciesData["NA-ET3"] = filteredNAET3Species[0];
+        regionSpeciesData[0]["NA-ET3"] = filteredNAET3Species[0];
       }
+
+      if (Object.keys(regionSpeciesData[0]).length === 0) {
+        regionSpeciesData[0] = filterBySpeciesName(noNemesisInfo);
+        regionSpeciesData[1] = false;
+      }
+
       console.log("regionSpeciesData for A", regionSpeciesData);
       setSelectedSpeciesInfo(regionSpeciesData);
 
@@ -664,7 +673,7 @@ export default function SpeciesSection() {
       const filteredNAET2Species = filterBySpeciesNameB(NAET2SpeciesInfo);
       const filteredNAET3Species = filterBySpeciesNameB(NAET3SpeciesInfo);
 
-      const regionSpeciesData = {};
+      let regionSpeciesData = {};
 
       if (filteredNAET1Species[0]) {
         regionSpeciesData["NA-ET1"] = filteredNAET1Species[0];
@@ -675,6 +684,11 @@ export default function SpeciesSection() {
       if (filteredNAET3Species[0]) {
         regionSpeciesData["NA-ET3"] = filteredNAET3Species[0];
       }
+
+      if (Object.keys(regionSpeciesData).length === 0) {
+        regionSpeciesData = filterBySpeciesNameB(noNemesisInfo);
+      }
+
       console.log("regionSpeciesData for B", regionSpeciesData);
       setSelectedSpeciesBInfo(regionSpeciesData);
 
@@ -777,7 +791,7 @@ export default function SpeciesSection() {
   // update newYear and SpeciesRegions
   useEffect(() => {
     setNewYear(speciesYears[0]);
-    setSpeciesRegions(allYearRegionMap[speciesYears[0]]);
+    setSpeciesRegions(new Set(allYearRegionMap[speciesYears[0]]));
   }, [speciesYears]);
 
   // Depending on the selected year, update the pastSpeciesRegions and current speciesRegions
