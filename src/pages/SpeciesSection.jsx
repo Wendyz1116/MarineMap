@@ -570,7 +570,6 @@ export default function SpeciesSection() {
         regionSpeciesData[0]["NA-ET1"] = filteredNAET1Species[0];
       }
       if (filteredNAET2Species[0]) {
-        console.log(filteredNAET2Species)
         regionSpeciesData[0]["NA-ET2"] = filteredNAET2Species[0];
       }
       if (filteredNAET3Species[0]) {
@@ -673,20 +672,21 @@ export default function SpeciesSection() {
       const filteredNAET2Species = filterBySpeciesNameB(NAET2SpeciesInfo);
       const filteredNAET3Species = filterBySpeciesNameB(NAET3SpeciesInfo);
 
-      let regionSpeciesData = {};
+      const regionSpeciesData = [{}, true];
 
       if (filteredNAET1Species[0]) {
-        regionSpeciesData["NA-ET1"] = filteredNAET1Species[0];
+        regionSpeciesData[0]["NA-ET1"] = filteredNAET1Species[0];
       }
       if (filteredNAET2Species[0]) {
-        regionSpeciesData["NA-ET2"] = filteredNAET2Species[0];
+        regionSpeciesData[0]["NA-ET2"] = filteredNAET2Species[0];
       }
       if (filteredNAET3Species[0]) {
-        regionSpeciesData["NA-ET3"] = filteredNAET3Species[0];
+        regionSpeciesData[0]["NA-ET3"] = filteredNAET3Species[0];
       }
 
-      if (Object.keys(regionSpeciesData).length === 0) {
-        regionSpeciesData = filterBySpeciesNameB(noNemesisInfo);
+      if (Object.keys(regionSpeciesData[0]).length === 0) {
+        regionSpeciesData[0] = filterBySpeciesName(noNemesisInfo);
+        regionSpeciesData[1] = false;
       }
 
       console.log("regionSpeciesData for B", regionSpeciesData);

@@ -100,7 +100,7 @@ function OneSpeciesSelection({
 
   const formattedCollapsible = (() => {
     if (!selectedSpeciesRegionalInfo) {
-      return
+      return;
     }
     {/* <CollapsibleSection title="Classification:" body="Classification" /> */}
     if (selectedSpeciesRegionalInfo[1]) {

@@ -42,7 +42,7 @@ function MultipleSpeciesSelection({
     if (selectedSpeciesARegionalInfo && selectedSpeciesBRegionalInfo) {
       console.log("selectedSpeciesARegionalInfo", selectedSpeciesARegionalInfo);
       console.log("selectedSpeciesBRegionalInfo", selectedSpeciesBRegionalInfo);
-      let bodyA = Object.entries(selectedSpeciesARegionalInfo).map(
+      let bodyA = Object.entries(selectedSpeciesARegionalInfo[0]).map(
         ([region, details]) => {
           const { Year, Vectors, ...rest } = details;
           return (
@@ -64,7 +64,7 @@ function MultipleSpeciesSelection({
       );
       setSpeciesFormatedRegionalInfoA(bodyA);
 
-      let bodyB = Object.entries(selectedSpeciesBRegionalInfo).map(
+      let bodyB = Object.entries(selectedSpeciesBRegionalInfo[0]).map(
         ([region, details]) => {
           const { Year, Vectors, ...rest } = details;
           return (
@@ -152,6 +152,74 @@ function MultipleSpeciesSelection({
       })
       .catch((error) => console.error("Error fetching the CSV file:", error));
   }, []);
+
+  const formattedCollapsible = (() => {
+    if (!selectedSpeciesARegionalInfo || !selectedSpeciesBRegionalInfo) {
+      return;
+    }
+    let firstRecordsFormattedA = (
+      <CollapsibleSection
+        title={`First records for ${selectedSpeciesAInfo["Species Name"]}:`}
+        body={speciesFormatedRegionalInfoA}
+      />
+    );
+    let firstRecordsFormattedB = (
+      <CollapsibleSection
+        title={`First records for ${selectedSpeciesBInfo["Species Name"]}:`}
+        body={speciesFormatedRegionalInfoB}
+      />
+    );
+
+    let moreDetailsFormattedA = nemesisLinkA;
+    let moreDetailsFormattedB = nemesisLinkB;
+
+    if (!selectedSpeciesARegionalInfo[1]) {
+      firstRecordsFormattedA = (
+        <CollapsibleSection
+          title="First records:"
+          body={
+          <>
+            {selectedSpeciesARegionalInfo[0][0]["First records"]}
+          </>
+        }
+        />
+      );
+      moreDetailsFormattedA = selectedSpeciesARegionalInfo[0][0]["More details"];
+    }
+
+    if (!selectedSpeciesBRegionalInfo[1]) {
+      firstRecordsFormattedB = (
+        <CollapsibleSection
+          title="First records:"
+          body={
+          <>
+            {selectedSpeciesBRegionalInfo[0][0]["First records"]}
+          </>
+        }
+        />
+      );
+      moreDetailsFormattedB = selectedSpeciesBRegionalInfo[0][0]["More details"];
+    }
+
+    return (
+      <>
+        {/* Add more species details */}
+        {firstRecordsFormattedA}
+        {firstRecordsFormattedB}
+        {/* <CollapsibleSection title="Classification:" body="Classification" /> */}
+        <CollapsibleSection
+          title="More details:"
+          body={
+            <div>
+              <p>{moreDetailsFormattedA}</p> 
+              <p>{moreDetailsFormattedB}</p>
+            </div>
+          }
+          bodyStyle="text-primary"
+        />
+      </>
+    )
+  });
 
   return (
     <div>
@@ -241,23 +309,7 @@ function MultipleSpeciesSelection({
             </div>
           </div>
 
-          {/* Add more species details */}
-          <CollapsibleSection
-            title={`First records for ${selectedSpeciesAInfo["Species Name"]}:`}
-            body={speciesFormatedRegionalInfoA}
-          />
-          <CollapsibleSection
-            title={`First records for ${selectedSpeciesBInfo["Species Name"]}:`}
-            body={speciesFormatedRegionalInfoB}
-          />
-          {/* <CollapsibleSection title="Classification:" body="Classification" /> */}
-          <CollapsibleSection
-            title="More details:"
-            body={
-              <div><p>{nemesisLinkA}</p> <p>{nemesisLinkB}</p></div>
-            }
-            bodyStyle="text-primary"
-          />
+          {formattedCollapsible()}
           <button
             className="mt-4 btn btn-sm btn-secondary"
             onClick={() => {
