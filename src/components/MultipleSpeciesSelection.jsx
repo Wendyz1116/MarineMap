@@ -20,9 +20,16 @@ function MultipleSpeciesSelection({
     useState("");
   const [speciesFormatedRegionalInfoB, setSpeciesFormatedRegionalInfoB] =
     useState("");
+  const [speciesFormattedOccA, setSpeciesFormattedOccA] =
+    useState("");
+  const [speciesFormattedOccB, setSpeciesFormattedOccB] =
+    useState("");
 
   const [nemesisLinkA, setNemesisLinkA] = useState("");
   const [nemesisLinkB, setNemesisLinkB] = useState("");
+
+  const [WoRMSLinkA, setWoRMSLinkA] = useState("")
+  const [WoRMSLinkB, setWoRMSLinkB] = useState("")
 
 
   const handleSpeciesAChange = (event) => {
@@ -39,9 +46,12 @@ function MultipleSpeciesSelection({
   useEffect(() => {
     // console.log("selectedSpeciesRegionalInfo updated:");
     console.log("updating multiple species regional info: ", selectedSpeciesARegionalInfo, selectedSpeciesBRegionalInfo);
-    if (selectedSpeciesARegionalInfo && selectedSpeciesBRegionalInfo) {
+    if (!selectedSpeciesARegionalInfo || !selectedSpeciesBRegionalInfo){
+      return;
+    }
       console.log("selectedSpeciesARegionalInfo", selectedSpeciesARegionalInfo);
       console.log("selectedSpeciesBRegionalInfo", selectedSpeciesBRegionalInfo);
+    if (selectedSpeciesARegionalInfo[1]) {
       let bodyA = Object.entries(selectedSpeciesARegionalInfo[0]).map(
         ([region, details]) => {
           const { Year, Vectors, ...rest } = details;
@@ -63,7 +73,37 @@ function MultipleSpeciesSelection({
         }
       );
       setSpeciesFormatedRegionalInfoA(bodyA);
+    } else {
+      let bodyA = Object.entries(selectedSpeciesARegionalInfo[0]).map(
+        (row) => {
+          return (
+            <div className="py-1">
+              <span className="font-bold">
+                {row[1]['Region']}:
+              </span>
+              <br />
+              <span className="font-semibold"> Introduction Origin: </span>{" "}
+              {row[1]["Introduction Origin"] || "Unknown"}
+              <br />
+              <span className="font-semibold"> Invasiveness: </span>{" "}
+              {row[1]["Invasiveness"] || "Unknown"}
+              <br />
+              <span className="font-semibold"> Occurrence: </span>{" "}
+              {row[1]["Occurrence"] || "Unknown"}
+              <br />
+              <span className="font-semibold"> Quality: </span>{" "}
+              {row[1]["Quality"]}
+            </div>
+          );
+        }
+      );
+      if (Object.keys(selectedSpeciesARegionalInfo[0]).length === 0) {
+        bodyA = "No data"
+      }
+      setSpeciesFormattedOccA(body);
+    }
 
+    if (selectedSpeciesBRegionalInfo[1]) {
       let bodyB = Object.entries(selectedSpeciesBRegionalInfo[0]).map(
         ([region, details]) => {
           const { Year, Vectors, ...rest } = details;
@@ -86,6 +126,34 @@ function MultipleSpeciesSelection({
       );
 
       setSpeciesFormatedRegionalInfoB(bodyB);
+    } else {
+      let bodyB = Object.entries(selectedSpeciesBRegionalInfo[0]).map(
+        (row) => {
+          return (
+            <div className="py-1">
+              <span className="font-bold">
+                {row[1]['Region']}:
+              </span>
+              <br />
+              <span className="font-semibold"> Introduction Origin: </span>{" "}
+              {row[1]["Introduction Origin"] || "Unknown"}
+              <br />
+              <span className="font-semibold"> Invasiveness: </span>{" "}
+              {row[1]["Invasiveness"] || "Unknown"}
+              <br />
+              <span className="font-semibold"> Occurrence: </span>{" "}
+              {row[1]["Occurrence"] || "Unknown"}
+              <br />
+              <span className="font-semibold"> Quality: </span>{" "}
+              {row[1]["Quality"]}
+            </div>
+          );
+        }
+      );
+      if (Object.keys(selectedSpeciesBRegionalInfo[0]).length === 0) {
+        bodyB = "No data"
+      }
+      setSpeciesFormattedOccB(bodyB);
     }
   }, [selectedSpeciesARegionalInfo, selectedSpeciesBRegionalInfo]);
 
@@ -117,6 +185,28 @@ function MultipleSpeciesSelection({
           Nemesis page ({selectedSpeciesBInfo["Species Name"]})
         </a>
       );
+      setWoRMSLinkA(
+        <a
+          href={
+            selectedSpeciesAInfo["WoRMS URL"]
+          }
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          WoRMS page ({selectedSpeciesAInfo["Species Name"]})
+        </a>
+      )
+      setWoRMSLinkB(
+        <a
+          href={
+            selectedSpeciesBInfo["WoRMS URL"]
+          }
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          WoRMS page ({selectedSpeciesBInfo["Species Name"]})
+        </a>
+      )
       onSpeciesSelect(selectedSpeciesAInfo); //set to species id
       onSpeciesSelectB(selectedSpeciesBInfo); //set to species id
 
@@ -176,29 +266,29 @@ function MultipleSpeciesSelection({
     if (!selectedSpeciesARegionalInfo[1]) {
       firstRecordsFormattedA = (
         <CollapsibleSection
-          title="First records:"
+          title={`Occurences for ${selectedSpeciesAInfo["Species Name"]}:`}
           body={
           <>
-            {selectedSpeciesARegionalInfo[0][0]["First records"]}
+            {speciesFormattedOccA}
           </>
         }
         />
       );
-      moreDetailsFormattedA = selectedSpeciesARegionalInfo[0][0]["More details"];
+      moreDetailsFormattedA = WoRMSLinkA;
     }
 
     if (!selectedSpeciesBRegionalInfo[1]) {
       firstRecordsFormattedB = (
         <CollapsibleSection
-          title="First records:"
+          title={`Occurences for ${selectedSpeciesBInfo["Species Name"]}:`}
           body={
           <>
-            {selectedSpeciesBRegionalInfo[0][0]["First records"]}
+            {speciesFormattedOccB}
           </>
         }
         />
       );
-      moreDetailsFormattedB = selectedSpeciesBRegionalInfo[0][0]["More details"];
+      moreDetailsFormattedB = WoRMSLinkB;
     }
 
     return (

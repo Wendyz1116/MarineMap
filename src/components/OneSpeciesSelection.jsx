@@ -15,8 +15,10 @@ function OneSpeciesSelection({
   const [showSpeciesDetail, setShowSpeciesDetail] = useState(false); // Track sidebar visibility
   const [speciesFormatedRegionalInfo, setSpeciesFormatedRegionalInfo] =
     useState("");
-
+  const [speciesFormattedOcc, setSpeciesFormattedOcc] =
+    useState("");
   const [nemesisLink, setNemesisLink] = useState("");
+  const [WoRMSLink, setWoRMSLink] = useState("")
   const handleSpeciesChange = (event) => {
     setSelectedSpecies(event.target.value);
   };
@@ -25,7 +27,10 @@ function OneSpeciesSelection({
     // console.log("selectedSpeciesRegionalInfo updated:");
     console.log("nemesisRegionNames");
     console.log(nemesisRegionNames);
-    if (selectedSpeciesRegionalInfo) {
+    if (!selectedSpeciesRegionalInfo) {
+      return;
+    }
+    if (selectedSpeciesRegionalInfo[1]) {
       let body = Object.entries(selectedSpeciesRegionalInfo[0]).map(
         ([region, details]) => {
           const { Year, Vectors, ...rest } = details;
@@ -47,7 +52,37 @@ function OneSpeciesSelection({
         }
       );
       setSpeciesFormatedRegionalInfo(body);
+    } else {
+      console.log("GURT", selectedSpeciesRegionalInfo[0])
+      let body = Object.entries(selectedSpeciesRegionalInfo[0]).map(
+        (row) => {
+          return (
+            <div className="py-1">
+              <span className="font-bold">
+                {row[1]['Region']}:
+              </span>
+              <br />
+              <span className="font-semibold"> Introduction Origin: </span>{" "}
+              {row[1]["Introduction Origin"] || "Unknown"}
+              <br />
+              <span className="font-semibold"> Invasiveness: </span>{" "}
+              {row[1]["Invasiveness"] || "Unknown"}
+              <br />
+              <span className="font-semibold"> Occurrence: </span>{" "}
+              {row[1]["Occurrence"] || "Unknown"}
+              <br />
+              <span className="font-semibold"> Quality: </span>{" "}
+              {row[1]["Quality"]}
+            </div>
+          );
+        }
+      );
+      if (Object.keys(selectedSpeciesRegionalInfo[0]).length === 0) {
+        body = "No data"
+      }
+      setSpeciesFormattedOcc(body);
     }
+
   }, [selectedSpeciesRegionalInfo]);
 
   const handleButtonClick = () => {
@@ -65,6 +100,17 @@ function OneSpeciesSelection({
           Nemesis page
         </a>
       );
+      setWoRMSLink(
+        <a
+          href={
+            selectedSpeciesInfo["WoRMS URL"]
+          }
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          WoRMS page
+        </a>
+      )
       onSpeciesSelect(selectedSpeciesInfo); //set to species id
       setShowSpeciesDetail(true); // Populate sidebar with species' detail when a species is selected
       showingSpeciesDetail(true); // For communicating with timeline that species is selected
@@ -122,18 +168,18 @@ function OneSpeciesSelection({
       return (
         <>
         <CollapsibleSection
-          title="First records:"
+          title="Occurences:"
           body={
           <>
-            {selectedSpeciesRegionalInfo[0][0]["First records"]}
+            {speciesFormattedOcc}
           </>
         }
         />
         
         <CollapsibleSection
           title="More details:"
-          body={selectedSpeciesRegionalInfo[0][0]["More details"]}
-          // bodyStyle="text-primary"
+          body={WoRMSLink}
+          bodyStyle="text-primary"
         />
         </>
       )

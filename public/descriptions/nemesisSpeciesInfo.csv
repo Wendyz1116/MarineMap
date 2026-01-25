@@ -1,44 +1,44 @@
-Species Nemesis ID,Species Name,Species Img,RAS Genus Name,RAS Species Name,Species OBIS ID
-6897,Codium fragile ssp. Fragile,https://invasions.si.edu/SpImages/Codium_fragile.jpg,Codium,fragile subsp. fragile,145086
-13421,Dasysiphonia japonica,https://invasions.si.edu/SpImages/Dasysiphonia_japonica_alex_shure.jpeg,Dasysiphonia,japonica,836896
-12572,Grateloupia turuturu,https://invasions.si.edu/SpImages/Grateloupia_turuturu.jpg,Grateloupia,turuturu,295880
-52757,Diadumene lineata,https://invasions.si.edu/SpImages/Diadumene%20%20lineata%20(Medium).JPG,Diadumene,lineata,395099
--94,Barentsia benedeni,https://invasions.si.edu/SpImages/Barentsia%20benedeni%20(Medium).jpg,Barentsia,benedeni,111800
-544802,Ianiropsis serricaudis,https://invasions.si.edu/SpImages/Ianiropsis_serricaudis.jpg,Ianiropsis,serricaudis,255999
--82,Grandidierella japonica,https://invasions.si.edu/SpImages/Grandidierella_japonica.JPG,Grandidierella,japonica,238740
-93477,Microdeutopus gryllotalpa,https://invasions.si.edu/SpImages/Microdeutopus%20gryllotalpa.jpg,Microdeutopus,gryllotalpa,102048
--77,Caprella mutica,https://invasions.si.edu/SpImages/C%20mutica-1.jpg,Caprella,mutica,146768
--2,Hemigrapsus sanguineus,https://invasions.si.edu/SpImages/1024px-Hemigrapsus_sanguineus.jpg,Hemigrapsus,sanguineus,158417
-98734,Carcinus maenas,https://invasions.si.edu/SpImages/Carcinus%20maenas%20(Medium).JPG,Carcinus,maenas,107381
-96450,Palaemon macrodactylus,https://invasions.si.edu/SpImages/Palaemon%20macrodactylus_Melissa.jpg,Palaemon,macrodactylus,181372
--95,Bugula neritina,https://invasions.si.edu/SpImages/Bugula%20neritina%20(Medium).JPG,Bugula,neritina-type N,111158
--572,Tricellaria inopinata,https://invasions.si.edu/SpImages/tricellaria-inopinata.jpg,Tricellaria,inopinata,111254
--334,Didemnum vexillum,https://invasions.si.edu/SpImages/Figure%202_Didemnum%20vexillum_Sitka_ICDavidson.jpg,Didemnum,vexillum,250126
-159099,Diplosoma listerianum,https://invasions.si.edu/SpImages/150580_1078.JPG,Diplosoma,listerianum,103579
-159337,Styela clava,https://invasions.si.edu/SpImages/Styela%20clava%201%20-%20Copy.jpg,Styela,clava,103929
--100,Botrylloides violaceus,https://invasions.si.edu/SpImages/Botrylloides%20violaceus%20(Medium).JPG,Botrylloides,violaceus,148715
-159373,Botryllus schlosseri,https://invasions.si.edu/SpImages/Botryllus%20schlosseri%20(Medium).JPG,Botryllus,schlosseri,103862
-159213,Ascidiella aspersa,https://invasions.si.edu/SpImages/Ascidiella-aspersa-Andy_Cowley.jpg,Ascidiella,aspersa,103718
-159113,Ciona intestinalis,https://invasions.si.edu/SpImages/Ciona%20intestinalis%20Keith%20Hiscock.jpg,Ciona,intestinalis,103732
-,Cladophora sericea,https://inaturalist-open-data.s3.amazonaws.com/photos/75417919/medium.jpeg,Cladophora,sericea,145065
-,Bryopsis plumosa,https://inaturalist-open-data.s3.amazonaws.com/photos/53552509/large.jpeg,Bryopsis,plumosa,144457
-,Ulva compressa,https://inaturalist-open-data.s3.amazonaws.com/photos/66065516/medium.jpeg,Ulva,compressa,234462
-,Ulva lactuca,https://inaturalist-open-data.s3.amazonaws.com/photos/412792345/medium.jpg,Ulva,lactuca,145984
-,Ulva linza,https://inaturalist-open-data.s3.amazonaws.com/photos/128998665/medium.jpg,Ulva,linza,234474
-,Ulva rigida,https://static.inaturalist.org/photos/160263663/medium.jpg,Ulva,rigida (blade),145990
-48398,Halichondria bowerbanki,https://invasions.si.edu/SpImages/Halichondria_bowerbanki_10.7717-peerj.4596_Figure_6_cropped.png,Halichondria,bowerbanki,132588
-,Haliclona canaliculata,,Haliclona,canaliculata,157387
-,Ectopleura larynx,,Ectopleura,larynx,157933
-,Obelia bidentata,,Obelia,bidentata,117385
-,Obelia dichotoma,,Obelia,dichotoma,117386
-,Harmothoe imbricata,,Harmothoe,imbricata,130769
-,Nereis pelagica,,Nereis,pelagica,130404
-,Phyllodoce maculata,,Phyllodoce,maculata,334510
-,Dipolydora socialis,,Dipolydora,socialis,131124
-,Tanais dulongii,,Tanais,dulongii,136546
-,Apocorophium acutum,,Apocorophium,acutum,148604
-93590,Monocorophium acherusicum,https://invasions.si.edu/SpImages/1024px-Monocorophium_acherusicum.jpg,Monocorophium,acherusicum,225814
-93600,Monocorophium insidiosum,https://invasions.si.edu/SpImages/Monocorophium%20insidiosum%20(Medium).jpg,Monocorophium,insidiosum,148592
-,Caprella equilibra,,Caprella,equilibra,101830
-,Amathia gracilis,,Amathia,gracilis,851589
-156536,Cryptosula pallasiana,https://invasions.si.edu/SpImages/Cryptosula%20pallasiana%20(Medium).jpg,Cryptosula,pallasiana,111343
+Species Nemesis ID,Species Name,Species Img,RAS Genus Name,RAS Species Name,Species OBIS ID,Species WoRMS ID,WoRMS URL
+6897,Codium fragile ssp. Fragile,https://invasions.si.edu/SpImages/Codium_fragile.jpg,Codium,fragile subsp. fragile,145086,370562,https://www.marinespecies.org/aphia.php?p=taxdetails&id=370562
+13421,Dasysiphonia japonica,https://invasions.si.edu/SpImages/Dasysiphonia_japonica_alex_shure.jpeg,Dasysiphonia,japonica,836896,836896,https://www.marinespecies.org/aphia.php?p=taxdetails&id=836896
+12572,Grateloupia turuturu,https://invasions.si.edu/SpImages/Grateloupia_turuturu.jpg,Grateloupia,turuturu,295880,295880,https://www.marinespecies.org/aphia.php?p=taxdetails&id=295880
+52757,Diadumene lineata,https://invasions.si.edu/SpImages/Diadumene%20%20lineata%20(Medium).JPG,Diadumene,lineata,395099,395099,https://www.marinespecies.org/aphia.php?p=taxdetails&id=395099
+-94,Barentsia benedeni,https://invasions.si.edu/SpImages/Barentsia%20benedeni%20(Medium).jpg,Barentsia,benedeni,111800,111800,https://www.marinespecies.org/aphia.php?p=taxdetails&id=111800
+544802,Ianiropsis serricaudis,https://invasions.si.edu/SpImages/Ianiropsis_serricaudis.jpg,Ianiropsis,serricaudis,255999,255999,https://www.marinespecies.org/aphia.php?p=taxdetails&id=255999
+-82,Grandidierella japonica,https://invasions.si.edu/SpImages/Grandidierella_japonica.JPG,Grandidierella,japonica,238740,238740,https://www.marinespecies.org/aphia.php?p=taxdetails&id=238740
+93477,Microdeutopus gryllotalpa,https://invasions.si.edu/SpImages/Microdeutopus%20gryllotalpa.jpg,Microdeutopus,gryllotalpa,102048,102048,https://www.marinespecies.org/aphia.php?p=taxdetails&id=102048
+-77,Caprella mutica,https://invasions.si.edu/SpImages/C%20mutica-1.jpg,Caprella,mutica,146768,146768,https://www.marinespecies.org/aphia.php?p=taxdetails&id=146768
+-2,Hemigrapsus sanguineus,https://invasions.si.edu/SpImages/1024px-Hemigrapsus_sanguineus.jpg,Hemigrapsus,sanguineus,158417,158417,https://www.marinespecies.org/aphia.php?p=taxdetails&id=158417
+98734,Carcinus maenas,https://invasions.si.edu/SpImages/Carcinus%20maenas%20(Medium).JPG,Carcinus,maenas,107381,107381,https://www.marinespecies.org/aphia.php?p=taxdetails&id=107381
+96450,Palaemon macrodactylus,https://invasions.si.edu/SpImages/Palaemon%20macrodactylus_Melissa.jpg,Palaemon,macrodactylus,181372,181372,https://www.marinespecies.org/aphia.php?p=taxdetails&id=181372
+-95,Bugula neritina,https://invasions.si.edu/SpImages/Bugula%20neritina%20(Medium).JPG,Bugula,neritina-type N,111158,111158,https://www.marinespecies.org/aphia.php?p=taxdetails&id=111158
+-572,Tricellaria inopinata,https://invasions.si.edu/SpImages/tricellaria-inopinata.jpg,Tricellaria,inopinata,111254,111254,https://www.marinespecies.org/aphia.php?p=taxdetails&id=111254
+-334,Didemnum vexillum,https://invasions.si.edu/SpImages/Figure%202_Didemnum%20vexillum_Sitka_ICDavidson.jpg,Didemnum,vexillum,250126,250126,https://www.marinespecies.org/aphia.php?p=taxdetails&id=250126
+159099,Diplosoma listerianum,https://invasions.si.edu/SpImages/150580_1078.JPG,Diplosoma,listerianum,103579,103579,https://www.marinespecies.org/aphia.php?p=taxdetails&id=103579
+159337,Styela clava,https://invasions.si.edu/SpImages/Styela%20clava%201%20-%20Copy.jpg,Styela,clava,103929,103929,https://www.marinespecies.org/aphia.php?p=taxdetails&id=103929
+-100,Botrylloides violaceus,https://invasions.si.edu/SpImages/Botrylloides%20violaceus%20(Medium).JPG,Botrylloides,violaceus,148715,148715,https://www.marinespecies.org/aphia.php?p=taxdetails&id=148715
+159373,Botryllus schlosseri,https://invasions.si.edu/SpImages/Botryllus%20schlosseri%20(Medium).JPG,Botryllus,schlosseri,103862,103862,https://www.marinespecies.org/aphia.php?p=taxdetails&id=103862
+159213,Ascidiella aspersa,https://invasions.si.edu/SpImages/Ascidiella-aspersa-Andy_Cowley.jpg,Ascidiella,aspersa,103718,103718,https://www.marinespecies.org/aphia.php?p=taxdetails&id=103718
+159113,Ciona intestinalis,https://invasions.si.edu/SpImages/Ciona%20intestinalis%20Keith%20Hiscock.jpg,Ciona,intestinalis,103732,103732,https://www.marinespecies.org/aphia.php?p=taxdetails&id=103732
+,Cladophora sericea,https://inaturalist-open-data.s3.amazonaws.com/photos/75417919/medium.jpeg,Cladophora,sericea,145065,145065,https://www.marinespecies.org/aphia.php?p=taxdetails&id=145065
+,Bryopsis plumosa,https://inaturalist-open-data.s3.amazonaws.com/photos/53552509/large.jpeg,Bryopsis,plumosa,144457,144457,https://www.marinespecies.org/aphia.php?p=taxdetails&id=144457
+,Ulva compressa,https://inaturalist-open-data.s3.amazonaws.com/photos/66065516/medium.jpeg,Ulva,compressa,234462,234462,https://www.marinespecies.org/aphia.php?p=taxdetails&id=234462
+,Ulva lactuca,https://inaturalist-open-data.s3.amazonaws.com/photos/412792345/medium.jpg,Ulva,lactuca,145984,145984,https://www.marinespecies.org/aphia.php?p=taxdetails&id=145984
+,Ulva linza,https://inaturalist-open-data.s3.amazonaws.com/photos/128998665/medium.jpg,Ulva,linza,234474,234474,https://www.marinespecies.org/aphia.php?p=taxdetails&id=234474
+,Ulva rigida,https://static.inaturalist.org/photos/160263663/medium.jpg,Ulva,rigida (blade),145990,145990,https://www.marinespecies.org/aphia.php?p=taxdetails&id=145990
+48398,Halichondria bowerbanki,https://invasions.si.edu/SpImages/Halichondria_bowerbanki_10.7717-peerj.4596_Figure_6_cropped.png,Halichondria,bowerbanki,132588,132588,https://www.marinespecies.org/aphia.php?p=taxdetails&id=132588
+,Haliclona canaliculata,,Haliclona,canaliculata,157387,157387,https://www.marinespecies.org/aphia.php?p=taxdetails&id=157387
+,Ectopleura larynx,,Ectopleura,larynx,157933,157933,https://www.marinespecies.org/aphia.php?p=taxdetails&id=157933
+,Obelia bidentata,,Obelia,bidentata,117385,117385,https://www.marinespecies.org/aphia.php?p=taxdetails&id=117385
+,Obelia dichotoma,,Obelia,dichotoma,117386,117386,https://www.marinespecies.org/aphia.php?p=taxdetails&id=117386
+,Harmothoe imbricata,,Harmothoe,imbricata,130769,130769,https://www.marinespecies.org/aphia.php?p=taxdetails&id=130769
+,Nereis pelagica,,Nereis,pelagica,130404,130404,https://www.marinespecies.org/aphia.php?p=taxdetails&id=130404
+,Phyllodoce maculata,,Phyllodoce,maculata,334510,334510,https://www.marinespecies.org/aphia.php?p=taxdetails&id=334510
+,Dipolydora socialis,,Dipolydora,socialis,131124,131124,https://www.marinespecies.org/aphia.php?p=taxdetails&id=131124
+,Tanais dulongii,,Tanais,dulongii,136546,136546,https://www.marinespecies.org/aphia.php?p=taxdetails&id=136546
+,Apocorophium acutum,,Apocorophium,acutum,148604,148604,https://www.marinespecies.org/aphia.php?p=taxdetails&id=148604
+93590,Monocorophium acherusicum,https://invasions.si.edu/SpImages/1024px-Monocorophium_acherusicum.jpg,Monocorophium,acherusicum,225814,225814,https://www.marinespecies.org/aphia.php?p=taxdetails&id=225814
+93600,Monocorophium insidiosum,https://invasions.si.edu/SpImages/Monocorophium%20insidiosum%20(Medium).jpg,Monocorophium,insidiosum,148592,148592,https://www.marinespecies.org/aphia.php?p=taxdetails&id=148592
+,Caprella equilibra,,Caprella,equilibra,101830,101830,https://www.marinespecies.org/aphia.php?p=taxdetails&id=101830
+,Amathia gracilis,,Amathia,gracilis,851589,851589,https://www.marinespecies.org/aphia.php?p=taxdetails&id=851589
+156536,Cryptosula pallasiana,https://invasions.si.edu/SpImages/Cryptosula%20pallasiana%20(Medium).jpg,Cryptosula,pallasiana,111343,111343,https://www.marinespecies.org/aphia.php?p=taxdetails&id=111343

@@ -278,7 +278,7 @@ export default function SpeciesSection() {
     extractFromRegionsCSV("/data/nemesisNAET1.csv", setNAET1SpeciesInfo);
     extractFromRegionsCSV("/data/nemesisNAET2.csv", setNAET2SpeciesInfo);
     extractFromRegionsCSV("/data/nemesisNAET3.csv", setNAET3SpeciesInfo);
-    extractFromRegionsCSV("/data/speciesSidebarData.csv", setNoNemesisInfo)
+    extractFromRegionsCSV("/data/speciesSetWithWoRMS.csv", setNoNemesisInfo)
   }, []);
 
   // extract data from the csv file for regions NA-ET1, Na-ET2, and Na-ET3
@@ -577,7 +577,9 @@ export default function SpeciesSection() {
       }
 
       if (Object.keys(regionSpeciesData[0]).length === 0) {
+        console.log("GURT NONEMINF", noNemesisInfo)
         regionSpeciesData[0] = filterBySpeciesName(noNemesisInfo);
+        console.log("GURT FILTER", regionSpeciesData[0])
         regionSpeciesData[1] = false;
       }
 
