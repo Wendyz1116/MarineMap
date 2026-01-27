@@ -45,7 +45,6 @@ function Map({
         position: absolute !important;
         z-index: 1000 !important;
         max-width: 300px;
-        con
       }
 
       .esri-popup__feature-menu {
