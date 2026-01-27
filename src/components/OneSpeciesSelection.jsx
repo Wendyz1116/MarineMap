@@ -4,6 +4,15 @@ import { IoIosArrowDown } from "react-icons/io";
 import CollapsibleSection from "./CollapsibleSection";
 import { use } from "react";
 
+/**
+ * Component for selecting one species and displaying its information
+ * @param {Object} props - Component props
+ * @param {Array} props.selectedSpeciesRegionalInfo - Regional info for the selected species
+ * @param {Function} props.onSpeciesSelect - Callback when a species is selected
+ * @param {Function} props.showingSpeciesDetail - Callback to indicate if species detail is shown
+ * @param {Object} props.nemesisRegionNames - Mapping of region codes to region names
+ * @returns {JSX.Element} - Rendered component
+ */
 function OneSpeciesSelection({
   selectedSpeciesRegionalInfo,
   onSpeciesSelect,
@@ -23,10 +32,9 @@ function OneSpeciesSelection({
     setSelectedSpecies(event.target.value);
   };
 
+  // Update formatted regional info on sidebar when selected species info changes
   useEffect(() => {
-    // console.log("selectedSpeciesRegionalInfo updated:");
-    console.log("nemesisRegionNames");
-    console.log(nemesisRegionNames);
+
     if (!selectedSpeciesRegionalInfo) {
       return;
     }
@@ -53,7 +61,6 @@ function OneSpeciesSelection({
       );
       setSpeciesFormatedRegionalInfo(body);
     } else {
-      console.log("GURT", selectedSpeciesRegionalInfo[0])
       let body = Object.entries(selectedSpeciesRegionalInfo[0]).map(
         (row) => {
           return (
@@ -85,6 +92,11 @@ function OneSpeciesSelection({
 
   }, [selectedSpeciesRegionalInfo]);
 
+  /**
+   * Handles the button click to generate the map and show species details
+   * includes setting links to Nemesis and WoRMS pages.
+   * @returns {void}
+   */
   const handleButtonClick = () => {
     if (selectedSpeciesInfo) {
       // onSpeciesSelect(selectedSpecies); set to species name
@@ -119,16 +131,12 @@ function OneSpeciesSelection({
     }
   };
 
-  // updated selectedSpeciesInfo to store info abt the current selected species
+  // Filter for selected species nemesis description based on selected species name
   const selectedSpeciesInfo = speciesData.find(
     (species) => species["Species Name"] === selectedSpecies
   );
 
-  // useEffect(() => {
-  //   onSpeciesSelect(selectedSpecies);
-  // }, [selectedSpeciesInfo]);
-
-  // reat the nemesis species info csv
+  // Fetches nemesis description for all species from csv on component mount
   useEffect(() => {
     fetch("/descriptions/nemesisSpeciesInfo.csv")
       .then((response) => response.text())
@@ -144,6 +152,11 @@ function OneSpeciesSelection({
       .catch((error) => console.error("Error fetching the CSV file:", error));
   }, []);
 
+  /**
+   * Formats the collapsible sections for the sidebar when a species is selected
+   *
+   * @returns {JSX.Element} - Formatted collapsible sections
+   */
   const formattedCollapsible = (() => {
     if (!selectedSpeciesRegionalInfo) {
       return;
@@ -156,7 +169,7 @@ function OneSpeciesSelection({
           title="First records:"
           body={speciesFormatedRegionalInfo}
         />
-        
+
         <CollapsibleSection
           title="More details:"
           body={nemesisLink}
@@ -175,7 +188,7 @@ function OneSpeciesSelection({
           </>
         }
         />
-        
+
         <CollapsibleSection
           title="More details:"
           body={WoRMSLink}

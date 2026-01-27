@@ -135,7 +135,6 @@ function Map({
                 ${Object.entries(regionsDetail)
                   .map(
                     ([key, value]) => {
-                      console.log("region detail value:", value);
                       const sortedYears = Array.from(new Set(value)).sort();
                       return `'${key}': '${
                         allYears
@@ -379,11 +378,6 @@ function Map({
 
   // Update the map by ploting the currSites' locations
   useEffect(() => {
-    // console.log("Updating map with currSites:", currSites);
-    // console.log("datasetsToShow:", datasetsToShow);
-    // console.log("graphicsLayerRef:", graphicsLayerRef.current);
-    console.log("Plotting A", currSites);
-    console.log("Plotting B", currSitesB);
     if (graphicsLayerRef.current) {
       graphicsLayerRef.current.removeAll(); // Clear once at the beginning
       const speciesAStyle = "circle";
@@ -444,7 +438,6 @@ function Map({
   const createSitePopupTemplate = (siteInfo) => {
     let content = `<p><strong>Record Date:</strong> ${siteInfo["Date"]}</p>`;
 
-    // console.log("siteInfo:", siteInfo);
     if (siteInfo["Site Code"]) {
       content += `
       <p><strong>Site Name:</strong> ${siteInfo["Site Location"]}</p>

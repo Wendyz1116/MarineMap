@@ -2,8 +2,17 @@ import React, { useEffect, useState } from "react";
 import Papa from "papaparse";
 import CollapsibleSection from "./CollapsibleSection";
 
-import { use } from "react";
-
+/**
+ * Component for selecting and displaying information about multiple species.
+ *
+ * @param {Object} props - Component props
+ * @param {Object} props.selectedSpeciesARegionalInfo - Regional info for species A
+ * @param {Object} props.selectedSpeciesBRegionalInfo - Regional info for species B
+ * @param {Function} props.onSpeciesSelect - Callback when species A is selected
+ * @param {Function} props.onSpeciesSelectB - Callback when species B is selected
+ * @param {Function} props.showingSpeciesDetail - Callback to indicate if species detail is shown
+ * @returns {JSX.Element} - Rendered component
+ */
 function MultipleSpeciesSelection({
     selectedSpeciesARegionalInfo,
     selectedSpeciesBRegionalInfo,
@@ -15,10 +24,9 @@ function MultipleSpeciesSelection({
   const [selectedSpeciesA, setSelectedSpeciesA] = useState(null);
   const [selectedSpeciesB, setSelectedSpeciesB] = useState(null);
   const [isSidebarVisible, setIsSidebarVisible] = useState(false); // Track sidebar visibility
-  const [showSpeciesDetail, setShowSpeciesDetail] = useState(false); // Track sidebar visibility
-  const [speciesFormatedRegionalInfoA, setSpeciesFormatedRegionalInfoA] =
+  const [speciesFormattedRegionalInfoA, setSpeciesFormattedRegionalInfoA] =
     useState("");
-  const [speciesFormatedRegionalInfoB, setSpeciesFormatedRegionalInfoB] =
+  const [speciesFormattedRegionalInfoB, setSpeciesFormattedRegionalInfoB] =
     useState("");
   const [speciesFormattedOccA, setSpeciesFormattedOccA] =
     useState("");
@@ -32,6 +40,7 @@ function MultipleSpeciesSelection({
   const [WoRMSLinkB, setWoRMSLinkB] = useState("")
 
 
+  // Functions to handle species selection
   const handleSpeciesAChange = (event) => {
     setSelectedSpeciesA(event.target.value);
   };
@@ -40,17 +49,11 @@ function MultipleSpeciesSelection({
     setSelectedSpeciesB(event.target.value);
   };
 
-  console.log("selectedSpeciesARegionalInfo", selectedSpeciesARegionalInfo);
-  console.log("selectedSpeciesBRegionalInfo", selectedSpeciesBRegionalInfo);
-
+  // Update formatted regional info on sidebar when selected species info changes
   useEffect(() => {
-    // console.log("selectedSpeciesRegionalInfo updated:");
-    console.log("updating multiple species regional info: ", selectedSpeciesARegionalInfo, selectedSpeciesBRegionalInfo);
     if (!selectedSpeciesARegionalInfo || !selectedSpeciesBRegionalInfo){
       return;
     }
-      console.log("selectedSpeciesARegionalInfo", selectedSpeciesARegionalInfo);
-      console.log("selectedSpeciesBRegionalInfo", selectedSpeciesBRegionalInfo);
     if (selectedSpeciesARegionalInfo[1]) {
       let bodyA = Object.entries(selectedSpeciesARegionalInfo[0]).map(
         ([region, details]) => {
@@ -72,7 +75,7 @@ function MultipleSpeciesSelection({
           );
         }
       );
-      setSpeciesFormatedRegionalInfoA(bodyA);
+      setSpeciesFormattedRegionalInfoA(bodyA);
     } else {
       let bodyA = Object.entries(selectedSpeciesARegionalInfo[0]).map(
         (row) => {
@@ -100,7 +103,7 @@ function MultipleSpeciesSelection({
       if (Object.keys(selectedSpeciesARegionalInfo[0]).length === 0) {
         bodyA = "No data"
       }
-      setSpeciesFormattedOccA(body);
+      setSpeciesFormattedOccA(bodyA);
     }
 
     if (selectedSpeciesBRegionalInfo[1]) {
@@ -125,7 +128,7 @@ function MultipleSpeciesSelection({
         }
       );
 
-      setSpeciesFormatedRegionalInfoB(bodyB);
+      setSpeciesFormattedRegionalInfoB(bodyB);
     } else {
       let bodyB = Object.entries(selectedSpeciesBRegionalInfo[0]).map(
         (row) => {
@@ -157,10 +160,15 @@ function MultipleSpeciesSelection({
     }
   }, [selectedSpeciesARegionalInfo, selectedSpeciesBRegionalInfo]);
 
+
+  /**
+   * Handles the button click to generate the map and show species details.
+   * includes setting links to Nemesis and WoRMS pages
+   * @returns {void}
+   */
   const handleButtonClick = () => {
     if (selectedSpeciesAInfo && selectedSpeciesBInfo) {
       // TODO: Trigger map generation with selected species
-      console.log("Generating map for species:", selectedSpeciesA, selectedSpeciesB);
       setNemesisLinkA(
         <a
           href={
@@ -207,17 +215,19 @@ function MultipleSpeciesSelection({
           WoRMS page ({selectedSpeciesBInfo["Species Name"]})
         </a>
       )
-      onSpeciesSelect(selectedSpeciesAInfo); //set to species id
-      onSpeciesSelectB(selectedSpeciesBInfo); //set to species id
+
+      // use callbacks to give selected species info to parent component
+      onSpeciesSelect(selectedSpeciesAInfo);
+      onSpeciesSelectB(selectedSpeciesBInfo);
 
       setIsSidebarVisible(true); // Show sidebar when a species is selected
-      setShowSpeciesDetail(true); // Populate sidebar with species' detail when a species is selected
       showingSpeciesDetail(true); // For communicating with timeline that species is selected
     } else {
       alert("Please select a species.");
     }
   };
 
+  // Filter for the two selected species nemesis descriptions based on their IDs
   const selectedSpeciesAInfo = speciesData.find(
     (species) => species["Species Nemesis ID"] === selectedSpeciesA
   );
@@ -225,6 +235,7 @@ function MultipleSpeciesSelection({
     (species) => species["Species Nemesis ID"] === selectedSpeciesB
   );
 
+  // Fetches nemesis description for all species from csv on component mount
   useEffect(() => {
     // Fetch the CSV file
     fetch("/descriptions/nemesisSpeciesInfo.csv")
@@ -236,13 +247,18 @@ function MultipleSpeciesSelection({
           skipEmptyLines: true,
           complete: (results) => {
             setSpeciesData(results.data);
-            console.log(results);
+            // console.log(results);
           },
         });
       })
       .catch((error) => console.error("Error fetching the CSV file:", error));
   }, []);
 
+  /**
+   * Formats the collapsible sections for the sidebar when multiple species are selected
+   *
+   * @returns {JSX.Element} - Formatted collapsible sections
+   */
   const formattedCollapsible = (() => {
     if (!selectedSpeciesARegionalInfo || !selectedSpeciesBRegionalInfo) {
       return;
@@ -250,13 +266,13 @@ function MultipleSpeciesSelection({
     let firstRecordsFormattedA = (
       <CollapsibleSection
         title={`First records for ${selectedSpeciesAInfo["Species Name"]}:`}
-        body={speciesFormatedRegionalInfoA}
+        body={speciesFormattedRegionalInfoA}
       />
     );
     let firstRecordsFormattedB = (
       <CollapsibleSection
         title={`First records for ${selectedSpeciesBInfo["Species Name"]}:`}
-        body={speciesFormatedRegionalInfoB}
+        body={speciesFormattedRegionalInfoB}
       />
     );
 
@@ -301,7 +317,7 @@ function MultipleSpeciesSelection({
           title="More details:"
           body={
             <div>
-              <p>{moreDetailsFormattedA}</p> 
+              <p>{moreDetailsFormattedA}</p>
               <p>{moreDetailsFormattedB}</p>
             </div>
           }
@@ -315,7 +331,7 @@ function MultipleSpeciesSelection({
     <div>
       {!isSidebarVisible && (
         <div className="m-2 flex flex-col">
-          <div className="text-sm">Select species 1:</div>
+          <div className="text-sm">Select species 1 (circle):</div>
 
           <select
             className="select focus:outline-none outline-none select-xs w-full select-secondary rounded-md text-xs"
@@ -334,7 +350,7 @@ function MultipleSpeciesSelection({
             ))}
           </select>
 
-          <div className="text-sm mt-4">Select species 2:</div>
+          <div className="text-sm mt-4">Select species 2 (triangle):</div>
           <select
             className="select focus:outline-none outline-none select-xs w-full select-secondary rounded-md text-xs"
             onChange={handleSpeciesBChange}
@@ -404,7 +420,6 @@ function MultipleSpeciesSelection({
             className="mt-4 btn btn-sm btn-secondary"
             onClick={() => {
               setIsSidebarVisible(false)
-              setShowSpeciesDetail(false);
               showingSpeciesDetail(false);
               onSpeciesSelect(null);
               onSpeciesSelectB(null);
