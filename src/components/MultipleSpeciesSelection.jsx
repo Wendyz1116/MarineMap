@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Papa from "papaparse";
 import CollapsibleSection from "./CollapsibleSection";
-import { create } from "esri/layers/support/TileInfo";
 
 /**
  * Component for selecting and displaying information about multiple species.
