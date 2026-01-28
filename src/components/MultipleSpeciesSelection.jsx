@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Papa from "papaparse";
 import CollapsibleSection from "./CollapsibleSection";
+import { create } from "esri/layers/support/TileInfo";
 
 /**
  * Component for selecting and displaying information about multiple species.
@@ -49,115 +50,82 @@ function MultipleSpeciesSelection({
     setSelectedSpeciesB(event.target.value);
   };
 
+  /**
+   * helper function to create body content from regional info
+   * @param {*} regionalInfo the regional info object
+   * @param {*} setSpeciesFormattedRegionalInfo a callback to set the formatted regional info state
+   * @param {*} setSpeciesFormattedOcc a callback to set the formatted occurrence state
+   * @returns JSX body content
+   */
+  function createBodyFromRegionalInfo(regionalInfo, setSpeciesFormattedRegionalInfo, setSpeciesFormattedOcc) {
+    if (regionalInfo[1]) {
+      let body = Object.entries(regionalInfo[0]).map(
+        ([region, details]) => {
+          const { Year, Vectors, ...rest } = details;
+          return (
+            <div key={region} className="py-1">
+              <span className="font-bold">
+                {region} ({Year}):
+              </span>
+              <br />
+              <span className="font-semibold"> Invasion Status: </span>{" "}
+              {rest["Invasion Status"]}
+              <br />
+              <span className="font-semibold"> Population Status: </span>{" "}
+              {rest["Population Status"]}
+              <br />
+              <span className="font-semibold"> Vectors: </span> {Vectors}
+            </div>
+          );
+        }
+      );
+      setSpeciesFormattedRegionalInfo(body);
+    } else {
+      let body = Object.entries(regionalInfo[0]).map(
+        (row) => {
+          return (
+            <div className="py-1">
+              <span className="font-bold">
+                {row[1]['Region']}:
+              </span>
+              <br />
+              <span className="font-semibold"> Introduction Origin: </span>{" "}
+              {row[1]["Introduction Origin"] || "Unknown"}
+              <br />
+              <span className="font-semibold"> Invasiveness: </span>{" "}
+              {row[1]["Invasiveness"] || "Unknown"}
+              <br />
+              <span className="font-semibold"> Occurrence: </span>{" "}
+              {row[1]["Occurrence"] || "Unknown"}
+              <br />
+              <span className="font-semibold"> Quality: </span>{" "}
+              {row[1]["Quality"]}
+            </div>
+          );
+        }
+      );
+      if (Object.keys(regionalInfo[0]).length === 0) {
+        body = "No data"
+      }
+      setSpeciesFormattedOcc(body);
+    }
+  }
+
   // Update formatted regional info on sidebar when selected species info changes
   useEffect(() => {
     if (!selectedSpeciesARegionalInfo || !selectedSpeciesBRegionalInfo){
       return;
     }
-    if (selectedSpeciesARegionalInfo[1]) {
-      let bodyA = Object.entries(selectedSpeciesARegionalInfo[0]).map(
-        ([region, details]) => {
-          const { Year, Vectors, ...rest } = details;
-          return (
-            <div key={region} className="py-1">
-              <span className="font-bold">
-                {region} ({Year}):
-              </span>
-              <br />
-              <span className="font-semibold"> Invasion Status: </span>{" "}
-              {rest["Invasion Status"]}
-              <br />
-              <span className="font-semibold"> Population Status: </span>{" "}
-              {rest["Population Status"]}
-              <br />
-              <span className="font-semibold"> Vectors: </span> {Vectors}
-            </div>
-          );
-        }
-      );
-      setSpeciesFormattedRegionalInfoA(bodyA);
-    } else {
-      let bodyA = Object.entries(selectedSpeciesARegionalInfo[0]).map(
-        (row) => {
-          return (
-            <div className="py-1">
-              <span className="font-bold">
-                {row[1]['Region']}:
-              </span>
-              <br />
-              <span className="font-semibold"> Introduction Origin: </span>{" "}
-              {row[1]["Introduction Origin"] || "Unknown"}
-              <br />
-              <span className="font-semibold"> Invasiveness: </span>{" "}
-              {row[1]["Invasiveness"] || "Unknown"}
-              <br />
-              <span className="font-semibold"> Occurrence: </span>{" "}
-              {row[1]["Occurrence"] || "Unknown"}
-              <br />
-              <span className="font-semibold"> Quality: </span>{" "}
-              {row[1]["Quality"]}
-            </div>
-          );
-        }
-      );
-      if (Object.keys(selectedSpeciesARegionalInfo[0]).length === 0) {
-        bodyA = "No data"
-      }
-      setSpeciesFormattedOccA(bodyA);
-    }
-
-    if (selectedSpeciesBRegionalInfo[1]) {
-      let bodyB = Object.entries(selectedSpeciesBRegionalInfo[0]).map(
-        ([region, details]) => {
-          const { Year, Vectors, ...rest } = details;
-          return (
-            <div key={region} className="py-1">
-              <span className="font-bold">
-                {region} ({Year}):
-              </span>
-              <br />
-              <span className="font-semibold"> Invasion Status: </span>{" "}
-              {rest["Invasion Status"]}
-              <br />
-              <span className="font-semibold"> Population Status: </span>{" "}
-              {rest["Population Status"]}
-              <br />
-              <span className="font-semibold"> Vectors: </span> {Vectors}
-            </div>
-          );
-        }
-      );
-
-      setSpeciesFormattedRegionalInfoB(bodyB);
-    } else {
-      let bodyB = Object.entries(selectedSpeciesBRegionalInfo[0]).map(
-        (row) => {
-          return (
-            <div className="py-1">
-              <span className="font-bold">
-                {row[1]['Region']}:
-              </span>
-              <br />
-              <span className="font-semibold"> Introduction Origin: </span>{" "}
-              {row[1]["Introduction Origin"] || "Unknown"}
-              <br />
-              <span className="font-semibold"> Invasiveness: </span>{" "}
-              {row[1]["Invasiveness"] || "Unknown"}
-              <br />
-              <span className="font-semibold"> Occurrence: </span>{" "}
-              {row[1]["Occurrence"] || "Unknown"}
-              <br />
-              <span className="font-semibold"> Quality: </span>{" "}
-              {row[1]["Quality"]}
-            </div>
-          );
-        }
-      );
-      if (Object.keys(selectedSpeciesBRegionalInfo[0]).length === 0) {
-        bodyB = "No data"
-      }
-      setSpeciesFormattedOccB(bodyB);
-    }
+    createBodyFromRegionalInfo(
+      selectedSpeciesARegionalInfo,
+      setSpeciesFormattedRegionalInfoA,
+      setSpeciesFormattedOccA
+    );
+    createBodyFromRegionalInfo(
+      selectedSpeciesBRegionalInfo,
+      setSpeciesFormattedRegionalInfoB,
+      setSpeciesFormattedOccB
+    );
   }, [selectedSpeciesARegionalInfo, selectedSpeciesBRegionalInfo]);
 
 
