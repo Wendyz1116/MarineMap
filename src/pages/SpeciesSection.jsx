@@ -344,7 +344,7 @@ export default function SpeciesSection() {
           regionYearMapWithObis[region].push(year);
         }
         allYearRegionDetailWithObis[year][region].push({
-          RegionName: "Region undefined", // TODO: replace with correct region
+          RegionName: region, 
           "Source(s)": " OBIS Dataset",
         });
       }
