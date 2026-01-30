@@ -58,7 +58,6 @@ const getOBISSpeciesDesc = async (speciesDetail) => {
       if (
         row["Species OBIS ID"].toString() === speciesDetail["Species OBIS ID"].toString()
       ) {
-        console.log("Species found", { speciesSet: row["Species Set Number"], genus: row["Genus"], species: row["Species"] })
         return { speciesSet: row["Species Set Number"], genus: row["Genus"], species: row["Species"] };
       }
     }
@@ -107,8 +106,8 @@ export default function useFetchObisData(speciesDetail, speciesDetailB) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  // Fetch data for speciesDetail when it changes
   useEffect(() => {
-    console.log("Fetching data for speciesDetail:", speciesDetail);
     // Don't do anything if no scientificName is provided
     if (!speciesDetail) {
       setCombinedOBISData({}); // Clear data for species A
@@ -146,8 +145,6 @@ export default function useFetchObisData(speciesDetail, speciesDetailB) {
           ),
         ]);
 
-        console.log("NAET1Data", NAET1Data, "NAET2Data", NAET2Data, "NAET3Data", NAET3Data);
-
         // Process each dataset
         const yearRegionMap = processDatasets({
           "NA-ET1": NAET1Data,
@@ -172,9 +169,9 @@ export default function useFetchObisData(speciesDetail, speciesDetailB) {
     return () => abortController.abort(); // Cleanup on unmount
   }, [speciesDetail]);
 
+  // Fetch data for speciesDetailB when it changes
   useEffect(() => {
     // Don't do anything if no scientificName is provided
-    console.log("Fetching data for speciesDetailB:", speciesDetailB);
     if (!speciesDetailB) {
       setCombinedOBISDataB({}); // Clear data for species B
       setLoading(false);
@@ -209,8 +206,6 @@ export default function useFetchObisData(speciesDetail, speciesDetailB) {
             filterBySpeciesName(data, scientificName)
           ),
         ]);
-
-        console.log("NAET1Data B", NAET1Data, "NAET2Data B", NAET2Data, "NAET3Data B", NAET3Data);
 
         // Process each dataset
         const yearRegionMap = processDatasets({
@@ -301,8 +296,6 @@ export default function useFetchObisData(speciesDetail, speciesDetailB) {
     return { combinedYearRegionMap, combinedYearSiteMap };
   };
 
-  console.log("DONE! combinedOBISData", combinedOBISData);
-  console.log("DONE! combinedOBISDataB", combinedOBISDataB);
-  // const combinedOBISData = combinedOBISData;
+  // return data for both species even if one is empty
   return { combinedOBISData, combinedOBISDataB, loading, error };
 }
