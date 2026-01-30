@@ -1,7 +1,5 @@
 import { useState, useEffect } from "react";
 import Papa from "papaparse";
-import fs from "fs";
-import path from "path";
 
 /**
  * Cache for species set data to avoid re-reading the CSV file
@@ -14,6 +12,7 @@ let speciesSetCache = null;
  * @returns {Promise<Array>} - Promise resolving to species set data
  */
 async function loadSpeciesSetData() {
+  // if species set has already been read
   if (speciesSetCache) {
     return speciesSetCache;
   }
@@ -58,7 +57,6 @@ const getOBISSpeciesDesc = async (speciesDetail) => {
       if (
         row["Species OBIS ID"].toString() === speciesDetail["Species OBIS ID"].toString()
       ) {
-        console.log("Species found", { speciesSet: row["Species Set Number"], genus: row["Genus"], species: row["Species"] })
         return { speciesSet: row["Species Set Number"], genus: row["Genus"], species: row["Species"] };
       }
     }
@@ -104,134 +102,99 @@ const filterBySpeciesName = (data, speciesName) => {
 export default function useFetchObisData(speciesDetail, speciesDetailB) {
   const [combinedOBISData, setCombinedOBISData] = useState({});
   const [combinedOBISDataB, setCombinedOBISDataB] = useState({});
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [loadingA, setLoadingA] = useState(true);
+  const [loadingB, setLoadingB] = useState(true);
+  const [errorA, setErrorA] = useState(null);
+  const [errorB, setErrorB] = useState(null);
 
+  const fetchAllData = async (speciesDetail, setData, abortControllerSignal, setLoading, setError) => {
+    setLoading(true);
+    setError(null);
+
+    try {
+      // Determine which species set this species belongs to
+      const speciesData = await getOBISSpeciesDesc(speciesDetail, abortControllerSignal);
+
+
+      if (!speciesData) {
+        throw new Error(`Species "${speciesDetail}" not found in species set data`);
+      }
+
+      const { speciesSet, genus, species } = speciesData;
+      const scientificName = `${genus} ${species}`;
+
+      // Fetch all datasets in parallel
+      const [NAET1Data, NAET2Data, NAET3Data] = await Promise.all([
+        extractFromRegionsCSV(`/OBISFilteredData/NAET1/OBISNAET1Set${speciesSet}Data.csv`).then((data) =>
+          filterBySpeciesName(data, scientificName)
+        ),
+        extractFromRegionsCSV(`/OBISFilteredData/NAET2/OBISNAET2Set${speciesSet}Data.csv`).then((data) =>
+          filterBySpeciesName(data, scientificName)
+        ),
+        extractFromRegionsCSV(`/OBISFilteredData/NAET3/OBISNAET3Set${speciesSet}Data.csv`).then((data) =>
+          filterBySpeciesName(data, scientificName)
+        ),
+      ]);
+
+      // Process each dataset
+      const yearRegionMap = processDatasets({
+        "NA-ET1": NAET1Data,
+        "NA-ET2": NAET2Data,
+        "NA-ET3": NAET3Data,
+      });
+
+      setData(yearRegionMap);
+    } catch (err) {
+      if (!abortControllerSignal.aborted) {
+        setError(err);
+      }
+    } finally {
+      if (!abortControllerSignal.aborted) {
+        setLoading(false);
+      }
+    }
+  };
+  
+  // fetch data for species A
   useEffect(() => {
-    console.log("Fetching data for speciesDetail:", speciesDetail);
     // Don't do anything if no scientificName is provided
     if (!speciesDetail) {
       setCombinedOBISData({}); // Clear data for species A
-      setLoading(false);
+      setLoadingA(false);
       return;
     }
     const abortController = new AbortController();
 
-    const fetchAllData = async () => {
-      setLoading(true);
-      setError(null);
-
-      try {
-        // Determine which species set this species belongs to
-        const speciesData = await getOBISSpeciesDesc(speciesDetail);
-
-
-        if (!speciesData) {
-          throw new Error(`Species "${speciesDetail}" not found in species set data`);
-        }
-
-        const { speciesSet, genus, species } = speciesData;
-        const scientificName = `${genus} ${species}`;
-
-        // Fetch all datasets in parallel
-        const [NAET1Data, NAET2Data, NAET3Data] = await Promise.all([
-          extractFromRegionsCSV(`/OBISFilteredData/NAET1/OBISNAET1Set${speciesSet}Data.csv`).then((data) =>
-            filterBySpeciesName(data, scientificName)
-          ),
-          extractFromRegionsCSV(`/OBISFilteredData/NAET2/OBISNAET2Set${speciesSet}Data.csv`).then((data) =>
-            filterBySpeciesName(data, scientificName)
-          ),
-          extractFromRegionsCSV(`/OBISFilteredData/NAET3/OBISNAET3Set${speciesSet}Data.csv`).then((data) =>
-            filterBySpeciesName(data, scientificName)
-          ),
-        ]);
-
-        console.log("NAET1Data", NAET1Data, "NAET2Data", NAET2Data, "NAET3Data", NAET3Data);
-
-        // Process each dataset
-        const yearRegionMap = processDatasets({
-          "NA-ET1": NAET1Data,
-          "NA-ET2": NAET2Data,
-          "NA-ET3": NAET3Data,
-        });
-
-        setCombinedOBISData(yearRegionMap);
-      } catch (err) {
-        if (!abortController.signal.aborted) {
-          setError(err);
-        }
-      } finally {
-        if (!abortController.signal.aborted) {
-          setLoading(false);
-        }
-      }
-    };
-
-    fetchAllData();
+    fetchAllData
+    (
+      speciesDetail, 
+      setCombinedOBISData, 
+      abortController.signal, 
+      setLoadingA, 
+      setErrorA
+    );
 
     return () => abortController.abort(); // Cleanup on unmount
   }, [speciesDetail]);
 
+  // fetch data for species B
   useEffect(() => {
     // Don't do anything if no scientificName is provided
-    console.log("Fetching data for speciesDetailB:", speciesDetailB);
     if (!speciesDetailB) {
       setCombinedOBISDataB({}); // Clear data for species B
-      setLoading(false);
+      setLoadingB(false);
       return;
     }
-
     const abortController = new AbortController();
 
-    const fetchAllData = async () => {
-      setLoading(true);
-      setError(null);
-
-      try {
-        // Determine which species set this species belongs to
-        const speciesData = await getOBISSpeciesDesc(speciesDetailB);
-        if (!speciesData) {
-          throw new Error(`Species "${speciesDetailB}" not found in species set data`);
-        }
-
-        const { speciesSet, genus, species } = speciesData;
-        const scientificName = `${genus} ${species}`;
-
-        // Fetch all datasets in parallel
-        const [NAET1Data, NAET2Data, NAET3Data] = await Promise.all([
-          extractFromRegionsCSV(`/OBISFilteredData/NAET1/OBISNAET1Set${speciesSet}Data.csv`).then((data) =>
-            filterBySpeciesName(data, scientificName)
-          ),
-          extractFromRegionsCSV(`/OBISFilteredData/NAET2/OBISNAET2Set${speciesSet}Data.csv`).then((data) =>
-            filterBySpeciesName(data, scientificName)
-          ),
-          extractFromRegionsCSV(`/OBISFilteredData/NAET3/OBISNAET3Set${speciesSet}Data.csv`).then((data) =>
-            filterBySpeciesName(data, scientificName)
-          ),
-        ]);
-
-        console.log("NAET1Data B", NAET1Data, "NAET2Data B", NAET2Data, "NAET3Data B", NAET3Data);
-
-        // Process each dataset
-        const yearRegionMap = processDatasets({
-          "NA-ET1": NAET1Data,
-          "NA-ET2": NAET2Data,
-          "NA-ET3": NAET3Data,
-        });
-
-        setCombinedOBISDataB(yearRegionMap);
-      } catch (err) {
-        if (!abortController.signal.aborted) {
-          setError(err);
-        }
-      } finally {
-        if (!abortController.signal.aborted) {
-          setLoading(false);
-        }
-      }
-    };
-
-    fetchAllData();
+    fetchAllData
+    (
+      speciesDetailB, 
+      setCombinedOBISDataB, 
+      abortController.signal, 
+      setLoadingB, 
+      setErrorB
+    );
 
     return () => abortController.abort(); // Cleanup on unmount
   }, [speciesDetailB]);
@@ -301,8 +264,11 @@ export default function useFetchObisData(speciesDetail, speciesDetailB) {
     return { combinedYearRegionMap, combinedYearSiteMap };
   };
 
-  console.log("DONE! combinedOBISData", combinedOBISData);
-  console.log("DONE! combinedOBISDataB", combinedOBISDataB);
   // const combinedOBISData = combinedOBISData;
-  return { combinedOBISData, combinedOBISDataB, loading, error };
+  return { 
+    combinedOBISData, 
+    combinedOBISDataB, 
+    loading: loadingA || loadingB, 
+    error: errorA || errorB 
+  };
 }

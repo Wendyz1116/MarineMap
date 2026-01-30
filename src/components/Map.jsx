@@ -382,59 +382,35 @@ function Map({
     if (graphicsLayerRef.current) {
       plotCountRef.current += 1;
       graphicsLayerRef.current.removeAll(); // Clear once at the beginning
+
+      const dataColors = {
+      "nemesisSpecificSites": "rgba(147,192,209,1)",
+      "rasSites": "rgba(245,200,92,1)",
+      "obisSites": "rgba(121,209,168,1)",
+      };
+
       const speciesAStyle = "circle";
       const speciesBStyle = "triangle";
-      // Plot nemesisSpecificSites if enabled
 
-      if (
-        datasetsToShow["nemesisSpecificSites"] === true &&
-        currSites["nemesisSpecificSites"]
-      ) {
-        plotSites(
-          { fill: "rgba(147,192,209,1)", outline: "rgba(6,9,14,0.8)" },
-          currSites["nemesisSpecificSites"], speciesAStyle
-        );
-      }
+      // plot species 1 data
+      Object.entries(dataColors).forEach(([key, color]) => {
+        if (datasetsToShow[key] && currSites[key]) {
+          plotSites(
+            {fill: color, outline: "rgba(6,9,14,0.8)"},
+            currSites[key], speciesAStyle
+          );
+        }
+      });
 
-      if (
-        datasetsToShow["nemesisSpecificSites"] === true &&
-        currSitesB["nemesisSpecificSites"]
-      ) {
-        plotSites(
-          { fill: "rgba(147,192,209,1)", outline: "rgba(6,9,14,0.8)" },
-          currSitesB["nemesisSpecificSites"], speciesBStyle
-        );
-      }
-
-      // Plot rasSites if enabled
-      if (datasetsToShow["rasSites"] === true && currSites["rasSites"]) {
-        plotSites(
-          { fill: "rgba(245,200,92, 1)", outline: "rgba(6,9,14,0.8)" },
-          currSites["rasSites"], speciesAStyle
-        );
-      }
-
-      if (datasetsToShow["rasSites"] === true && currSitesB["rasSites"]) {
-        plotSites(
-          { fill: "rgba(245,200,92, 1)", outline: "rgba(6,9,14,0.8)" },
-          currSitesB["rasSites"], speciesBStyle
-        );
-      }
-
-      // Plot obisSites if enabled
-      if (datasetsToShow["obisSites"] === true && currSites["obisSites"]) {
-        plotSites(
-          { fill: "rgba(121, 209, 168, 1)", outline: "rgba(6,9,14,0.8)" },
-          currSites["obisSites"], speciesAStyle
-        );
-      }
-
-      if (datasetsToShow["obisSites"] === true && currSitesB["obisSites"]) {
-        plotSites(
-          { fill: "rgba(121, 209, 168, 1)", outline: "rgba(6,9,14,0.8)" },
-          currSitesB["obisSites"], speciesBStyle
-        );
-      }
+      // plot species 2 data
+      Object.entries(dataColors).forEach(([key, color]) => {
+        if (datasetsToShow[key] && currSitesB[key]) {
+          plotSites(
+            {fill: color, outline: "rgba(6,9,14,0.8)"},
+            currSitesB[key], speciesBStyle
+          );
+        }
+      });
     }
   }, [graphicsLayerRef.current, currSites, currSitesB, datasetsToShow]);
 

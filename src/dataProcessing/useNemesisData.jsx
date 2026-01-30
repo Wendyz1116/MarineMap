@@ -51,8 +51,6 @@ async function loadSpeciesSetData() {
 const getOBISSpeciesDesc = async (speciesDetail) => {
   try {
     const speciesSetData = await loadSpeciesSetData();
-
-    // console.log("speciesSetData", speciesSetData, "matching", speciesDetail);
     // Find the matching species in the data
     for (const row of speciesSetData) {
       if (
@@ -94,11 +92,6 @@ async function extractFromRegionsCSV(csvPath) {
   });
 }
 
-const filterBySpeciesName = (data, speciesName) => {
-  return data
-    ? data.filter((record) => record.scientificName === speciesName)
-    : [];
-};
 
 /**
  * Custom hook to fetch OBIS data for a given scientific name
@@ -123,8 +116,7 @@ export default function useNemesisData(speciesDetail) {
       setLoading(true);
       setError(null);
 
-      // // Fetch the CSV file for species
-
+      // Fetch the CSV file for species
       try {
         // Determine which species set this species belongs to
         const speciesData = await getOBISSpeciesDesc(speciesDetail);
@@ -134,11 +126,6 @@ export default function useNemesisData(speciesDetail) {
             `Species "${speciesDetail}" not found in species set data`
           );
         }
-
-        console.log(`Species Nemesis info: ${JSON.stringify(speciesData)}`);
-
-        const { speciesSet, genus, species } = speciesData;
-        const scientificName = `${genus} ${species}`;
 
         const numSets = 4;
         const regionData = { "NA-ET1": [], "NA-ET2": [], "NA-ET3": [] };
@@ -183,8 +170,5 @@ export default function useNemesisData(speciesDetail) {
     return () => abortController.abort(); // Cleanup on unmount
   }, [speciesDetail]);
 
-
-
-  console.log("returning nemesisRegionData", nemesisRegionData);
   return { nemesisRegionData, loading, error };
 }
