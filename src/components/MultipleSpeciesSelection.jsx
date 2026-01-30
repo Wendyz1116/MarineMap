@@ -42,10 +42,12 @@ function MultipleSpeciesSelection({
 
   // Functions to handle species selection
   const handleSpeciesAChange = (event) => {
+    console.log("Selected species A:", event.target.value);
     setSelectedSpeciesA(event.target.value);
   };
 
   const handleSpeciesBChange = (event) => {
+    console.log("Selected species B:", event.target.value);
     setSelectedSpeciesB(event.target.value);
   };
 
@@ -115,6 +117,8 @@ function MultipleSpeciesSelection({
     if (!selectedSpeciesARegionalInfo || !selectedSpeciesBRegionalInfo){
       return;
     }
+    console.log("selectedSpeciesARegionalInfo:", selectedSpeciesARegionalInfo);
+    console.log("selectedSpeciesBRegionalInfo:", selectedSpeciesBRegionalInfo);
     createBodyFromRegionalInfo(
       selectedSpeciesARegionalInfo,
       setSpeciesFormattedRegionalInfoA,
@@ -186,6 +190,8 @@ function MultipleSpeciesSelection({
       // use callbacks to give selected species info to parent component
       onSpeciesSelect(selectedSpeciesAInfo);
       onSpeciesSelectB(selectedSpeciesBInfo);
+      console.log("Selected species A:", selectedSpeciesAInfo);
+      console.log("Selected species B:", selectedSpeciesBInfo);
 
       setIsSidebarVisible(true); // Show sidebar when a species is selected
       showingSpeciesDetail(true); // For communicating with timeline that species is selected
@@ -196,10 +202,10 @@ function MultipleSpeciesSelection({
 
   // Filter for the two selected species nemesis descriptions based on their IDs
   const selectedSpeciesAInfo = speciesData.find(
-    (species) => species["Species Nemesis ID"] === selectedSpeciesA
+    (species) => species["Species OBIS ID"] === selectedSpeciesA
   );
   const selectedSpeciesBInfo = speciesData.find(
-    (species) => species["Species Nemesis ID"] === selectedSpeciesB
+    (species) => species["Species OBIS ID"] === selectedSpeciesB
   );
 
   // Fetches nemesis description for all species from csv on component mount
@@ -311,7 +317,7 @@ function MultipleSpeciesSelection({
               a["Species Name"].localeCompare(b["Species Name"])
               )
             .map((species, index) => (
-              <option key={index} value={species["Species Nemesis ID"]}>
+              <option key={index} value={species["Species OBIS ID"]}>
                 {species["Species Name"]}
               </option>
             ))}
@@ -329,7 +335,7 @@ function MultipleSpeciesSelection({
               a["Species Name"].localeCompare(b["Species Name"])
               )
             .map((species, index) => (
-              <option key={index} value={species["Species Nemesis ID"]}>
+              <option key={index} value={species["Species OBIS ID"]}>
                 {species["Species Name"]}
               </option>
             ))}
@@ -362,6 +368,7 @@ function MultipleSpeciesSelection({
                 alt={selectedSpeciesAInfo["Species Name"]}
                 className="w-full h-auto"
               />
+              <p className="text-sm mt-2">(circle)</p>
             </div>
             {/* <div className="items-center justify-center align-middle bg-slate-100">
               <hr className="h-32 border-l w-fit bg-red-600 border-primary"></hr>
@@ -379,6 +386,7 @@ function MultipleSpeciesSelection({
                 alt={selectedSpeciesBInfo["Species Name"]}
                 className="w-full h-auto"
               />
+              <p className="text-sm mt-2">(triangle)</p>
             </div>
           </div>
 

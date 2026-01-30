@@ -108,6 +108,7 @@ export default function useFetchObisData(speciesDetail, speciesDetailB) {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    console.log("Fetching data for speciesDetail:", speciesDetail);
     // Don't do anything if no scientificName is provided
     if (!speciesDetail) {
       setCombinedOBISData({}); // Clear data for species A
@@ -173,6 +174,7 @@ export default function useFetchObisData(speciesDetail, speciesDetailB) {
 
   useEffect(() => {
     // Don't do anything if no scientificName is provided
+    console.log("Fetching data for speciesDetailB:", speciesDetailB);
     if (!speciesDetailB) {
       setCombinedOBISDataB({}); // Clear data for species B
       setLoading(false);
