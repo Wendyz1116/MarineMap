@@ -1,11 +1,6 @@
 import { useState, useEffect } from "react";
 import Papa from "papaparse";
 
-/**
- * Cache for species set data to avoid re-reading the CSV file
- */
-let speciesSetCache = null;
-
 async function extractFromRegionsCSV(csvPath) {
   const response = await fetch(csvPath);
   const csvData = await response.text();
@@ -133,7 +128,6 @@ export default function useRASData(speciesDetail) {
               regionData[region].push(row);
             }
           });
-          // regionData[record.Location.trim()].push(...RASSiteInfo);
         })
       );
       setRASRegionData(regionData);
