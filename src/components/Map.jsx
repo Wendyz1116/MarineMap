@@ -7,7 +7,6 @@ function Map({
   allYears = false,
   currRegions = [],
   pastRegions = [],
-  pastRegionsB = [],
   regionsDetail,
   nemesisRegionNames,
   currSites = {},
@@ -22,6 +21,7 @@ function Map({
   const viewRef = useRef(null);
   const geoJsonLayerRef = useRef(null);
   const graphicsLayerRef = useRef(null);
+  const plotCountRef = useRef(0);
   const [renderer, setRenderer] = useState(null);
   const lastUpdated = "03/31/2025";
 
@@ -242,6 +242,7 @@ function Map({
             ymax: 50,
           });
 
+          // initialize map zoom/position
           const view = new MapView({
             map: webmap,
             zoom: 4,
@@ -249,6 +250,7 @@ function Map({
             container: MapElem.current,
             // spatialReference: lambertConformalConic,
 
+            // prevent zoom from going too far or too close
             constraints: {
               geometry: extent,
               minZoom: 3,
@@ -378,6 +380,7 @@ function Map({
   // Update the map by ploting the currSites' locations
   useEffect(() => {
     if (graphicsLayerRef.current) {
+      plotCountRef.current += 1;
       graphicsLayerRef.current.removeAll(); // Clear once at the beginning
       const speciesAStyle = "circle";
       const speciesBStyle = "triangle";
@@ -418,6 +421,7 @@ function Map({
         );
       }
 
+      // Plot obisSites if enabled
       if (datasetsToShow["obisSites"] === true && currSites["obisSites"]) {
         plotSites(
           { fill: "rgba(121, 209, 168, 1)", outline: "rgba(6,9,14,0.8)" },
@@ -487,8 +491,15 @@ function Map({
    */
   const plotSites = (colors, currSitesToShow, style) => {
     if (graphicsLayerRef.current) {
+      const currentVersion = plotCountRef.current;
       if (currSitesToShow.length > 0) {
         loadModules(["esri/Graphic"]).then(([Graphic]) => {
+
+          // make sure version hasn't changed
+          if (currentVersion !== plotCountRef.current) {
+            return;
+          }
+
           const siteGraphics = currSitesToShow
             .map((site) => {
               // Extract properties with fallbacks for missing values
