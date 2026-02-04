@@ -11,6 +11,7 @@ import CollapsibleSection from "./CollapsibleSection";
  * @param {Function} props.onSpeciesSelect - Callback when species A is selected
  * @param {Function} props.onSpeciesSelectB - Callback when species B is selected
  * @param {Function} props.showingSpeciesDetail - Callback to indicate if species detail is shown
+ * @param {Object} props.nemesisRegionNames - Mapping of region codes to region names
  * @returns {JSX.Element} - Rendered component
  */
 function MultipleSpeciesSelection({
@@ -18,7 +19,8 @@ function MultipleSpeciesSelection({
     selectedSpeciesBRegionalInfo,
     onSpeciesSelect,
     onSpeciesSelectB,
-    showingSpeciesDetail
+    showingSpeciesDetail,
+    nemesisRegionNames,
   }) {
   const [speciesData, setSpeciesData] = useState([]);
   const [selectedSpeciesA, setSelectedSpeciesA] = useState(null);
@@ -54,11 +56,12 @@ function MultipleSpeciesSelection({
   /**
    * helper function to create body content from regional info
    * @param {*} regionalInfo the regional info object
+   * @param {*} nemesisRegionNames mapping of region codes to region names
    * @param {*} setSpeciesFormattedRegionalInfo a callback to set the formatted regional info state
    * @param {*} setSpeciesFormattedOcc a callback to set the formatted occurrence state
    * @returns JSX body content
    */
-  function createBodyFromRegionalInfo(regionalInfo, setSpeciesFormattedRegionalInfo, setSpeciesFormattedOcc) {
+  function createBodyFromRegionalInfo(regionalInfo, nemesisRegionNames, setSpeciesFormattedRegionalInfo, setSpeciesFormattedOcc) {
     if (regionalInfo[1]) {
       let body = Object.entries(regionalInfo[0]).map(
         ([region, details]) => {
@@ -66,7 +69,7 @@ function MultipleSpeciesSelection({
           return (
             <div key={region} className="py-1">
               <span className="font-bold">
-                {region} ({Year}):
+                {nemesisRegionNames[region]} ({Year}):
               </span>
               <br />
               <span className="font-semibold"> Invasion Status: </span>{" "}
@@ -121,11 +124,13 @@ function MultipleSpeciesSelection({
     console.log("selectedSpeciesBRegionalInfo:", selectedSpeciesBRegionalInfo);
     createBodyFromRegionalInfo(
       selectedSpeciesARegionalInfo,
+      nemesisRegionNames,
       setSpeciesFormattedRegionalInfoA,
       setSpeciesFormattedOccA
     );
     createBodyFromRegionalInfo(
       selectedSpeciesBRegionalInfo,
+      nemesisRegionNames,
       setSpeciesFormattedRegionalInfoB,
       setSpeciesFormattedOccB
     );

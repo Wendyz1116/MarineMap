@@ -96,7 +96,9 @@ function Sidebar({
                   selectedSpeciesBRegionalInfo={selectedSpeciesBInfo}
                   onSpeciesSelect={onSpeciesSelect}
                   onSpeciesSelectB={onSpeciesSelectB}
-                  showingSpeciesDetail={showingSpeciesDetail} />
+                  showingSpeciesDetail={showingSpeciesDetail}
+                  nemesisRegionNames={nemesisRegionNames}
+                   />
                 </div>
               )}
             </div>

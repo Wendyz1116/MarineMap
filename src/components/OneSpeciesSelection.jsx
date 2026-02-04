@@ -45,7 +45,7 @@ function OneSpeciesSelection({
           return (
             <div key={region} className="py-1">
               <span className="font-bold">
-                {region} ({Year}):
+                {nemesisRegionNames[region]} ({Year}):
               </span>
               <br />
               <span className="font-semibold"> Invasion Status: </span>{" "}
